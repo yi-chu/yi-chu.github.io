@@ -344,7 +344,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3k
+                  3.7k
                 </span>
               
 
@@ -360,7 +360,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  10
+                  14
                 </span>
               
             </div>
@@ -382,63 +382,15 @@
 
       
         
-          
-            <h1 id="Dreyfus-Wagner算法求最小斯坦纳树"><a href="#Dreyfus-Wagner算法求最小斯坦纳树" class="headerlink" title="Dreyfus-Wagner算法求最小斯坦纳树"></a>Dreyfus-Wagner算法求最小斯坦纳树</h1><hr>
-<p>没想到这么快就写第一篇正经的博客了-。-<br>之所以想到学习这个算法主要是这个算法比较经典，（虽然这几年比较冷门）而且前置技能也都点了。<br><del>并不是因为今年的南昌邀请赛被打自闭了</del></p>
-<hr>
-<h2 id="什么是斯坦纳树"><a href="#什么是斯坦纳树" class="headerlink" title="什么是斯坦纳树"></a>什么是斯坦纳树</h2><p>斯坦纳树的问题要从1643年法国<del>业余</del>数学家<del>问题男生</del>费马在他所写的一本关于求极值的书中提出的一个问题说起<br>这个问题被称为费马问题（理所当然-.-）<a href="#跳过费马问题">对费马问题不感兴趣可以点我跳过&gt;.&lt;</a></p>
-<p>1643年，在一封写给意大利数学家和物理学家托里拆利（Evangelista Torricelli,1608–1647)的私人信件中，费马提出了下面这个极富挑战性和趣味性的几何难题，请求托里拆利帮忙解答（也有一种说法是费马本人实际上已经找到了这个问题的答案，他是为了挑战托里拆利才写信向他“请教”的）<del>很符合费马的风格</del>：<br>给定不在一条直线上的三个点 A,B,C，求平面上到这三个点的距离之和最短的点的位置。<br><img src="https://gss1.bdstatic.com/9vo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=168af763114c510fbac9ea4801304e48/960a304e251f95ca4006bb1dc2177f3e660952ad.jpg" alt="费马问题"><br>托里拆利成功地解决了费马的问题。他给出的答案是：<br>对 △ABC 三条边的张角都等于120°，即满足∠APB =∠BPC =∠CPA = 120°的点 P（如下图所示）就是到点 A,B,C 的距离之和最小的点。<br><img src="https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=0b6b80e5c18065386fe7ac41f6b4ca21/8694a4c27d1ed21b968c2b4ea66eddc450da3fd7.jpg" alt="费马问题"><br>后来人们就把平面上到一个三角形的三个顶点 A,B,C 距离之和最小的点称为△ABC的费马-托里拆利点（Fermat-Torricelli point），也简称为费马点（Fermat point）或托里拆利点（Torricelli point）。</p>
-<p>费马问题在我初中的时候就是习题册上全等三角形那章的一道题，我印象深刻，当时还想了好久，收获很多启发。本以为再也遇不到了没想到现在不但又遇见了还知道了它的名字。妙啊-，解法很多，但最简单最快捷最漂亮的还是纯几何解法。（也是初中数学老师教我们的解法，直接从百度搬来了）</p>
-<p>要用几何方法解决费马问题，一种思想是把问题中的三条线段 PA, PB, PC“加”在一起或者说拼接在一起，最好是把它们拼接成连接两个定点的一条折线，这样一来，因为两点之间直线最短，就能很快地确定 PA + PB + PC 的最小值。利用旋转变换能成功地把费马问题中的三条线段以一种非常自然的方式“加到一起”。</p>
-<p><img src="https://gss2.bdstatic.com/-fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=64dfca84b5096b63951456026d5aec21/b03533fa828ba61ec64ac5844a34970a314e59f0.jpg" alt="费马问题的解"></p>
-<p>只要把△BPC绕点B旋转60°（如上图所示），设点P转到了点P’，点C转到了点C’，于是就有<br>PC = P’C’， PB = PP’ （因为 △PBP’ 是等边三角形）<br>因此就有<br>PA + PB + PC = PA + PP’ + P’C’<br>上式的右边是连接点A和点C’的一段折线的距离，它一定大于或等于线段AC’的长度，所以我们就得到了不等式：<br>PA + PB + PC = PA + PP’ + P’C’ ≥ AC’<br>显然，如果上面的不等式能取到等号，那么这时候的点P就是到点 A, B, C 距离之和最小的点，也就是费马点。</p>
-<p><a name="跳过费马问题"></a></p>
-<p>斯坦纳树问题是组合优化问题，与最小生成树相似，是最短网络的一种。最小生成树是在给定的点集和边中寻求最短网络使所有点连通。而最小斯坦纳树允许在给定点外增加额外的点，使生成的最短网络开销最小。（ 个人理解:感觉最短路和最小生成树都是最小斯坦纳树中的一些特殊情况 )</p>
-<p>关于这一问题有一个比较重要的猜想：</p>
-<blockquote>
-<p>Pollak−Gilbert猜想： 平面上任意n点集，斯坦纳最小树长与最小生成树之长的比值的最小值是：sqrt(3)/2</p>
-</blockquote>
-<blockquote>
-<p>关于这个猜想，我觉得可能是因为由于求解斯坦纳最小树是NP问题，所以科学家只能寻求一些近似的算法。和斯坦纳树十分相似的最小生成树就成为了一个突破口，斯坦纳最小树长与最小生成树之长的比值也成为了一个重要的研究方向（ 毕竟最小生成树好求嘛- ）</p>
-</blockquote>
-<p>斯坦纳树也有好多种类，这里我们讨论的是图上的最小斯坦纳树。</p>
-<p>这里我引用Dreyfus，Wagner当初论文中对斯坦纳树问题的描述来更好的帮助理解图上的最小斯坦纳树。</p>
-<blockquote>
-<p>Let a graph G be given as a pair (N,A), where N is a set of nodes, and A is a set of undirected arcs connecting nodes of N. With each arc a ∈ A is associated a positive number |a| , called the length of a. Suppose a subset Y of N is also given. The problem we consider is that of computing a subset S of A such that :<br>&ensp;(1) all members of Y are connected by paths composed only of arcs in S;<br>&ensp;(2) |S| = Σ|s| is a minimum.</p>
-</blockquote>
-<p>图的最小斯坦纳问题最早是在1971年由Hakimi和Levin提出，并在1972年Karp证明了在一般情况下，该问题是一个NP一完全问题。</p>
-<hr>
-<h2 id="自己在求解斯坦纳最小树上的一些探索与思考"><a href="#自己在求解斯坦纳最小树上的一些探索与思考" class="headerlink" title="自己在求解斯坦纳最小树上的一些探索与思考"></a>自己在求解斯坦纳最小树上的一些探索与思考</h2><p>当时第一次碰到这类题目时，还不知道这时斯坦纳最小树的问题。第一反应肯定时最小生成树，但很快反应过来它和最小生成树有个本质上的区别——最小斯坦纳树允许在给定点外增加额外的点使生成的最短网络开销最小。换句话说就是斯坦纳最小树是至少包含要求联通的点的不确定点集的最小生成树中最小的那棵树（ 好绕啊，忍不住吐槽下 ）。所以可以对这个点集进行穷举，并对每次穷举出来的点集求最小生成树，而后对答案集求Min.<br>这里我们假设图内有n个点，要求k个点联通，易知这样的点集有2的（n-k）次个。当时那道题目的n好像是30个，k是8个，也就是要求2^22（≈4e6）次最小生成树，这样的时间复杂度是无法接受的。（如果 n-k 小一些或许可行，就是写起来可能有些麻烦）</p>
-<p>当时的第二反应是状态压缩，因为想到了TSP（ 也是图上NP问题 ）并且给出的数据都很小。然后算了下状压所有点的空间复杂度是2^30次也就是1e9，直接放弃了（可能当时心态发生了一些微妙的变化），唉，如果当时再多想一会儿的话QAQ<br><del>估计还是想不出来XD</del></p>
-<p>状压所有点然后每次枚举还没加入当前联通状态下的点和加入联通的边来转移所有状态，最后再想要的状态中求Min，那道题可能还要子集DP下。（ 继续往下想的话应该就是这样了 ）不过状态压缩，状态压缩，连状态都存不下了，还咋整？</p>
-<p>所以我们得想办法优化状态的描述，继续观察可以发现，如果我们状压所有点，那么就会出现许多无用的状态（比如不含必须点—— 题目要求联通的点|的联通状态），于是我们想到只状压要求联通的点。但其他点也可能会用到（毕竟是最小斯坦纳树，而不是最小生成树么）。所以我们再加一维表示这个联通状态中一个比较特殊的点，媒介点或者说根。（这个点很关键）。大概就是这样 </p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f[S][i] <span class="comment">//表示当前联通状态是S，“根”是i的最小斯坦纳树权值和</span></span><br></pre></td></tr></table></figure>
-
-<p>接下来的部分就是1972年（大概吧）Dreyfus和Wagner发表的用于解决图的最小斯坦纳树的Dreyfus-Wagner算法！</p>
-<hr>
-<h2 id="Dreyfus-Wagner算法"><a href="#Dreyfus-Wagner算法" class="headerlink" title="Dreyfus-Wagner算法"></a>Dreyfus-Wagner算法</h2><p>网上关于斯坦纳树的资料少得可怜，还有不少是从同一个人的博客里搬来的，基本就是给个定义然后下面几行代码，好一些的就是稍微解释下转移方程<del>其实和没说差不多</del>，甚至我那时候还不知道这个算法的名字（所以我决定详细讲这部分内容）。</p>
-<blockquote>
-<p>关于斯坦纳树的视频资料更是寥寥无几，我在百度上搜索就只有一个视频（<a href="https://www.bilibili.com/video/av44911983" target="_blank" rel="noopener">附B站上视频地址</a>），声音很轻，不过这无关紧要，可惜的是视频内容也与大多数博客相差无几，不是我想要的。后来听说2018的牛客多校赛有涉及这个算法，于是我找到了当时讲解的录屏（<a href="https://www.bilibili.com/video/av50491787" target="_blank" rel="noopener">也是B站&gt;.&lt;</a>）大概在第一场的43min左右提到了那道题。可惜视频中的讲解也只是粗略的带过。但我在这个视频中有了新的收获：<del>李超树是李超发明的</del>这个算法的名字是Dreyfus-Wagner！</p>
-</blockquote>
-<p>终于花了大概一个多小时的时间，我在网上找到了当初1972年由Dreyfus和Wagner发表的论文《<em>The Steiner Problem in Graphs</em>》.（会放在最后的参考里）</p>
-<blockquote>
-<p>但是这个问题的解决才刚刚开始,就像是解题的过程一样，一步一步地找到突破口然后进入一个新的问题，不知道什么时候能抵达正解。读这篇论文时，我也开始理解大学教育和初中高中在教科书和辅导书中获取知识的区别，可以想象一个研究前沿科学的科学家的学习<del>好像想的有点远了</del>。</p>
-</blockquote>
-<p>进入正题：<br>论文开篇解释了斯坦纳树定义（以很“图论”的方式），前面已经讲过了就不多赘述了。</p>
-<p>说明了图的最小斯坦纳树问题中点与点的距离不同于与平面几何，比如平面几何中三角形的边长不能是“1”，“1”，“3”，但在图中可以，论文用“arc”代替了“edge”，也就是说图中的边是弧线。（ 论文就是严谨0.0 ）.</p>
-<p>之后提出了一个比较重要的性质”<em>THE OPTIMAL DECOMPOSITION PROPERTY</em>“翻译过来就是最优分解性质（ QQ浏览器翻译的，感觉比百度翻译好用些<del>还是TX厉害</del> ）。意思是任何一个斯坦纳最小树（ 这里设它是S ），以任何一个属于它的点（ 比如说P ）作为根节点，取其中的任意一棵子树（ 包括P ）设为S1，剩下的部分（ 也包括P ）设为S2，显然|S| = |S1| + |S2|,(|S|代表S的值)那么S1,S2都是各自点集的斯坦纳最小树。（ 是不是有点像DP里的最优子结构的性质，从这里可以看出有些DP的意思<del>其实很明显了</del>。 ）</p>
-<p>论文中证明过程写在附录中</p>
-<p>这个证明其实很简单，一般DP里面证明最优子结构都是用的反证法。假设对于S1中关键点集的斯坦纳树中有比S1更小的设为T，那么就有 |T| + |S2| &lt; |S1| + |S2| = |S|,<br>这显然与S是最小斯坦纳树矛盾。</p>
-<p>连证明过程都和最小生成树中的prim算法有点像</p>
-<p>但是需要注意的是，这个证明只能证明其充分性，而必要性（也就是反过来）是不成立的。（ 稍微想想就知道了 <del>提示：在于P点的选择</del>）</p>
-<p>附录中还证明了在任何一颗斯坦纳树中都存在这种特殊的分解，这里就不证明了（因为挺显然的）。</p>
-<p>至此一些必要的解释工作就完成了</p>
-<p>Dreyfus和Wagner提出了他们的解法</p>
-<hr>
-<h2 id="算法模板"><a href="#算法模板" class="headerlink" title="算法模板"></a>算法模板</h2><p>板子 没啥好说的</p>
-<hr>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2>
-          
+          <h1 id="Dreyfus-Wagner算法求最小斯坦纳树"><a href="#Dreyfus-Wagner算法求最小斯坦纳树" class="headerlink" title="Dreyfus-Wagner算法求最小斯坦纳树"></a>Dreyfus-Wagner算法求最小斯坦纳树</h1><hr>
+<p>没想到这么快就写第一篇正经的博客了-。-<br>之所以想到学习这个算法主要是<del>今年的南昌邀请赛被打自闭了</del>这个算法比较经典，（虽然这几年比较冷门）而且前置技能也都点了。时机已经成熟了</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/10/Dreyfus-Wagner算法求最小斯坦纳树/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -608,11 +560,14 @@
 
       
         
-          
-            <h1 id="我的第一篇博客"><a href="#我的第一篇博客" class="headerlink" title="我的第一篇博客"></a>我的第一篇博客</h1><h2 id="也不知道第一篇博客该写些什么就随便写点吧"><a href="#也不知道第一篇博客该写些什么就随便写点吧" class="headerlink" title="也不知道第一篇博客该写些什么就随便写点吧"></a>也不知道第一篇博客该写些什么就随便写点吧</h2><p>今天我搭建了自己的博客<br>以后就在这个博客里记录我的学习感悟和一些生活琐碎吧XD</p>
-<p>总之 多多指教XP</p>
-
-          
+          <h1 id="我的第一篇博客"><a href="#我的第一篇博客" class="headerlink" title="我的第一篇博客"></a>我的第一篇博客</h1><h2 id="也不知道第一篇博客该写些什么就随便写点吧"><a href="#也不知道第一篇博客该写些什么就随便写点吧" class="headerlink" title="也不知道第一篇博客该写些什么就随便写点吧"></a>也不知道第一篇博客该写些什么就随便写点吧</h2>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/10/helle-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

@@ -79,21 +79,21 @@
 
 
 
-<meta name="description" content="Dreyfus-Wagner算法求最小斯坦纳树 没想到这么快就写第一篇正经的博客了-。-之所以想到学习这个算法主要是这个算法比较经典，（虽然这几年比较冷门）而且前置技能也都点了。并不是因为今年的南昌邀请赛被打自闭了  什么是斯坦纳树斯坦纳树的问题要从1643年法国业余数学家问题男生费马在他所写的一本关于求极值的书中提出的一个问题说起这个问题被称为费马问题（理所当然-.-）对费马问题不感兴趣可以点我">
+<meta name="description" content="Dreyfus-Wagner算法求最小斯坦纳树 没想到这么快就写第一篇正经的博客了-。-之所以想到学习这个算法主要是今年的南昌邀请赛被打自闭了这个算法比较经典，（虽然这几年比较冷门）而且前置技能也都点了。时机已经成熟了">
 <meta name="keywords" content="分享">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Dreyfus-Wagner算法求最小斯坦纳树">
 <meta property="og:url" content="http://yoursite.com/2019/07/10/Dreyfus-Wagner算法求最小斯坦纳树/index.html">
 <meta property="og:site_name" content="Yi-chu的博客">
-<meta property="og:description" content="Dreyfus-Wagner算法求最小斯坦纳树 没想到这么快就写第一篇正经的博客了-。-之所以想到学习这个算法主要是这个算法比较经典，（虽然这几年比较冷门）而且前置技能也都点了。并不是因为今年的南昌邀请赛被打自闭了  什么是斯坦纳树斯坦纳树的问题要从1643年法国业余数学家问题男生费马在他所写的一本关于求极值的书中提出的一个问题说起这个问题被称为费马问题（理所当然-.-）对费马问题不感兴趣可以点我">
+<meta property="og:description" content="Dreyfus-Wagner算法求最小斯坦纳树 没想到这么快就写第一篇正经的博客了-。-之所以想到学习这个算法主要是今年的南昌邀请赛被打自闭了这个算法比较经典，（虽然这几年比较冷门）而且前置技能也都点了。时机已经成熟了">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://gss1.bdstatic.com/9vo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=168af763114c510fbac9ea4801304e48/960a304e251f95ca4006bb1dc2177f3e660952ad.jpg">
 <meta property="og:image" content="https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=0b6b80e5c18065386fe7ac41f6b4ca21/8694a4c27d1ed21b968c2b4ea66eddc450da3fd7.jpg">
 <meta property="og:image" content="https://gss2.bdstatic.com/-fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=64dfca84b5096b63951456026d5aec21/b03533fa828ba61ec64ac5844a34970a314e59f0.jpg">
-<meta property="og:updated_time" content="2019-07-10T14:14:12.484Z">
+<meta property="og:updated_time" content="2019-07-11T01:51:18.752Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dreyfus-Wagner算法求最小斯坦纳树">
-<meta name="twitter:description" content="Dreyfus-Wagner算法求最小斯坦纳树 没想到这么快就写第一篇正经的博客了-。-之所以想到学习这个算法主要是这个算法比较经典，（虽然这几年比较冷门）而且前置技能也都点了。并不是因为今年的南昌邀请赛被打自闭了  什么是斯坦纳树斯坦纳树的问题要从1643年法国业余数学家问题男生费马在他所写的一本关于求极值的书中提出的一个问题说起这个问题被称为费马问题（理所当然-.-）对费马问题不感兴趣可以点我">
+<meta name="twitter:description" content="Dreyfus-Wagner算法求最小斯坦纳树 没想到这么快就写第一篇正经的博客了-。-之所以想到学习这个算法主要是今年的南昌邀请赛被打自闭了这个算法比较经典，（虽然这几年比较冷门）而且前置技能也都点了。时机已经成熟了">
 <meta name="twitter:image" content="https://gss1.bdstatic.com/9vo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=168af763114c510fbac9ea4801304e48/960a304e251f95ca4006bb1dc2177f3e660952ad.jpg">
 
 
@@ -350,7 +350,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3k
+                  3.7k
                 </span>
               
 
@@ -366,7 +366,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  10
+                  14
                 </span>
               
             </div>
@@ -388,11 +388,14 @@
 
       
         <h1 id="Dreyfus-Wagner算法求最小斯坦纳树"><a href="#Dreyfus-Wagner算法求最小斯坦纳树" class="headerlink" title="Dreyfus-Wagner算法求最小斯坦纳树"></a>Dreyfus-Wagner算法求最小斯坦纳树</h1><hr>
-<p>没想到这么快就写第一篇正经的博客了-。-<br>之所以想到学习这个算法主要是这个算法比较经典，（虽然这几年比较冷门）而且前置技能也都点了。<br><del>并不是因为今年的南昌邀请赛被打自闭了</del></p>
+<p>没想到这么快就写第一篇正经的博客了-。-<br>之所以想到学习这个算法主要是<del>今年的南昌邀请赛被打自闭了</del>这个算法比较经典，（虽然这几年比较冷门）而且前置技能也都点了。时机已经成熟了</p>
+<a id="more"></a>
 <hr>
-<h2 id="什么是斯坦纳树"><a href="#什么是斯坦纳树" class="headerlink" title="什么是斯坦纳树"></a>什么是斯坦纳树</h2><p>斯坦纳树的问题要从1643年法国<del>业余</del>数学家<del>问题男生</del>费马在他所写的一本关于求极值的书中提出的一个问题说起<br>这个问题被称为费马问题（理所当然-.-）<a href="#跳过费马问题">对费马问题不感兴趣可以点我跳过&gt;.&lt;</a></p>
+<h2 id="什么是斯坦纳树"><a href="#什么是斯坦纳树" class="headerlink" title="什么是斯坦纳树"></a>什么是斯坦纳树</h2><p>斯坦纳树的问题要从1643年法国<del>业余</del>数学家费马在他所写的一本关于求极值的书中提出的一个问题说起<br>这个问题被称为费马问题<a href="#跳过费马问题">对费马问题不感兴趣可以点我跳过&gt;.&lt;</a></p>
 <p>1643年，在一封写给意大利数学家和物理学家托里拆利（Evangelista Torricelli,1608–1647)的私人信件中，费马提出了下面这个极富挑战性和趣味性的几何难题，请求托里拆利帮忙解答（也有一种说法是费马本人实际上已经找到了这个问题的答案，他是为了挑战托里拆利才写信向他“请教”的）<del>很符合费马的风格</del>：<br>给定不在一条直线上的三个点 A,B,C，求平面上到这三个点的距离之和最短的点的位置。<br><img src="https://gss1.bdstatic.com/9vo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=168af763114c510fbac9ea4801304e48/960a304e251f95ca4006bb1dc2177f3e660952ad.jpg" alt="费马问题"><br>托里拆利成功地解决了费马的问题。他给出的答案是：<br>对 △ABC 三条边的张角都等于120°，即满足∠APB =∠BPC =∠CPA = 120°的点 P（如下图所示）就是到点 A,B,C 的距离之和最小的点。<br><img src="https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=0b6b80e5c18065386fe7ac41f6b4ca21/8694a4c27d1ed21b968c2b4ea66eddc450da3fd7.jpg" alt="费马问题"><br>后来人们就把平面上到一个三角形的三个顶点 A,B,C 距离之和最小的点称为△ABC的费马-托里拆利点（Fermat-Torricelli point），也简称为费马点（Fermat point）或托里拆利点（Torricelli point）。</p>
-<p>费马问题在我初中的时候就是习题册上全等三角形那章的一道题，我印象深刻，当时还想了好久，收获很多启发。本以为再也遇不到了没想到现在不但又遇见了还知道了它的名字。妙啊-，解法很多，但最简单最快捷最漂亮的还是纯几何解法。（也是初中数学老师教我们的解法，直接从百度搬来了）</p>
+<blockquote>
+<p>费马问题是我初中习题册上全等三角形那章的一道题，我印象很深刻。</p>
+</blockquote>
 <p>要用几何方法解决费马问题，一种思想是把问题中的三条线段 PA, PB, PC“加”在一起或者说拼接在一起，最好是把它们拼接成连接两个定点的一条折线，这样一来，因为两点之间直线最短，就能很快地确定 PA + PB + PC 的最小值。利用旋转变换能成功地把费马问题中的三条线段以一种非常自然的方式“加到一起”。</p>
 <p><img src="https://gss2.bdstatic.com/-fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=64dfca84b5096b63951456026d5aec21/b03533fa828ba61ec64ac5844a34970a314e59f0.jpg" alt="费马问题的解"></p>
 <p>只要把△BPC绕点B旋转60°（如上图所示），设点P转到了点P’，点C转到了点C’，于是就有<br>PC = P’C’， PB = PP’ （因为 △PBP’ 是等边三角形）<br>因此就有<br>PA + PB + PC = PA + PP’ + P’C’<br>上式的右边是连接点A和点C’的一段折线的距离，它一定大于或等于线段AC’的长度，所以我们就得到了不等式：<br>PA + PB + PC = PA + PP’ + P’C’ ≥ AC’<br>显然，如果上面的不等式能取到等号，那么这时候的点P就是到点 A, B, C 距离之和最小的点，也就是费马点。</p>
@@ -403,7 +406,7 @@
 <p>Pollak−Gilbert猜想： 平面上任意n点集，斯坦纳最小树长与最小生成树之长的比值的最小值是：sqrt(3)/2</p>
 </blockquote>
 <blockquote>
-<p>关于这个猜想，我觉得可能是因为由于求解斯坦纳最小树是NP问题，所以科学家只能寻求一些近似的算法。和斯坦纳树十分相似的最小生成树就成为了一个突破口，斯坦纳最小树长与最小生成树之长的比值也成为了一个重要的研究方向（ 毕竟最小生成树好求嘛- ）</p>
+<p>由于求解斯坦纳最小树是NP问题，寻求一些近似的算法和研究斯坦纳最小树长与最小生成树之长的比值成为了重要的研究方向（ 毕竟最小生成树好求嘛- ）</p>
 </blockquote>
 <p>斯坦纳树也有好多种类，这里我们讨论的是图上的最小斯坦纳树。</p>
 <p>这里我引用Dreyfus，Wagner当初论文中对斯坦纳树问题的描述来更好的帮助理解图上的最小斯坦纳树。</p>
@@ -412,36 +415,57 @@
 </blockquote>
 <p>图的最小斯坦纳问题最早是在1971年由Hakimi和Levin提出，并在1972年Karp证明了在一般情况下，该问题是一个NP一完全问题。</p>
 <hr>
-<h2 id="自己在求解斯坦纳最小树上的一些探索与思考"><a href="#自己在求解斯坦纳最小树上的一些探索与思考" class="headerlink" title="自己在求解斯坦纳最小树上的一些探索与思考"></a>自己在求解斯坦纳最小树上的一些探索与思考</h2><p>当时第一次碰到这类题目时，还不知道这时斯坦纳最小树的问题。第一反应肯定时最小生成树，但很快反应过来它和最小生成树有个本质上的区别——最小斯坦纳树允许在给定点外增加额外的点使生成的最短网络开销最小。换句话说就是斯坦纳最小树是至少包含要求联通的点的不确定点集的最小生成树中最小的那棵树（ 好绕啊，忍不住吐槽下 ）。所以可以对这个点集进行穷举，并对每次穷举出来的点集求最小生成树，而后对答案集求Min.<br>这里我们假设图内有n个点，要求k个点联通，易知这样的点集有2的（n-k）次个。当时那道题目的n好像是30个，k是8个，也就是要求2^22（≈4e6）次最小生成树，这样的时间复杂度是无法接受的。（如果 n-k 小一些或许可行，就是写起来可能有些麻烦）</p>
-<p>当时的第二反应是状态压缩，因为想到了TSP（ 也是图上NP问题 ）并且给出的数据都很小。然后算了下状压所有点的空间复杂度是2^30次也就是1e9，直接放弃了（可能当时心态发生了一些微妙的变化），唉，如果当时再多想一会儿的话QAQ<br><del>估计还是想不出来XD</del></p>
+<h2 id="自己在求解斯坦纳最小树上的一些探索与思考"><a href="#自己在求解斯坦纳最小树上的一些探索与思考" class="headerlink" title="自己在求解斯坦纳最小树上的一些探索与思考"></a>自己在求解斯坦纳最小树上的一些探索与思考</h2><p>当时第一次碰到这类题目时，还不知道这时斯坦纳最小树的问题。第一反应是最小生成树，但很快反应过来它和最小生成树有个本质上的区别——最小斯坦纳树允许在给定点外增加额外的点使生成的最短网络开销最小。换句话说就是斯坦纳最小树是至少包含要求联通的点的不确定点集的最小生成树中最小的那棵树（ 好绕啊，忍不住吐槽下 ）。所以可以对这个点集进行穷举，并对每次穷举出来的点集求最小生成树，而后对答案集求Min.<br>这里我们假设图内有n个点，要求k个点联通，易知这样的点集有2的（n-k）次个。当时那道题目的n好像是30个，k是8个，也就是要求2^22（≈4e6）次最小生成树，这样的时间复杂度是无法接受的。（如果 n-k 小一些或许可行，就是写起来可能有些麻烦）</p>
+<p>于是想到状态压缩DP，因为想到了TSP（ 也是图上NP问题 ）并且给出的数据都很小。然后算了下状压所有点的空间复杂度是2^30次也就是1e9，直接放弃了（可能当时心态发生了一些微妙的变化），唉，如果当时再多想一会儿的话QAQ<br><del>估计还是想不出来XD</del></p>
 <p>状压所有点然后每次枚举还没加入当前联通状态下的点和加入联通的边来转移所有状态，最后再想要的状态中求Min，那道题可能还要子集DP下。（ 继续往下想的话应该就是这样了 ）不过状态压缩，状态压缩，连状态都存不下了，还咋整？</p>
 <p>所以我们得想办法优化状态的描述，继续观察可以发现，如果我们状压所有点，那么就会出现许多无用的状态（比如不含必须点—— 题目要求联通的点|的联通状态），于是我们想到只状压要求联通的点。但其他点也可能会用到（毕竟是最小斯坦纳树，而不是最小生成树么）。所以我们再加一维表示这个联通状态中一个比较特殊的点，媒介点或者说根。（这个点很关键）。大概就是这样 </p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f[S][i] <span class="comment">//表示当前联通状态是S，“根”是i的最小斯坦纳树权值和</span></span><br></pre></td></tr></table></figure>
 
 <p>接下来的部分就是1972年（大概吧）Dreyfus和Wagner发表的用于解决图的最小斯坦纳树的Dreyfus-Wagner算法！</p>
 <hr>
-<h2 id="Dreyfus-Wagner算法"><a href="#Dreyfus-Wagner算法" class="headerlink" title="Dreyfus-Wagner算法"></a>Dreyfus-Wagner算法</h2><p>网上关于斯坦纳树的资料少得可怜，还有不少是从同一个人的博客里搬来的，基本就是给个定义然后下面几行代码，好一些的就是稍微解释下转移方程<del>其实和没说差不多</del>，甚至我那时候还不知道这个算法的名字（所以我决定详细讲这部分内容）。</p>
+<h2 id="Dreyfus-Wagner算法"><a href="#Dreyfus-Wagner算法" class="headerlink" title="Dreyfus-Wagner算法"></a>Dreyfus-Wagner算法</h2><p>网上关于斯坦纳树的资料少得可怜，还有不少是从同一个人的博客里搬来的，基本就是给个定义然后下面几行代码，好一些的就是稍微解释下转移方程<del>其实和没说差不多</del>，甚至我那时候还不知道这个算法的名字（ 所以我决定详细讲这部分内容 ）。</p>
 <blockquote>
 <p>关于斯坦纳树的视频资料更是寥寥无几，我在百度上搜索就只有一个视频（<a href="https://www.bilibili.com/video/av44911983" target="_blank" rel="noopener">附B站上视频地址</a>），声音很轻，不过这无关紧要，可惜的是视频内容也与大多数博客相差无几，不是我想要的。后来听说2018的牛客多校赛有涉及这个算法，于是我找到了当时讲解的录屏（<a href="https://www.bilibili.com/video/av50491787" target="_blank" rel="noopener">也是B站&gt;.&lt;</a>）大概在第一场的43min左右提到了那道题。可惜视频中的讲解也只是粗略的带过。但我在这个视频中有了新的收获：<del>李超树是李超发明的</del>这个算法的名字是Dreyfus-Wagner！</p>
 </blockquote>
 <p>终于花了大概一个多小时的时间，我在网上找到了当初1972年由Dreyfus和Wagner发表的论文《<em>The Steiner Problem in Graphs</em>》.（会放在最后的参考里）</p>
 <blockquote>
-<p>但是这个问题的解决才刚刚开始,就像是解题的过程一样，一步一步地找到突破口然后进入一个新的问题，不知道什么时候能抵达正解。读这篇论文时，我也开始理解大学教育和初中高中在教科书和辅导书中获取知识的区别，可以想象一个研究前沿科学的科学家的学习<del>好像想的有点远了</del>。</p>
+<p>但是这个问题的解决才刚刚开始。</p>
 </blockquote>
-<p>进入正题：<br>论文开篇解释了斯坦纳树定义（以很“图论”的方式），前面已经讲过了就不多赘述了。</p>
+<p>进入正题：<br>论文开篇解释了斯坦纳树定义（图论角度），前面已经讲过了就不多赘述了。</p>
 <p>说明了图的最小斯坦纳树问题中点与点的距离不同于与平面几何，比如平面几何中三角形的边长不能是“1”，“1”，“3”，但在图中可以，论文用“arc”代替了“edge”，也就是说图中的边是弧线。（ 论文就是严谨0.0 ）.</p>
 <p>之后提出了一个比较重要的性质”<em>THE OPTIMAL DECOMPOSITION PROPERTY</em>“翻译过来就是最优分解性质（ QQ浏览器翻译的，感觉比百度翻译好用些<del>还是TX厉害</del> ）。意思是任何一个斯坦纳最小树（ 这里设它是S ），以任何一个属于它的点（ 比如说P ）作为根节点，取其中的任意一棵子树（ 包括P ）设为S1，剩下的部分（ 也包括P ）设为S2，显然|S| = |S1| + |S2|,(|S|代表S的值)那么S1,S2都是各自点集的斯坦纳最小树。（ 是不是有点像DP里的最优子结构的性质，从这里可以看出有些DP的意思<del>其实很明显了</del>。 ）</p>
 <p>论文中证明过程写在附录中</p>
 <p>这个证明其实很简单，一般DP里面证明最优子结构都是用的反证法。假设对于S1中关键点集的斯坦纳树中有比S1更小的设为T，那么就有 |T| + |S2| &lt; |S1| + |S2| = |S|,<br>这显然与S是最小斯坦纳树矛盾。</p>
 <p>连证明过程都和最小生成树中的prim算法有点像</p>
-<p>但是需要注意的是，这个证明只能证明其充分性，而必要性（也就是反过来）是不成立的。（ 稍微想想就知道了 <del>提示：在于P点的选择</del>）</p>
+<p>但是需要注意的是，这个证明只能证明其充分性，而必要性（也就是反过来）是不成立的。（ 稍微想想就知道了 ）<br><em>提示：在于P点和S1的选择</em></p>
 <p>附录中还证明了在任何一颗斯坦纳树中都存在这种特殊的分解，这里就不证明了（因为挺显然的）。</p>
 <p>至此一些必要的解释工作就完成了</p>
 <p>Dreyfus和Wagner提出了他们的解法</p>
+<p>根据最优分解性质，要求得S的最小斯坦纳树长，需要枚举点p ∈ n作为拆解的媒介点，同时还要对每个p点枚举子树（实际程序就是枚举子集）。最后把每种情况下得到的答案取Min<br>。但在此之前，得预先处理出其所有子结构（子集）的解。很明显这是一个递归的过程。</p>
+<p>因此Dreyfus和Wagner提出以下解法</p>
+<blockquote>
+<p>Y是要求联通的点集，||Y||是点集元素数，</p>
+</blockquote>
+<blockquote>
+<p>（1）Remove one node, q, from Y. Call the set Y - {q} set C.<br>（2）Solve Steiner problems connecting each set of 2 nodes of C and 1 node n ∈ N. (n can be a member of C, or it can even be node q itself).<br>（3）Use this result to solve Steher problems connect- ing each set of 3 nodes of C and 1 node n ∈ N.<br>……<br>（||Y|| - 2）Solve Steiner problems connecting each set of ||Y|| - 2 nodes of C and 1 node n ∈ N.<br>（||Y|| - 1）Solve the Steiner problem connecting q and set C. </p>
+</blockquote>
+<p>具体程序的枚举顺序可能有所不同，但实际上是没有影响的。</p>
 <hr>
 <h2 id="算法模板"><a href="#算法模板" class="headerlink" title="算法模板"></a>算法模板</h2><p>板子 没啥好说的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *  Steiner Tree：求，使得指定K个点连通的生成树的最小总权值</span></span><br><span class="line"><span class="comment"> *  st[i] 表示顶点i的标记值，如果i是指定集合内第m(0&lt;=m&lt;K)个点，则st[i]=1&lt;&lt;m </span></span><br><span class="line"><span class="comment"> *  endSt=1&lt;&lt;K</span></span><br><span class="line"><span class="comment"> *  dptree[i][state] 表示以i为根，连通状态为state的生成树值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CLR(x,a) memset(x,a,sizeof(x))</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> dptree[N][<span class="number">1</span>&lt;&lt;K],st[N],endSt;</span><br><span class="line"><span class="keyword">bool</span> vis[N][<span class="number">1</span>&lt;&lt;K];</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; que;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">input</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment">    *    输入，并且返回指定集合元素个数K</span></span><br><span class="line"><span class="comment">    *    因为有时候元素个数需要通过输入数据处理出来，所以单独开个输入函数。</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">initSteinerTree</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    CLR(dptree,<span class="number">-1</span>);</span><br><span class="line">    CLR(st,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) CLR(vis[i],<span class="number">0</span>);</span><br><span class="line">    endSt=<span class="number">1</span>&lt;&lt;input();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        dptree[i][st[i]]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> &amp;a,<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    a=(a&gt;x || a==<span class="number">-1</span>)? x : a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SPFA</span><span class="params">(<span class="keyword">int</span> state)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(!que.empty())&#123;</span><br><span class="line">        <span class="keyword">int</span> u=que.front();</span><br><span class="line">        que.pop();</span><br><span class="line">        vis[u][state]=<span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=p[u];i!=<span class="number">-1</span>;i=e[i].next)&#123;</span><br><span class="line">            <span class="keyword">int</span> v=e[i].vid;</span><br><span class="line">            <span class="keyword">if</span>(dptree[v][st[v]|state]==<span class="number">-1</span> || </span><br><span class="line">                dptree[v][st[v]|state]&gt;dptree[u][state]+e[i].w)&#123;</span><br><span class="line"></span><br><span class="line">                dptree[v][st[v]|state]=dptree[u][state]+e[i].w;</span><br><span class="line">                <span class="keyword">if</span>(st[v]|state!=state || vis[v][state]) </span><br><span class="line">                    <span class="keyword">continue</span>; <span class="comment">//只更新当前连通状态</span></span><br><span class="line">                vis[v][state]=<span class="literal">true</span>;</span><br><span class="line">                que.push(v);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">steinerTree</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;endSt;j++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(st[i] &amp;&amp; (st[i]&amp;j)==<span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> sub=(j<span class="number">-1</span>)&amp;j;sub;sub=(sub<span class="number">-1</span>)&amp;j)&#123;</span><br><span class="line">                <span class="keyword">int</span> x=st[i]|sub,y=st[i]|(j-sub);</span><br><span class="line">                <span class="keyword">if</span>(dptree[i][x]!=<span class="number">-1</span> &amp;&amp; dptree[i][y]!=<span class="number">-1</span>)</span><br><span class="line">                    update(dptree[i][j],dptree[i][x]+dptree[i][y]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(dptree[i][j]!=<span class="number">-1</span>) </span><br><span class="line">                que.push(i),vis[i][j]=<span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        SPFA(j);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://www.cnblogs.com/ECJTUACM-873284962/p/7643445.html" target="_blank" rel="noopener">转自这篇blog</a></p>
+<p>主要是这两个转移方程</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x=st[i]|sub,y=st[i]|(j-sub);</span><br><span class="line">	</span><br><span class="line">dptree[i][j]=min(dptree[i][j],dptree[i][x]+dptree[i][y]);</span><br><span class="line"></span><br><span class="line">dptree[v][st[v]|state]=dptree[u][state]+e[i].w;<span class="comment">//类似于最短路算法中的松弛，用分层SPFA处理</span></span><br></pre></td></tr></table></figure>
+
+<p>Dreyfus和Wagner采用的是Floyd最短路算法<del>当时可能没有SPFA吧</del>，先预处理（也就是缩图）的做法。但SPFA在n比较大的情况同样能保持较高的速度，所以SPFA更加稳定。</p>
 <hr>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2>
+<h2 id="斯坦纳森林"><a href="#斯坦纳森林" class="headerlink" title="斯坦纳森林"></a>斯坦纳森林</h2><p>先为所有集合中的点做斯坦纳树，求出f[S][i]。<br>设g[C]表示集合联通状态为C的最小代价。<br>先将每个集合的g[C]赋初值<br>g[C] = min(f[C][1~n])<br>然后做子集DP。加个check检查下确保每个子集都是合法的（做到题目就知道了）。</p>
+<hr>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><strong>BZOJ 4006<br>HDU 4085<br>BZOJ 2595<br>ZOJ 3613<br>……</strong></p>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>论文<a href="https://onlinelibrary.wiley.com/doi/pdf/10.1002/net.3230010302" target="_blank" rel="noopener"><em>The Steiner Problem in Graphs</em></a><br>blog<a href="https://www.cnblogs.com/ECJTUACM-873284962/p/7643445.html" target="_blank" rel="noopener">详解斯坦纳点及斯坦纳树及模版归纳总结</a></p>
+
       
     </div>
     
@@ -623,7 +647,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Dreyfus-Wagner算法求最小斯坦纳树"><span class="nav-number">1.</span> <span class="nav-text">Dreyfus-Wagner算法求最小斯坦纳树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是斯坦纳树"><span class="nav-number">1.1.</span> <span class="nav-text">什么是斯坦纳树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自己在求解斯坦纳最小树上的一些探索与思考"><span class="nav-number">1.2.</span> <span class="nav-text">自己在求解斯坦纳最小树上的一些探索与思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dreyfus-Wagner算法"><span class="nav-number">1.3.</span> <span class="nav-text">Dreyfus-Wagner算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法模板"><span class="nav-number">1.4.</span> <span class="nav-text">算法模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.5.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Dreyfus-Wagner算法求最小斯坦纳树"><span class="nav-number">1.</span> <span class="nav-text">Dreyfus-Wagner算法求最小斯坦纳树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是斯坦纳树"><span class="nav-number">1.1.</span> <span class="nav-text">什么是斯坦纳树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自己在求解斯坦纳最小树上的一些探索与思考"><span class="nav-number">1.2.</span> <span class="nav-text">自己在求解斯坦纳最小树上的一些探索与思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dreyfus-Wagner算法"><span class="nav-number">1.3.</span> <span class="nav-text">Dreyfus-Wagner算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法模板"><span class="nav-number">1.4.</span> <span class="nav-text">算法模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#斯坦纳森林"><span class="nav-number">1.5.</span> <span class="nav-text">斯坦纳森林</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例题"><span class="nav-number">1.6.</span> <span class="nav-text">例题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.7.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
             
 
           </div>
