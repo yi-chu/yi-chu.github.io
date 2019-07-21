@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="Yi-chu的博客">
 <meta property="og:description" content="单调队列和单调栈 单调性是一个非常重要的性质，比如二分查找就是建立在数据单调（已经排序）的基础上实现的。单调队列和单调栈都是利用单调性的极具技巧性的数据结构。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-13T07:37:11.395Z">
+<meta property="og:updated_time" content="2019-07-21T12:48:33.208Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="单调队列和单调栈">
 <meta name="twitter:description" content="单调队列和单调栈 单调性是一个非常重要的性质，比如二分查找就是建立在数据单调（已经排序）的基础上实现的。单调队列和单调栈都是利用单调性的极具技巧性的数据结构。">
@@ -373,8 +373,30 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">算法笔记</span>
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构/单调队列/" itemprop="url" rel="index">
+                    <span itemprop="name">单调队列</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构/单调队列/单调栈/" itemprop="url" rel="index">
+                    <span itemprop="name">单调栈</span>
                   </a>
                 </span>
 
@@ -409,7 +431,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  368
+                  702
                 </span>
               
 
@@ -425,7 +447,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  3
                 </span>
               
             </div>
@@ -459,7 +481,9 @@
 <hr>
 <h2 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h2><h3 id="作用-1"><a href="#作用-1" class="headerlink" title="作用"></a>作用</h3><p>利用单调栈，可以找到从左/右遍历第一个比它小/大的元素的位置。</p>
 <h3 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h3><p>通过删除无用元素来维护栈中元素的值单调。</p>
-<h3 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h3><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1506" target="_blank" rel="noopener">HDU 1506</a><br><a href="http://acm.hdu.edu.cn/showproblem.php?pid=5033" target="_blank" rel="noopener">HDU 5033</a><br><a href="http://poj.org/problem?id=2796" target="_blank" rel="noopener">PKU 2796</a><br><a href="http://poj.org/problem?id=3250" target="_blank" rel="noopener">PKU 3250</a></p>
+<h3 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h3><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1506" target="_blank" rel="noopener">HDU 1506</a><br><a href="http://acm.hdu.edu.cn/showproblem.php?pid=5033" target="_blank" rel="noopener">HDU 5033</a><br><a href="http://poj.org/problem?id=2796" target="_blank" rel="noopener">PKU 2796</a><br><a href="http://poj.org/problem?id=3250" target="_blank" rel="noopener">PKU 3250</a><br><a href="https://codeforces.com/problemset/problem/1195/E" target="_blank" rel="noopener">CodeForces OpenStreetMap</a> (二维单调队列)<br>AC代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m,a,b;</span><br><span class="line">ll maze[<span class="number">3005</span>][<span class="number">3005</span>];</span><br><span class="line">ll g[<span class="number">9000005</span>],x,y,z,ans;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> data,x,y;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">deque</span>&lt;node&gt; que;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(!que.empty()) que.pop_back();</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>,&amp;n,&amp;m,&amp;a,&amp;b);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%lld%lld%lld%lld"</span>,&amp;g[<span class="number">0</span>],&amp;x,&amp;y,&amp;z);</span><br><span class="line">    <span class="comment">//构造矩阵</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= m; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>((i<span class="number">-1</span>)*m+j<span class="number">-1</span>&gt;<span class="number">0</span>) g[(i<span class="number">-1</span>)*m+j<span class="number">-1</span>] = (g[(i<span class="number">-1</span>)*m+j<span class="number">-2</span>]*x+y)%z;</span><br><span class="line">            maze[i][j] = g[(i<span class="number">-1</span>)*m+j<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    for(int i = 1; i &lt;= n; i++)&#123;</span></span><br><span class="line"><span class="comment">        for(int j = 1; j &lt;= m; j++)&#123;</span></span><br><span class="line"><span class="comment">            printf("%-10lld ",maze[i][j]);</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        printf("\n");</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//单调队列处理行</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= m; j++)&#123;</span><br><span class="line">            <span class="keyword">while</span>(!que.empty() &amp;&amp; (que.front().y &lt;= j-b||que.front().x != i))</span><br><span class="line">                que.pop_front();</span><br><span class="line">            <span class="keyword">while</span>(!que.empty() &amp;&amp; maze[i][j] &lt;= que.back().data)</span><br><span class="line">                que.pop_back();</span><br><span class="line">            que.push_back(&#123;maze[i][j],i,j&#125;);</span><br><span class="line">            <span class="keyword">if</span>(j&gt;=b) maze[i][j-b+<span class="number">1</span>] = que.front().data;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//单调队列处理列</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= m-b+<span class="number">1</span>; j++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">            <span class="keyword">while</span>(!que.empty() &amp;&amp; (que.front().y != j||que.front().x &lt;= i-a))</span><br><span class="line">                que.pop_front();</span><br><span class="line">            <span class="keyword">while</span>(!que.empty() &amp;&amp; maze[i][j] &lt;= que.back().data)</span><br><span class="line">                que.pop_back();</span><br><span class="line">            que.push_back(&#123;maze[i][j],i,j&#125;);</span><br><span class="line">            <span class="keyword">if</span>(i&gt;=a) ans += que.front().data;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>都是通过<strong>维护线性表的单调性和凭借栈及队列自身的特性（先进后出和先进先出）</strong>来快速求解一段<strong>区间的最值信息。</strong>对数据的一些其他特征进行了取舍，但能高效求解一些关于最值的信息。</p>
 <p>关于这两个数据结构并没有过多的讲解是因为思想其实很简单，主要还是多做题多理解。</p>
@@ -506,6 +530,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/16/Binary-Indexed-Tree树状数组/" rel="prev" title="Binary Indexed Tree（树状数组）">
+                Binary Indexed Tree（树状数组） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -589,7 +617,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -600,7 +628,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -611,7 +639,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
