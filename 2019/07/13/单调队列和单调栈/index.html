@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="Yi-chu的博客">
 <meta property="og:description" content="单调队列和单调栈 单调性是一个非常重要的性质，比如二分查找就是建立在数据单调（已经排序）的基础上实现的。单调队列和单调栈都是利用单调性的极具技巧性的数据结构。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-21T12:52:52.751Z">
+<meta property="og:updated_time" content="2019-07-25T11:40:37.170Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="单调队列和单调栈">
 <meta name="twitter:description" content="单调队列和单调栈 单调性是一个非常重要的性质，比如二分查找就是建立在数据单调（已经排序）的基础上实现的。单调队列和单调栈都是利用单调性的极具技巧性的数据结构。">
@@ -420,7 +420,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  702
+                  717
                 </span>
               
 
@@ -464,7 +464,7 @@
 
 <h2 id="单调队列"><a href="#单调队列" class="headerlink" title="单调队列"></a>单调队列</h2><h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>求区间[L,R]的最值，但询问的区间必须是单调的（对询问的任意两段区间[L1,R1]和[L2,R2]而言，如果L1 &lt; L2,R2 也得大于 R1）</p>
 <p>大多用来优化一些DP，（如多重背包）</p>
-<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>可用数组或者STL中的双端队列实现</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>可用数组或者STL中的双端队列实现(<strong>最好还是用数组模拟，因为deque比较慢</strong>)</p>
 <p>具体实现方法就是，通过删除无用元素来维护队列中元素的值单调。</p>
 <h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=3530" target="_blank" rel="noopener">HDU 3530</a><br><a href="http://poj.org/problem?id=2823" target="_blank" rel="noopener">POJ 2823</a></p>
 <hr>
@@ -606,7 +606,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -617,7 +617,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -628,7 +628,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
