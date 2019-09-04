@@ -1,6 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[无向图求最小环]]></title>
+    <url>%2F2019%2F09%2F04%2F%E6%97%A0%E5%90%91%E5%9B%BE%E6%B1%82%E6%9C%80%E5%B0%8F%E7%8E%AF%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[树的直径和重心]]></title>
+    <url>%2F2019%2F09%2F03%2F%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84%E5%92%8C%E9%87%8D%E5%BF%83%2F</url>
+    <content type="text"><![CDATA[树的直径和树的重心 为了更好的了解树这种数据结构，这次就来认识一些树的基本特征。 树的直径树的直径指树上距离最远的两点间的距离,换句话说就是树上的最长链。 树的直径的性质 直径两端点一定是两个叶子节点。 距离任意一个点最远的点一定是直径的其中一个端点。 用一条边把两棵树连接，新得到的树的直径的两个端点必然是这两棵树连接前的直径的端点其中之二。 对于一棵树，如果在一个点上接一个叶子节点，那么最多会改变直径的一个端点。 若一棵树存在多条直径，那么这些直径交于一点且交点是这些直径的中点。 树的直径的中点的性质 在给定的树上找一个点使得树上任意一点到这个点的距离的最大值最小，这个点就是直径中点。且这个距离就是直径的长度/2向上取整。很容易用反证法证明其正确性。牛客多校第4场A 如果现在要让你在树找两个点，使得树上任意一个点到这两个点的距离中较小的哪个距离的最大值最小。那么这两个点就是把这颗树从直径中点处断开，在两颗子树上取各自的直径的中点。这里可以用到直径的性质3和直径的定义以及直径中点性质1通过反证法证明。zoj3820 如何求树的直径树的重心树的重心也叫树的质心。找到一个点,其所有的子树中最大的子树节点数最少,那么这个点就是这棵树的重心,删去重心后，生成的多棵树尽可能平衡。 定义： 树的重心也叫树的质心。对于一棵树n个节点的无根树，找到一个点，使得把树变成以该点为根的有根树时，最大子树的结点数最小。换句话说，删除这个点后最大连通块（一定是树）的结点数最小。 树的重心的性质 树中所有点到某个点的距离和中，到重心的距离和是最小的，如果有两个距离和，他们的距离和一样。 把两棵树通过一条边相连，新的树的重心在原来两棵树重心的连线上。 一棵树添加或者删除一个节点，树的重心最多只移动一条边的位置。 一棵树最多有两个重心，且相邻。 代码实现例题HDU6567]]></content>
+      <categories>
+        <category>数据结构</category>
+        <category>树</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+        <tag>树</tag>
+        <tag>树的直径</tag>
+        <tag>树的重心</tag>
+        <tag>树的中心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[鸽笼原理]]></title>
+    <url>%2F2019%2F09%2F03%2F%E9%B8%BD%E7%AC%BC%E5%8E%9F%E7%90%86%2F</url>
+    <content type="text"><![CDATA[鸽笼原理 鸽笼原理，也叫鸽巢原理，还叫抽屉原理，抽屉原理的一般含义为：“如果每个抽屉代表一个集合，每一个苹果就可以代表一个元素，假如有n+1个元素放到n个集合中去，其中必定有一个集合里至少有两个元素。” 第一抽屉原理原理1： 把多于n+1个的物体放到n个抽屉里，则至少有一个抽屉里的东西不少于两件。证明（反证法）：如果每个抽屉至多只能放进一个物体，那么物体的总数至多是n×1，而不是题设的n+k(k≥1)，故不可能。 原理2：把多于mn(m乘n)+1（n不为0）个的物体放到n个抽屉里，则至少有一个抽屉里有不少于（m+1）的物体。证明（反证法）：若每个抽屉至多放进m个物体,那么n个抽屉至多放进mn个物体,与题设不符，故不可能。 原理3：把无数还多件物体放入n个抽屉，则至少有一个抽屉里有无数个物体。原理1 、2 、3都是第一抽屉原理的表述。 第二抽屉原理把（mn－1）个物体放入n个抽屉中，其中必有一个抽屉中至多有（m—1）个物体(例如，将3×5-1=14个物体放入5个抽屉中，则必定有一个抽屉中的物体数少于等于3-1=2)。 常见运用构造抽屉的方法运用抽屉原理的核心是分析清楚问题中，哪个是物件，哪个是抽屉。 题目考到抽屉原理往往是比较隐蔽的，很多时候我们不能一下就看出哪个是抽屉哪个是物品。 如Codeforces1206D就巧妙的蕴含了抽屉原理的思想。在n较大时答案肯定是3，于是在n较小时只要用弗洛伊德找最小环即可。 最差原则最差原则，即考虑所有可能情况中，最不利于某件事情发生的情况。 例如这道题HDU6003就是考虑在最差的情况运用鸽笼原理。题目要求是共n个抽屉，对m个物品，任意取k个抽屉，至少有一个包含当前物品，并使k最小。考虑最不利的情况，也就是所有没被选取的抽屉都是满足条件的，我们需要保证所取的k个抽屉至少有一个满足当前条件。所以最小k应该是n-包含当前物品的抽屉数量+1(就是不被选取的抽屉数+1)。此时由抽屉原理得知，选取的抽屉里至少有一个满足条件。当然只得出这个结论做这道题目还是不够的，还需要给物品和抽屉一一匹配。把抽屉区间和物品排个序，贪心的选取区间右端点最小的抽屉和物品匹配(删除)即可。 1234567891011121314151617181920212223242526272829303132333435#include&lt;bits/stdc++.h&gt;using namespace std;const int N = 1e5 + 5;typedef long long ll;struct problem &#123;int l,r;&#125; p[N];int c[N];priority_queue&lt;int,vector&lt;int&gt;,greater&lt;int&gt; &gt; que;bool cmp(problem x,problem y)&#123;return x.l==y.l?x.r&gt;y.r:x.l&lt;y.l;&#125;int main()&#123; int T,kase = 1; for(scanf("%d",&amp;T); kase &lt;= T; kase++)&#123; int n,m,ans = 0; scanf("%d%d",&amp;n,&amp;m); while(!que.empty()) que.pop(); for(int i = 1; i &lt;= n; i++)&#123; scanf("%d%d",&amp;p[i].l,&amp;p[i].r); &#125; sort(p+1,p+1+n,cmp); for(int i = 1; i &lt;= m; i++)&#123; scanf("%d",&amp;c[i]); &#125; sort(c+1,c+1+m); int now = 1; for(int i = 1; i &lt;= m; i++)&#123; while(now&lt;=n&amp;&amp;p[now].l&lt;=c[i]) que.push(p[now].r),now++; while(!que.empty()&amp;&amp;que.top()&lt;c[i]) que.pop(); ans = max(ans,n-(int)que.size()+1); if(ans&gt;n) break; que.pop();//这个pop就是去掉已经匹配的题目。 &#125; if(ans&lt;=n) printf("Case #%d: %d\n",kase,ans); else printf("Case #%d: IMPOSSIBLE!\n",kase); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>鸽笼原理</tag>
+        <tag>抽屉原理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[线性筛]]></title>
+    <url>%2F2019%2F09%2F02%2F%E7%BA%BF%E6%80%A7%E7%AD%9B%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>线性筛</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[欧拉函数]]></title>
+    <url>%2F2019%2F09%2F01%2F%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[欧拉函数 在数论，对正整数n，欧拉函数是小于或等于n的正整数中与n互质的数的数目。 通式欧拉函数的通式 $$\phi(n) = n\prod^n_{i=1}(1-\frac{1}{p_i})$$ 其中$p_{1},p_{2}, … p_{n}$是n的所有质因数。 性质 欧拉函数是积性函数，对于两个素数p,q。$\phi(p) = p-1, \phi(q) = q-1, \phi(pq) = \phi(q) \times \phi(q)$,其实只要,p,q互质就满足这一性质。 n&gt;2时，$\phi(n)$为偶数。 对正整数n，$\sum_{d|n}\phi(d) = n$ 一个数所有的质因子之和是$\frac{\phi(n) \times n}{2}$ 代码实现直接求一个数的欧拉函数123456789long long euler(int n)&#123; long long res = n; for(int i = 2; i*i &lt;= n; i++)&#123; if(n%i==0) res = res/i*(i-1); while(n%i==0) n /= i; &#125; if(n&gt;1) res = res/i*(i-1); return res;&#125; 线性筛预处理123456789101112131415161718192021222324252627282930/*特性 :1.若a为质数,phi[a]=a-1;2.若a为质数,b mod a=0,phi[a*b]=phi[b]*a3.若a,b互质,phi[a*b]=phi[a]*phi[b](当a为质数时,if b mod a!=0 ,phi[a*b]=phi[a]*phi[b])*/int m[n],phi[n],p[n],nump;//m[i]标记i是否为素数,0为素数,1不为素数;p是存放素数的数组;nump是当前素数个数;phi[i]为欧拉函数void get_phi()&#123; phi[1]=1; for (int i=2;i&lt;=n;i++) &#123; if (!m[i])//i为素数 &#123; p[++nump]=i;//将i加入素数数组p中 phi[i]=i-1;//因为i是素数,由特性得知 &#125; for (int j=1;j&lt;=nump&amp;&amp;p[j]*i&lt;=n;j++) //用当前已得到的素数数组p筛,筛去p[j]*i &#123; m[p[j]*i]=1;//可以确定i*p[j]不是素数 if (i%p[j]==0) //看p[j]是否是i的约数,因为素数p[j],等于判断i和p[j]是否互质 &#123; phi[p[j]*i]=phi[i]*p[j]; //特性2 break; &#125; else phi[p[j]*i]=phi[i]*(p[j]-1); //互质,特性3其,p[j]-1就是phi[p[j]] &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>数论</category>
+      </categories>
+      <tags>
+        <tag>数论</tag>
+        <tag>欧拉函数</tag>
+        <tag>积性函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[欧拉降幂]]></title>
+    <url>%2F2019%2F09%2F01%2F%E6%AC%A7%E6%8B%89%E9%99%8D%E5%B9%82%2F</url>
+    <content type="text"><![CDATA[欧拉降幂 利用(扩展)欧拉定理(费马小定理的扩展)来加速求解超高幂次模数相关问题 欧拉定理在数论中，欧拉定理,（也称费马-欧拉定理）是一个关于同余的性质。欧拉定理表明，若p,a为正整数，且p,a互质，则: $$ a^{\phi(p)} \equiv 1 (\mod p) $$ $\phi(p)$代表欧拉函数。$\phi(p)$的值是不超过p的正整数中与p互素的个数。当p为质数时该式就是费马小定理。 欧拉定理的扩展扩展欧拉定理对a,p不互质的情况进行了补充。 $$a^{b} \equiv\begin{cases}a^{b \mod \phi(p)} \quad\quad\quad\quad (gcd(a,p)==1)\\a^{b} \quad\quad\quad\quad\quad\quad\quad\quad (gcd(a,p) \ne 1 ),b &lt; \phi(p))\\a^{b \mod \phi(p) + \phi(p)} \quad\quad (gcd(a,p) \ne 1 ),b &gt;= \phi(p))\end{cases}$$ codeforces906D 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include&lt;bits/stdc++.h&gt;using namespace std;const int maxn=1e5+7;map&lt;int,int&gt; euler;long long w[maxn];int phi(int n)&#123; int now=n; int ret=n; if(euler.count(now)) return euler[now];//记忆化 for(int i=2;i&lt;=sqrt(n);i++) &#123; if(n%i==0) &#123; ret=ret/i*(i-1); while(n%i==0) n/=i; &#125; &#125; if(n&gt;1) ret=ret/n*(n-1); euler[now]=ret; return ret;&#125;long long MOD(long long n,int mod)//符合欧拉降幂规则的取模&#123; return n&lt;mod?n:(n%mod+mod);&#125;long long quick_mod(long long base,long long p,int mod)&#123; long long ret=1; do&#123; if(p&amp;1) ret=MOD(base*ret,mod); base=MOD(base*base,mod); &#125;while(p&gt;&gt;=1); return ret;&#125;long long solve(int l,int r,int mod)&#123; if(l==r||mod==1) return MOD(w[l],mod); return quick_mod(w[l],solve(l+1,r,phi(mod)),mod);&#125;int main()&#123; int n,mod; scanf("%d%d",&amp;n,&amp;mod); for(int i=1;i&lt;=n;i++) scanf("%lld",&amp;w[i]); int q; scanf("%d",&amp;q); while(q--) &#123; int l,r; scanf("%d%d",&amp;l,&amp;r); long long ans=solve(l,r,mod)%mod; printf("%lld\n",ans); &#125;&#125;]]></content>
+      <categories>
+        <category>数论</category>
+      </categories>
+      <tags>
+        <tag>数论</tag>
+        <tag>欧拉降幂</tag>
+        <tag>欧拉定理</tag>
+        <tag>扩展欧拉定理</tag>
+        <tag>费马小定理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[霍尔定理]]></title>
+    <url>%2F2019%2F08%2F18%2F%E9%9C%8D%E5%B0%94%E5%AE%9A%E7%90%86%2F</url>
+    <content type="text"><![CDATA[#霍尔定理 霍尔定理： 此定理使用于组合问题中；二部图G中的两部分顶点组成的集合分别为X, Y，G中有一组无公共点的边，一端恰好为组成X的点的充分必要条件是： X中的任意k个点至少与Y中的k个点相邻。（1≤k≤m) 本论还有一个重要推论：二部图G中的两部分顶点组成的集合分别为X,Y, 若|X|=|Y|,且G中有一组无公共端点的边，一端恰好组成X中的点，一端恰好组成Y中的点，则称二部图G中存在完美匹配。若图G的每个点度数为t，则称二部图G为t—正则的二部图存在完美匹配。本定理是二分图匹配问题中匈牙利算法的基础。 ##证明 充分性：数学归纳法易证必要性：显然]]></content>
+      <categories>
+        <category>数学</category>
+        <category>组合数学</category>
+      </categories>
+      <tags>
+        <tag>组合数学</tag>
+        <tag>霍尔定理</tag>
+        <tag>二分图匹配</tag>
+        <tag>图论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ST表]]></title>
+    <url>%2F2019%2F08%2F06%2FST%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[ST表 ST表是类似于树状数组和线段树的一种离线数据结构，一般用于查询区间最值。和线段树相同它预处理的时间复杂度是O(nlog(n))，优势在于它的查询是O(1)的，但同时时间复杂度是O(nlog(n))的。 ST表的优势在于查询快。其劣势也很明显，空间消耗大，离线数据结构等。除此之外，ST表区间信息的合并类似于去并集而非相加。所以常被用来求区间最值，且不能用来维护区间和。 举个例子： 1int a[] = &#123;1,2,3,4,2,1&#125;; 现在我们有一个a数组(下标从0开始)能用ST表维护的信息要有以下性质。 区间[0,4]和[1,5]合并的结果等同于区间[0,2]和[3,5]合并的结果。 所以最值是可以的，求和显然不满足。]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+        <tag>ST表</tag>
+        <tag>RMQ</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[权值线段树]]></title>
+    <url>%2F2019%2F07%2F30%2F%E6%9D%83%E5%80%BC%E7%BA%BF%E6%AE%B5%E6%A0%91%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[线段树]]></title>
+    <url>%2F2019%2F07%2F30%2F%E7%BA%BF%E6%AE%B5%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[线段树 线段树是一种二叉搜索树，与区间树相似，它将一个区间划分成一些单元区间，每个单元区间对应线段树中的一个叶结点。 线段树的优点 速度快，代价小 适应能力强，灵活 结构简单，编写方便，易调试 条件满足区间加法大概就是说可由两个区间的信息合并得到合并后区间内所要求的信息。 线段树的一些核心思想分治线段树高效的秘诀就是运用了分治的思想。这里就不多赘述了。 堆式存储节点u的左儿子的编号是u&lt;&lt;1右儿子的编号是u&lt;&lt;1|1u的父亲节点的编号是u&gt;&gt;1 差分思想利用差分的思想在要修改的区间的对应节点上打上标记。查询时只要统计从根节点到当前区间所代表的节点这条链上的标记的信息即可。 相对标记相对标记是将区间的所有数+a之类的操作，标记之间可以共存，跟打标记的顺序无关。 永久标记绝对标记是将区间的所有数变成a之类的操作，打标记的顺序直接影响结果，所以这种标记在区间修改的时候必须下推旧标记，不然会出错。 注意，有多个标记的时候，标记下推的顺序也很重要，错误的下推顺序可能会导致错误。]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+        <tag>线段树</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[线性基求交]]></title>
     <url>%2F2019%2F07%2F27%2F%E7%BA%BF%E6%80%A7%E5%9F%BA%E6%B1%82%E4%BA%A4%2F</url>
     <content type="text"><![CDATA[线性基求交 之前一篇文章我们知道了如何用一组基来维护一个集合所有的子集异或和，就是通过线性基。现在我们要求两个线性空间的交集该怎么做呢？ 首先我们得知道两个线性空间的交肯定也是一个线性空间（显然），并且这个线性空间一定可以用这两个线性空间的线性基表示。 引理若$ {V}{1},{V}{2} $是线性空间,$ {B}{1},{B}{2} $分别是它们的两组基，令$ {W} = {B}{2} \cap {V}{1} $，若${B}{1} \cap ({B}{2} \ {W}) $线性无关，则${W}$是$ {V}{1} \cap {V}{2} $的一组基。 例题2019牛客多校第4场B-XOR 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115#include&lt;bits/stdc++.h&gt;using namespace std;typedef long long ll;const int maxn = 5e4+5;const int maxbit = 33; inline ll read()&#123; register ll c = getchar(), fg = 1, sum = 0; while(c &gt; '9' || c &lt; '0' ) &#123; if(c == '-')fg = -1; c = getchar(); &#125; while(c &lt;= '9' &amp;&amp; c &gt;= '0') &#123; sum = sum *10 + c - '0'; c = getchar(); &#125; return fg * sum;&#125; struct L_B&#123; ll base[maxbit]; void clear()&#123; memset(base,0,sizeof(base)); &#125; void ins(ll number)&#123; for(int j = maxbit-1; j &gt;= 0; j--) if(number&gt;&gt;j) &#123; if(!base[j])&#123; base[j] = number; return; &#125; else&#123; number ^= base[j]; &#125; &#125; return; &#125; void intersect(L_B A, L_B B)&#123; L_B C=B,D=B; for(int i = 0; i &lt; maxbit; i++)&#123; ll x = A.base[i]; if(!x) continue; int j = i;ll T = 0; for(; j &gt;= 0; j--) if(x&gt;&gt;j) &#123; if(C.base[j])&#123; x ^= C.base[j]; T ^= D.base[j]; &#125; else break; &#125; if(!x) base[i] = T; else &#123; C.base[j] = x; D.base[j] = T; &#125; &#125; &#125; bool check(ll number)&#123; for(int i = maxbit-1; i &gt;= 0; i--) if(number&gt;&gt;i) &#123; if(!base[i]) return false; number ^= base[i]; &#125; return true; &#125; &#125;a[maxn],tree[maxn&lt;&lt;2]; void build(int l,int r,int root)&#123; if(l==r)&#123; tree[root] = a[l]; return ; &#125; int mid = (l+r)&gt;&gt;1; build(l,mid,root&lt;&lt;1); build(mid+1,r,root&lt;&lt;1|1); tree[root].intersect(tree[root&lt;&lt;1],tree[root&lt;&lt;1|1]);&#125; bool query(int l,int r,int L,int R,int root,ll x)&#123; if(L&lt;=l&amp;&amp;r&lt;=R)&#123; return tree[root].check(x); &#125; int mid = (l+r)&gt;&gt;1; bool tmp = true; if(L&lt;=mid) tmp &amp;= query(l,mid,L,R,root&lt;&lt;1,x); if(R&gt;mid) tmp &amp;= query(mid+1,r,L,R,root&lt;&lt;1|1,x); return tmp;&#125; int main()&#123; ios_base::sync_with_stdio(0); ll number; ll n,m,sz; n = read(),m = read(); for(int i = 1; i &lt;= n; i++)&#123; sz = read(); while(sz--)&#123; number = read(); a[i].ins(number); &#125; &#125; build(1,n,1); for(int i = 1; i &lt;= m; i++)&#123; ll l,r,x; l = read(),r = read(),x = read(); if(query(1,n,l,r,1,x)) puts("YES"); else puts("NO"); &#125; return 0;&#125;]]></content>
@@ -60,7 +179,7 @@
   <entry>
     <title><![CDATA[NTT快速数论变换]]></title>
     <url>%2F2019%2F07%2F23%2FNTT%E5%BF%AB%E9%80%9F%E6%95%B0%E8%AE%BA%E5%8F%98%E6%8D%A2%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[NTT快速数论变换 在计算机实现多项式乘法中，我们所熟知的快速傅里叶变换(FFT)是基于n次单位根 (omega) 的优秀性质实现的，而由于其计算时会使用正弦函数和余弦函数，在不断运算时无法避免地会产生精度误差。而多项式乘法有些时候会建立在模域中，在对一些特殊的大质数取模时，便可以考虑用原根g来代替 ，而这些特殊的大质数的原根恰好满足 的某些性质，这使得多项式乘法在模域中也可以快速的分治合并。 ——百度百科 与FFT对比优点：（1）因为FFT用的是浮点数所以精度上有可能会出问题但NTT是整数运算所以不会有精度问题。（2）可以取模。缺点：（1）整数运算（2）模数有限制 原理NTT原理其实基本上和FFT差不多。只是NTT用原根来代替了FFT中的单位虚根。 来讲讲什么是原根 对于$ {g},{p} \in {Z} $,如果$ {g}^{i}\bmod{p}(1 &lt;= {i} &lt;= {p-1}) $的值互不相同，则称${g}$为${p}$的原根。 常见模数有$998244353,1004535809,469762049$,这几个模数的原根都是$3$。]]></content>
       <categories>
         <category>数学</category>
       </categories>
@@ -111,7 +230,7 @@
   <entry>
     <title><![CDATA[Binary Indexed Tree（树状数组）]]></title>
     <url>%2F2019%2F07%2F16%2FBinary-Indexed-Tree%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%2F</url>
-    <content type="text"><![CDATA[树状数组 「树状数组」是一种用于维护前缀信息的的数据结构，其实现十分简洁优美。 树状数组利用了前缀和的思想，传统的前缀和可以O(1)地查询一些区间的信息，但每次修改最差的时间复杂度会是O(n)的，而树状数组却巧妙地划分了所要维护的区间，从而使查询和修改都只需O(log(n))的时间复杂度，相当于平衡了两个操作的时间复杂度。 树状数组和线段树对比 两者在复杂度上同级, 但是树状数组的常数明显优于线段树, 其编程复杂度也远小于线段树.树状数组的作用被线段树完全涵盖, 凡是可以使用树状数组解决的问题, 使用线段树一定可以解决, 但是线段树能够解决的问题树状数组未必能够解决.树状数组的突出特点是其编程的极端简洁性, 使用lowbit技术可以在很短的几步操作中完成树状数组的核心操作，与之相关的便是其代码效率远高于线段树。另外，当问题推广到高维情形时高维树状数组有高维线段树所无法企及的常数优势。树状数组的空间复杂度也略优于线段树。 另外有种说法：树状数组的思路是保留线段树所有最左边的区间而形成的。 树状数组的原理如果之前学过线段树，那么我们就可以借助线段树来理解树状数组：树状数组相当于保留并维护了线段树所有最左边的区间。 先来了解下lowbitlowbit()函数的作用就是求一个数在二进制表示下的最低的那一位所表示的数。比如lowbit(6) = 2;实现 1234int lowbit(int t)&#123; return t&amp;(-t);&#125; 原理: -x = ~x + 1 x &amp; (-x) = x &amp; (~x + 1) 这样就可以利用位运算的机制巧妙地求解lowbit了 构造一个新数组假设我们要维护的数组是数组a，我们构建一个新的数组c，对于数组c的每个数c[i]维护数组a中(a[i-lowbit(i)],a[i]]区间的信息。然后就可以写出我们的查询函数（这里是求前缀和） 1234567int getsum(int x)&#123; int ans = 0; for(int i = x;i;i-=lowbit(i)) ans+=c[i]; return ans;&#125; 由于c数组的维护的区间是(a[i-lowbit(i)],a[i]]所以查询时是从大到小for，并且最后会不重复的统计整个查询的区间。因为枚举的是二进制的位所以很容易得到时间复杂度最差是O(log(n))的。 修改函数则是更新之后所有包含当前状态的数，代码如下： 12345void add(int x,int y)&#123; for(int i=x;i&lt;=n;i+=lowbit(i)) //假设数组长度是n，从1开始 c[i]+=y;&#125; 感觉类似DP里的刷表法？ 这样一个简单的线段树就写好了 树状数组的进阶拓展树状数组的区间修改和区间查询差分+树状数组 1234567891011121314151617181920212223242526272829303132333435363738394041int sum1[100005],sum2[100005],a[100005],n,m;int lowbit(int x)&#123; return x&amp;(-x);&#125;void update(int x,int w)&#123;//更新效果：把x位置后面所有的数的值+w for (int i=x;i&lt;=n;i+=lowbit(i))&#123; sum1[i]+=w;//维护前缀和c[i] sum2[i]+=w*(x-1);//维护前缀和c[i]*(n-1) &#125;&#125;void range_update(int l,int r,int val)//更新效果：把l位置到r位置所有的数的值+w&#123; update(l,val); update(r+1,-val);&#125;int sum(int x)&#123;//求1-x的和 int ans=0; for (int i=x;i&gt;0;i-=lowbit(i))&#123; ans+=x*sum1[i]-sum2[i]; &#125; return ans;&#125;int range_ask(int l,int r)&#123;//求l-r的和 return sum(r)-sum(l-1);&#125;int main()&#123; while(~scanf("%d%d",&amp;n,&amp;m))&#123; for (int i=1;i&lt;=n;i++)&#123; scanf("%d",&amp;a[i]); update(i,a[i]-a[i-1]);//维护差分数组 &#125; &#125; return 0;&#125; 注意维护的不是原数组而是原数组的差分数组实际遇到还是直接打个线段树得了 树状数组求逆序对离散化+树状数组 如果a[i]范围较大就需要用到离散化的操作。把每个a[i]按顺序更新，树状数组维护区间元素出现的频率和。逆序对个数就是 $$\sum_{i=1}^n(i-getsum(a[i]))$$ 树状数组优化DP：求最长上升子序列（LIS）离散化+树状数组 求LIS的方法有很多，用树状数组优化DP就是其中一种。假设DP[i]代表区间[1,i]的LIS长度。我们用树状数组维护区间的DP数组最大值。转移方程：如果是最长不下降的话 1dp[i] = get_max(a[i]) + 1; 如果最长上升的话 1dp[i] = get_max(a[i]-1) + 1; 二维树状数组树形树状数组求区间不同数的个数离散化+离线+树状数组 树状数组求静态第K大(小)很容易想到的是O(log(n))预处理每个数出现的频率，然后二分找getsum(x) == k的x就是答案。但每次查询的时间复杂度为O(log(n)^2),这样用用树状数组求K值就没有意义了。 所以我们可以直接在树状数组维护的数组（其实就是树状数组）里直接查询，而不是间接地通过getsum()函数来二分查找。 123456789101112131415int find_kth(int k)//log(n)复杂度&#123; int ans = 0, cnt = 0, i; for (i = 20; i &gt;= 0; i--)//利用二进制的思想，把答案用一个二进制数来表示 &#123; ans += (1 &lt;&lt; i); if (ans &gt;= maxn|| cnt + c[ans] &gt;= k)//这里大于等于k的原因是可能大小为ans的数不在c[ans]的控制范围之内，所以这里求的是 &lt; k ans -= (1 &lt;&lt; i); else cnt += c[ans];//cnt用来累加比当前ans小的总组数 &#125;//求出的ans是累加和（即小于等于ans的数的个数）小于k的情况下ans的最大值，所以ans+1就是第k大的数 return ans + 1;&#125;]]></content>
+    <content type="text"><![CDATA[树状数组 「树状数组」是一种用于维护前缀信息的的数据结构，其实现十分简洁优美。 树状数组利用了前缀和的思想，传统的前缀和可以O(1)地查询一些区间的信息，但每次修改最差的时间复杂度会是O(n)的，而树状数组却巧妙地划分了所要维护的区间，从而使查询和修改都只需O(log(n))的时间复杂度，相当于平衡了两个操作的时间复杂度。 树状数组和线段树对比 两者在复杂度上同级, 但是树状数组的常数明显优于线段树, 其编程复杂度也远小于线段树.树状数组的作用被线段树完全涵盖, 凡是可以使用树状数组解决的问题, 使用线段树一定可以解决, 但是线段树能够解决的问题树状数组未必能够解决.树状数组的突出特点是其编程的极端简洁性, 使用lowbit技术可以在很短的几步操作中完成树状数组的核心操作，与之相关的便是其代码效率远高于线段树。另外，当问题推广到高维情形时高维树状数组有高维线段树所无法企及的常数优势。树状数组的空间复杂度也略优于线段树。 另外有种说法：树状数组的思路是保留线段树所有最左边的区间而形成的。 树状数组的原理如果之前学过线段树，那么我们就可以借助线段树来理解树状数组：树状数组相当于保留并维护了线段树所有最左边的区间。 先来了解下lowbitlowbit()函数的作用就是求一个数在二进制表示下的最低的那一位所表示的数。比如lowbit(6) = 2;实现 1234int lowbit(int t)&#123; return t&amp;(-t);&#125; 原理: -x = ~x + 1 x &amp; (-x) = x &amp; (~x + 1) 这样就可以利用位运算的机制巧妙地求解lowbit了 构造一个新数组假设我们要维护的数组是数组a，我们构建一个新的数组c，对于数组c的每个数c[i]维护数组a中(a[i-lowbit(i)],a[i]]区间的信息。然后就可以写出我们的查询函数（这里是求前缀和） 1234567int getsum(int x)&#123; int ans = 0; for(int i = x;i;i-=lowbit(i)) ans+=c[i]; return ans;&#125; 由于c数组的维护的区间是(a[i-lowbit(i)],a[i]]所以查询时是从大到小for，并且最后会不重复的统计整个查询的区间。因为枚举的是二进制的位所以很容易得到时间复杂度最差是O(log(n))的。 修改函数则是更新之后所有包含当前状态的数，代码如下： 12345void add(int x,int y)&#123; for(int i=x;i&lt;=n;i+=lowbit(i)) //假设数组长度是n，从1开始 c[i]+=y;&#125; 感觉类似DP里的刷表法？ 这样一个简单的线段树就写好了 树状数组的进阶拓展树状数组的区间修改和区间查询差分+树状数组 1234567891011121314151617181920212223242526272829303132333435363738394041int sum1[100005],sum2[100005],a[100005],n,m;int lowbit(int x)&#123; return x&amp;(-x);&#125;void update(int x,int w)&#123;//更新效果：把x位置后面所有的数的值+w for (int i=x;i&lt;=n;i+=lowbit(i))&#123; sum1[i]+=w;//维护前缀和c[i] sum2[i]+=w*(x-1);//维护前缀和c[i]*(n-1) &#125;&#125;void range_update(int l,int r,int val)//更新效果：把l位置到r位置所有的数的值+w&#123; update(l,val); update(r+1,-val);&#125;int sum(int x)&#123;//求1-x的和 int ans=0; for (int i=x;i&gt;0;i-=lowbit(i))&#123; ans+=x*sum1[i]-sum2[i]; &#125; return ans;&#125;int range_ask(int l,int r)&#123;//求l-r的和 return sum(r)-sum(l-1);&#125;int main()&#123; while(~scanf("%d%d",&amp;n,&amp;m))&#123; for (int i=1;i&lt;=n;i++)&#123; scanf("%d",&amp;a[i]); update(i,a[i]-a[i-1]);//维护差分数组 &#125; &#125; return 0;&#125; 注意维护的不是原数组而是原数组的差分数组实际遇到还是直接打个线段树得了 树状数组求逆序对离散化+树状数组 如果a[i]范围较大就需要用到离散化的操作。把每个a[i]按顺序更新，树状数组维护区间元素出现的频率和。逆序对个数就是 $$\sum_{i=1}^n(i-getsum(a[i]))$$ 树状数组优化DP：求最长上升子序列（LIS）离散化+树状数组 求LIS的方法有很多，用树状数组优化DP就是其中一种。假设DP[i]代表区间[1,i]的LIS长度。我们用树状数组维护区间的DP数组最大值。转移方程：如果是最长不下降的话 1dp[i] = get_max(a[i]) + 1; 如果最长上升的话 1dp[i] = get_max(a[i]-1) + 1; 例题HUD 1257代码如下(如果a[i]范围较大需要离散化，这里没有离散化) 123456789101112131415161718192021222324252627282930313233343536373839#include&lt;bits/stdc++.h&gt;using namespace std;typedef long long ll;const int N = 200005;ll n,a[N],b[N];ll mx[N];int lowbit(int t) &#123; return t&amp;(-t); &#125;ll getmax(int x)&#123; ll ans = 0; for(int i = x;i;i-=lowbit(i)) ans = max(ans,mx[i]); return ans;&#125;void update(int x,ll y)&#123; for(int i=x;i&lt;N;i+=lowbit(i)) mx[i] = max(mx[i],y);&#125;int main()&#123; while(~scanf("%lld",&amp;n)) &#123; memset(mx,0,sizeof(mx)); for(int i = 1; i &lt;= n; i++) scanf("%lld",&amp;a[i]),a[i]; for(int i = 1; i &lt;= n; i++) &#123; mx[a[i]] = max(mx[a[i]],1+getmax(a[i])); update(a[i],mx[a[i]]); &#125; printf("%lld\n",getmax(N-1)); &#125; return 0;&#125; 二维树状数组树形树状数组求区间不同数的个数离散化+离线+树状数组 树状数组求静态第K大(小)很容易想到的是O(log(n))预处理每个数出现的频率，然后二分找getsum(x) == k的x就是答案。但每次查询的时间复杂度为O(log(n)^2),这样用用树状数组求K值就没有意义了。 所以我们可以直接在树状数组维护的数组（其实就是树状数组）里直接查询，而不是间接地通过getsum()函数来二分查找。 123456789101112131415int find_kth(int k)//log(n)复杂度&#123; int ans = 0, cnt = 0, i; for (i = 20; i &gt;= 0; i--)//利用二进制的思想，把答案用一个二进制数来表示 &#123; ans += (1 &lt;&lt; i); if (ans &gt;= maxn|| cnt + c[ans] &gt;= k)//这里大于等于k的原因是可能大小为ans的数不在c[ans]的控制范围之内，所以这里求的是 &lt; k ans -= (1 &lt;&lt; i); else cnt += c[ans];//cnt用来累加比当前ans小的总组数 &#125;//求出的ans是累加和（即小于等于ans的数的个数）小于k的情况下ans的最大值，所以ans+1就是第k大的数 return ans + 1;&#125;]]></content>
       <categories>
         <category>数据结构</category>
         <category>树状数组</category>

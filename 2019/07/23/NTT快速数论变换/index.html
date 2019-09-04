@@ -105,15 +105,18 @@
 
 
 
+<meta name="description" content="NTT快速数论变换 在计算机实现多项式乘法中，我们所熟知的快速傅里叶变换(FFT)是基于n次单位根  (omega) 的优秀性质实现的，而由于其计算时会使用正弦函数和余弦函数，在不断运算时无法避免地会产生精度误差。而多项式乘法有些时候会建立在模域中，在对一些特殊的大质数取模时，便可以考虑用原根g来代替  ，而这些特殊的大质数的原根恰好满足  的某些性质，这使得多项式乘法在模域中也可以快速的分治合并">
 <meta name="keywords" content="数学,卷积,NTT">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NTT快速数论变换">
 <meta property="og:url" content="http://yoursite.com/2019/07/23/NTT快速数论变换/index.html">
 <meta property="og:site_name" content="Yi-chu的博客">
+<meta property="og:description" content="NTT快速数论变换 在计算机实现多项式乘法中，我们所熟知的快速傅里叶变换(FFT)是基于n次单位根  (omega) 的优秀性质实现的，而由于其计算时会使用正弦函数和余弦函数，在不断运算时无法避免地会产生精度误差。而多项式乘法有些时候会建立在模域中，在对一些特殊的大质数取模时，便可以考虑用原根g来代替  ，而这些特殊的大质数的原根恰好满足  的某些性质，这使得多项式乘法在模域中也可以快速的分治合并">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-23T07:24:10.005Z">
+<meta property="og:updated_time" content="2019-07-30T11:48:39.848Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NTT快速数论变换">
+<meta name="twitter:description" content="NTT快速数论变换 在计算机实现多项式乘法中，我们所熟知的快速傅里叶变换(FFT)是基于n次单位根  (omega) 的优秀性质实现的，而由于其计算时会使用正弦函数和余弦函数，在不断运算时无法避免地会产生精度误差。而多项式乘法有些时候会建立在模域中，在对一些特殊的大质数取模时，便可以考虑用原根g来代替  ，而这些特殊的大质数的原根恰好满足  的某些性质，这使得多项式乘法在模域中也可以快速的分治合并">
 
 
 
@@ -406,7 +409,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  326
                 </span>
               
 
@@ -443,7 +446,17 @@
       
 
       
-        
+        <h1 id="NTT快速数论变换"><a href="#NTT快速数论变换" class="headerlink" title="NTT快速数论变换"></a>NTT快速数论变换</h1><blockquote>
+<p>在计算机实现多项式乘法中，我们所熟知的快速傅里叶变换(FFT)是基于n次单位根  (omega) 的优秀性质实现的，而由于其计算时会使用正弦函数和余弦函数，在不断运算时无法避免地会产生精度误差。而多项式乘法有些时候会建立在模域中，在对一些特殊的大质数取模时，便可以考虑用原根g来代替  ，而这些特殊的大质数的原根恰好满足  的某些性质，这使得多项式乘法在模域中也可以快速的分治合并。        ——百度百科</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="与FFT对比"><a href="#与FFT对比" class="headerlink" title="与FFT对比"></a>与FFT对比</h2><p>优点：<br>（1）因为FFT用的是浮点数所以精度上有可能会出问题但NTT是整数运算所以不会有精度问题。<br>（2）可以取模。<br>缺点：<br>（1）整数运算<br>（2）模数有限制</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>NTT原理其实基本上和FFT差不多。只是NTT用原根来代替了FFT中的单位虚根。</p>
+<p><strong>来讲讲什么是原根</strong></p>
+<p>对于$ {g},{p} \in {Z} $,如果$ {g}^{i}\bmod{p}(1 &lt;= {i} &lt;= {p-1}) $的值互不相同，则称${g}$为${p}$的原根。</p>
+<p>常见模数有$998244353,1004535809,469762049$,这几个模数的原根都是$3$。</p>
+
       
     </div>
     
@@ -546,8 +559,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -564,7 +586,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -575,7 +597,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -586,7 +608,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -619,6 +641,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#NTT快速数论变换"><span class="nav-number">1.</span> <span class="nav-text">NTT快速数论变换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#与FFT对比"><span class="nav-number">1.1.</span> <span class="nav-text">与FFT对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">1.2.</span> <span class="nav-text">原理</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
