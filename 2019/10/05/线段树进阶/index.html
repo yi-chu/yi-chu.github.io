@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="Yi-chu的博客">
 <meta property="og:description" content="线段树进阶 线段树是一种十分灵活的数据结构，具有编码简单，调试方便，效率高，开销小等优点，所以深受ACMer的青睐。除了维护区间和与区间最值线段树还有许多进阶操作，下面一起来看下把^ ^。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-05T02:55:59.145Z">
+<meta property="og:updated_time" content="2019-10-05T03:00:43.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线段树进阶">
 <meta name="twitter:description" content="线段树进阶 线段树是一种十分灵活的数据结构，具有编码简单，调试方便，效率高，开销小等优点，所以深受ACMer的青睐。除了维护区间和与区间最值线段树还有许多进阶操作，下面一起来看下把^ ^。">
@@ -420,7 +420,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  193
+                  194
                 </span>
               
 
@@ -462,7 +462,7 @@
 </blockquote>
 <a id="more"></a>
 
-<h2 id="线段树维护区间方差，平方和"><a href="#线段树维护区间方差，平方和" class="headerlink" title="线段树维护区间方差，平方和"></a>线段树维护区间方差，平方和</h2><p>维护区间平方和很简单，考虑区间[l-r]加一个数x，这个区间的平方和增加了(r-l+1)$/times$x²+2x$/times/sum_{i = l}^{r} {a}_{i}$</p>
+<h2 id="线段树维护区间方差，平方和"><a href="#线段树维护区间方差，平方和" class="headerlink" title="线段树维护区间方差，平方和"></a>线段树维护区间方差，平方和</h2><p>维护区间平方和很简单，考虑区间[l-r]加一个数x，这个区间的平方和增加了$(r-l+1) \times x^{2}+2x \times \sum_{i = l}^{r} {a}_{i}$</p>
 <p>通过简单的数学推导发现区间方差可以化为区间中数平方的平均值减去区间平均值的平方。所以只要维护区间的平均值和平方和即可。</p>
 
       
