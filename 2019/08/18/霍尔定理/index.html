@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="组合数学,霍尔定理,二分图匹配,图论,">
+  <meta name="keywords" content="图论,组合数学,霍尔定理,二分图匹配,">
 
 
 
@@ -105,18 +105,18 @@
 
 
 
-<meta name="description" content="霍尔定理 霍尔定理：　此定理使用于组合问题中；二部图G中的两部分顶点组成的集合分别为X, Y，G中有一组无公共点的边，一端恰好为组成X的点的充分必要条件是：　X中的任意k个点至少与Y中的k个点相邻。（1≤k≤m)   本论还有一个重要推论：二部图G中的两部分顶点组成的集合分别为X,Y, 若|X|=|Y|,且G中有一组无公共端点的边，一端恰好组成X中的点，一端恰好组成Y中的点，则称二部图G中存在完美">
-<meta name="keywords" content="组合数学,霍尔定理,二分图匹配,图论">
+<meta name="description" content="霍尔定理 霍尔定理：　此定理使用于组合问题中；二部图G中的两部分顶点组成的集合分别为X, Y，G中有一组无公共点的边，一端恰好为组成X的点的充分必要条件是：　X中的任意k个点至少与Y中的k个点相邻。（1≤k≤m)   本论还有一个重要推论：$二部图{G}的最大匹配{M}等于|{X}|-max(0,max(|{W}|-|{N}_{G}(W)|))$">
+<meta name="keywords" content="图论,组合数学,霍尔定理,二分图匹配">
 <meta property="og:type" content="article">
 <meta property="og:title" content="霍尔定理">
 <meta property="og:url" content="http://yoursite.com/2019/08/18/霍尔定理/index.html">
 <meta property="og:site_name" content="Yi-chu的博客">
-<meta property="og:description" content="霍尔定理 霍尔定理：　此定理使用于组合问题中；二部图G中的两部分顶点组成的集合分别为X, Y，G中有一组无公共点的边，一端恰好为组成X的点的充分必要条件是：　X中的任意k个点至少与Y中的k个点相邻。（1≤k≤m)   本论还有一个重要推论：二部图G中的两部分顶点组成的集合分别为X,Y, 若|X|=|Y|,且G中有一组无公共端点的边，一端恰好组成X中的点，一端恰好组成Y中的点，则称二部图G中存在完美">
+<meta property="og:description" content="霍尔定理 霍尔定理：　此定理使用于组合问题中；二部图G中的两部分顶点组成的集合分别为X, Y，G中有一组无公共点的边，一端恰好为组成X的点的充分必要条件是：　X中的任意k个点至少与Y中的k个点相邻。（1≤k≤m)   本论还有一个重要推论：$二部图{G}的最大匹配{M}等于|{X}|-max(0,max(|{W}|-|{N}_{G}(W)|))$">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-04T06:28:28.593Z">
+<meta property="og:updated_time" content="2019-10-29T11:41:08.823Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="霍尔定理">
-<meta name="twitter:description" content="霍尔定理 霍尔定理：　此定理使用于组合问题中；二部图G中的两部分顶点组成的集合分别为X, Y，G中有一组无公共点的边，一端恰好为组成X的点的充分必要条件是：　X中的任意k个点至少与Y中的k个点相邻。（1≤k≤m)   本论还有一个重要推论：二部图G中的两部分顶点组成的集合分别为X,Y, 若|X|=|Y|,且G中有一组无公共端点的边，一端恰好组成X中的点，一端恰好组成Y中的点，则称二部图G中存在完美">
+<meta name="twitter:description" content="霍尔定理 霍尔定理：　此定理使用于组合问题中；二部图G中的两部分顶点组成的集合分别为X, Y，G中有一组无公共点的边，一端恰好为组成X的点的充分必要条件是：　X中的任意k个点至少与Y中的k个点相邻。（1≤k≤m)   本论还有一个重要推论：$二部图{G}的最大匹配{M}等于|{X}|-max(0,max(|{W}|-|{N}_{G}(W)|))$">
 
 
 
@@ -420,7 +420,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  232
+                  129
                 </span>
               
 
@@ -461,11 +461,11 @@
 <p>霍尔定理：　此定理使用于组合问题中；二部图G中的两部分顶点组成的集合分别为X, Y，G中有一组无公共点的边，一端恰好为组成X的点的充分必要条件是：　X中的任意k个点至少与Y中的k个点相邻。（1≤k≤m)</p>
 </blockquote>
 <blockquote>
-<p>本论还有一个重要推论：二部图G中的两部分顶点组成的集合分别为X,Y, 若|X|=|Y|,且G中有一组无公共端点的边，一端恰好组成X中的点，一端恰好组成Y中的点，则称二部图G中存在完美匹配。若图G的每个点度数为t，则称二部图G为t—正则的二部图存在完美匹配。本定理是二分图匹配问题中匈牙利算法的基础。</p>
+<p>本论还有一个重要推论：<br>$二部图{G}的最大匹配{M}等于|{X}|-max(0,max(|{W}|-|{N}_{G}(W)|))$</p>
 </blockquote>
 <a id="more"></a>
 
-<h2 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h2><p>充分性：数学归纳法易证<br>必要性：显然</p>
+<h2 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h2><p>易用数学归纳法证明。</p>
 
       
     </div>
@@ -483,13 +483,13 @@
       
         <div class="post-tags">
           
+            <a href="/tags/图论/" rel="tag"># 图论</a>
+          
             <a href="/tags/组合数学/" rel="tag"># 组合数学</a>
           
             <a href="/tags/霍尔定理/" rel="tag"># 霍尔定理</a>
           
             <a href="/tags/二分图匹配/" rel="tag"># 二分图匹配</a>
-          
-            <a href="/tags/图论/" rel="tag"># 图论</a>
           
         </div>
       
@@ -598,7 +598,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -609,7 +609,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -620,7 +620,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -683,7 +683,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
