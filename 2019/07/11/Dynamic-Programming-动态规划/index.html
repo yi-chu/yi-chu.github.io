@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="Yi-chu的博客">
 <meta property="og:description" content="Dynamic Programming —— 动态规划  记录一些比较概念的东西，当时比较急于求成，没能系统地深入理解这个重要的思想，现在回过头来巩固一下。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-21T12:53:16.012Z">
+<meta property="og:updated_time" content="2020-08-08T04:00:33.486Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dynamic Programming(动态规划)">
 <meta name="twitter:description" content="Dynamic Programming —— 动态规划  记录一些比较概念的东西，当时比较急于求成，没能系统地深入理解这个重要的思想，现在回过头来巩固一下。">
@@ -420,7 +420,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3.6k
+                  4k
                 </span>
               
 
@@ -436,7 +436,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  12
+                  14
                 </span>
               
             </div>
@@ -487,7 +487,8 @@
 <p>&emsp;&emsp;3.子问题的重叠性 动态规划将原来具有指数级时间复杂度的搜索算法改进成了具有多项式时间复杂度的算法。其中的<strong>关键在于解决冗余</strong>，这是动态规划算法的根本目的。<strong>动态规划实质上是一种以空间换时间的技术</strong>，它在实现的过程中，不得不存储产生过程中的各种状态，所以它的空间复杂度要大于其它的算法。</p>
 <hr>
 <h2 id="实现问题"><a href="#实现问题" class="headerlink" title="实现问题"></a>实现问题</h2><p>&emsp;&emsp;算法实现是比较好考虑的。但有时也会遇到一些问题，而使算法难以实现。动态规划思想设计的算法从整体上来看基本都是按照得出的递推关系式进行递推，这种递推相对于计算机来说，只要设计得当，效率往往是比较高的，这样在时间上溢出的可能性不大，而相反地，动态规划需要很大的空间以存储中间产生的结果，这样可以使包含同一个子问题的所有问题共用一个子问题解，从而体现动态规划的优越性，但这是以牺牲空间为代价的，为了有效地访问已有结果，数据也不易压缩存储，因而空间矛盾是比较突出的。另一方面，动态规划的高时效性往往要通过大的测试数据体现出来（以与搜索作比较），因而，对于大规模的问题如何在基本不影响运行速度的条件下，解决空间溢出的问题，是动态规划解决问题时一个普遍会遇到的问题。<br>&emsp;&emsp;一个思考方向是尽可能少占用空间。如从结点的数据结构上考虑，仅仅存储必不可少的内容，以及数据存储范围上精打细算(按位存储、压缩存储等)。当然这要因问题而异，进行分析。另外，在实现动态规划时，一个我们经常采用的方法是用一个与结点数一样多的数组来存储每一步的决策，这对于倒推求得一种实现最优解的方法是十分方便的，而且处理速度也有一些提高。但是在内存空间紧张的情况下，我们就应该抓住问题的主要矛盾。省去这个存储决策的数组，而改成在从最优解逐级倒推时，再计算一次，选择某个可能达到这个值的上一阶段的状态，直到推出结果为止。这样做，在程序编写上比上一种做法稍微多花一点时间，运行的时效也可能会有一些(但往往很小)的下降，但却换来了很多的空间。因而这种思想在处理某些问题时，是很有意义的。<br>&emsp;&emsp;但有时，即使采用这样的方法也会发现空间溢出的问题。这时就要分析，这些保留下来的数据是否有必要同时存在于内存之中。因为有很多问题，动态规划递推在处理后面的内容时，前面比较远处的内容实际上是用不着的。对于这类问题，在已经确信不会再被使用的数据上覆盖数据，从而使空间得以重复利用，如果能有效地使用这一手段，对于相当大规模的问题，空间也不至于溢出（为了求出最优方案，保留每一步的决策仍是必要的，这同样需要空间）。<br>&emsp;&emsp;一般地说，这种方法可以通过两种思路来实现：一种是递推结果仅使用Data1和Data2这样两个数组，每次将Data1作为上一阶段，推得Data2数组，然后，将Data2通过复制覆盖到Data1之上，如此反复，即可推得最终结果。这种做法有一个局限性，就是对于递推与前面若干阶段相关的问题，这种做法就比较麻烦；而且，每递推一级，就需要复制很多的内容，与前面多个阶段相关的问题影响更大。另外一种实现方法是，对于一个可能与前N个阶段相关的问题，建立数组Data[0..N]，其中各项为前面N个阶段的保存数据。这样不采用这种内存节约方式时对于阶段k的访问只要对应成对数组Data中下标为k mod (N+1)的单元的访问就可以了。这种处理方法对于程序修改的代码很少，速度几乎不受影响，而且需要保留不同的阶段数也都能很容易实现。<br>&emsp;&emsp;当采用以上方法仍无法解决内存问题时，也可以采用对内存的动态申请来使绝大多数情况能有效出解。而且，使用动态内存还有一点好处，就是在重复使用内存而进行交换时，可以只对指针进行交换，而不复制数据，这在实践中也是十分有效的。</p>
-
+<p><a href="https://codeforces.com/problemset/problem/1393/D" target="_blank" rel="noopener">codeforces1393D</a><br>记录dp[i][j]是(这个位置最大的菱形的长度+1)/2,那么每次转移需要判断上下左右四个方向的颜色和dp值来转移,不管按什么顺序转移我们只能预先知道2个方向的答案，所以最多要跑min(n,m)次O(nm)的dp。考虑把菱形十字切开，进行四部分转移即可。<br>如果从上到下从左到右dp,</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">2e3</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> ll inf = ~<span class="number">0U</span>LL&gt;&gt;<span class="number">1</span>,MOD = <span class="number">1000000007</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,dp[<span class="number">4</span>][maxn][maxn];</span><br><span class="line"><span class="keyword">char</span> c[maxn][maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= m; j++)</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">" %c"</span>,&amp;c[i][j]);</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= m; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(c[i<span class="number">-1</span>][j]!=c[i][j]||c[i][j<span class="number">-1</span>]!=c[i][j]) dp[<span class="number">0</span>][i][j] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> dp[<span class="number">0</span>][i][j] = min(dp[<span class="number">0</span>][i<span class="number">-1</span>][j],dp[<span class="number">0</span>][i][j<span class="number">-1</span>])+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = m; j &gt;= <span class="number">1</span>; j--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(c[i<span class="number">-1</span>][j]!=c[i][j]||c[i][j+<span class="number">1</span>]!=c[i][j]) dp[<span class="number">1</span>][i][j] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> dp[<span class="number">1</span>][i][j] = min(dp[<span class="number">1</span>][i<span class="number">-1</span>][j],dp[<span class="number">1</span>][i][j+<span class="number">1</span>])+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = n; i &gt;= <span class="number">1</span>; i--)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= m; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(c[i+<span class="number">1</span>][j]!=c[i][j]||c[i][j<span class="number">-1</span>]!=c[i][j]) dp[<span class="number">2</span>][i][j] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> dp[<span class="number">2</span>][i][j] = min(dp[<span class="number">2</span>][i+<span class="number">1</span>][j],dp[<span class="number">2</span>][i][j<span class="number">-1</span>])+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = n; i &gt;= <span class="number">1</span>; i--)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = m; j &gt;= <span class="number">1</span>; j--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(c[i+<span class="number">1</span>][j]!=c[i][j]||c[i][j+<span class="number">1</span>]!=c[i][j]) dp[<span class="number">3</span>][i][j] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> dp[<span class="number">3</span>][i][j] = min(dp[<span class="number">3</span>][i+<span class="number">1</span>][j],dp[<span class="number">3</span>][i][j+<span class="number">1</span>])+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= m; j++)</span><br><span class="line">            ans += min(&#123;dp[<span class="number">0</span>][i][j],dp[<span class="number">1</span>][i][j],dp[<span class="number">2</span>][i][j],dp[<span class="number">3</span>][i][j]&#125;);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -621,7 +622,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -632,7 +633,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -643,7 +644,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

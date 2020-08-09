@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="Yi-chu的博客">
 <meta property="og:description" content="欧拉函数 在数论，对正整数n，欧拉函数是小于或等于n的正整数中与n互质的数的数目。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-08T07:25:31.542Z">
+<meta property="og:updated_time" content="2020-02-04T02:30:12.384Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="欧拉函数">
 <meta name="twitter:description" content="欧拉函数 在数论，对正整数n，欧拉函数是小于或等于n的正整数中与n互质的数的数目。">
@@ -409,7 +409,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  511
+                  513
                 </span>
               
 
@@ -460,7 +460,7 @@
 <li>对正整数n，$\sum_{d|n}\phi(d) = n$</li>
 <li>一个数所有的质因子之和是$\frac{\phi(n) \times n}{2}$</li>
 </ol>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="直接求一个数的欧拉函数"><a href="#直接求一个数的欧拉函数" class="headerlink" title="直接求一个数的欧拉函数"></a>直接求一个数的欧拉函数</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">euler</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> res = n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i*i &lt;= n; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(n%i==<span class="number">0</span>) res = res/i*(i<span class="number">-1</span>);</span><br><span class="line">		<span class="keyword">while</span>(n%i==<span class="number">0</span>) n /= i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(n&gt;<span class="number">1</span>) res = res/n*(n<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="直接求一个数的欧拉函数"><a href="#直接求一个数的欧拉函数" class="headerlink" title="直接求一个数的欧拉函数"></a>直接求一个数的欧拉函数</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">euler</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> res = n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> i = <span class="number">2</span>; i*i &lt;= n; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(n%i==<span class="number">0</span>) res = res/i*(i<span class="number">-1</span>);</span><br><span class="line">		<span class="keyword">while</span>(n%i==<span class="number">0</span>) n /= i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(n&gt;<span class="number">1</span>) res = res/n*(n<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="线性筛预处理"><a href="#线性筛预处理" class="headerlink" title="线性筛预处理"></a>线性筛预处理</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">特性 :</span></span><br><span class="line"><span class="comment">1.若a为质数,phi[a]=a-1;</span></span><br><span class="line"><span class="comment">2.若a为质数,b mod a=0,phi[a*b]=phi[b]*a</span></span><br><span class="line"><span class="comment">3.若a,b互质,phi[a*b]=phi[a]*phi[b](当a为质数时,if b mod a!=0 ,phi[a*b]=phi[a]*phi[b])</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">int</span> m[n],phi[n],p[n],nump;</span><br><span class="line"><span class="comment">//m[i]标记i是否为素数,0为素数,1不为素数;p是存放素数的数组;nump是当前素数个数;phi[i]为欧拉函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get_phi</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    phi[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!m[i])<span class="comment">//i为素数</span></span><br><span class="line">        &#123;</span><br><span class="line">            p[++nump]=i;<span class="comment">//将i加入素数数组p中</span></span><br><span class="line">            phi[i]=i<span class="number">-1</span>;<span class="comment">//因为i是素数,由特性得知    </span></span><br><span class="line">        &#125;    </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=nump&amp;&amp;p[j]*i&lt;=n;j++)  <span class="comment">//用当前已得到的素数数组p筛,筛去p[j]*i</span></span><br><span class="line">        &#123;</span><br><span class="line">            m[p[j]*i]=<span class="number">1</span>;<span class="comment">//可以确定i*p[j]不是素数 </span></span><br><span class="line">            <span class="keyword">if</span> (i%p[j]==<span class="number">0</span>) <span class="comment">//看p[j]是否是i的约数,因为素数p[j],等于判断i和p[j]是否互质 </span></span><br><span class="line">            &#123;</span><br><span class="line">                phi[p[j]*i]=phi[i]*p[j]; <span class="comment">//特性2</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> phi[p[j]*i]=phi[i]*(p[j]<span class="number">-1</span>); <span class="comment">//互质,特性3其,p[j]-1就是phi[p[j]]   </span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
@@ -592,7 +592,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -603,7 +603,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -614,7 +614,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="Yi-chu的博客">
 <meta property="og:description" content="CodeForces">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-03T12:43:18.895Z">
+<meta property="og:updated_time" content="2020-03-31T12:08:27.503Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="codeforces题库">
 <meta name="twitter:description" content="CodeForces">
@@ -409,7 +409,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  31
+                  665
                 </span>
               
 
@@ -425,7 +425,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -448,7 +448,15 @@
       
         <h1 id="CodeForces"><a href="#CodeForces" class="headerlink" title="CodeForces"></a>CodeForces</h1><a id="more"></a>
 
-<h2 id="思维题-逆序对-1256F-2200"><a href="#思维题-逆序对-1256F-2200" class="headerlink" title="思维题/逆序对 1256F 2200"></a><a href="https://codeforces.com/problemset/problem/1256/F" target="_blank" rel="noopener">思维题/逆序对 1256F 2200</a></h2><h2 id="单调队列-滑动窗口-1291C-1700"><a href="#单调队列-滑动窗口-1291C-1700" class="headerlink" title="单调队列/滑动窗口 1291C 1700"></a><a href="http://codeforces.com/contest/1291/problem/C" target="_blank" rel="noopener">单调队列/滑动窗口 1291C 1700</a></h2><h2 id="子序列识别-序列自动机-1295C-1600"><a href="#子序列识别-序列自动机-1295C-1600" class="headerlink" title="子序列识别/序列自动机 1295C 1600"></a><a href="http://codeforces.com/problemset/problem/1295/C" target="_blank" rel="noopener">子序列识别/序列自动机 1295C 1600</a></h2>
+<h2 id="思维题-逆序对-1256F-2200"><a href="#思维题-逆序对-1256F-2200" class="headerlink" title="思维题/逆序对 1256F 2200"></a><a href="https://codeforces.com/problemset/problem/1256/F" target="_blank" rel="noopener">思维题/逆序对 1256F 2200</a></h2><h2 id="单调队列-滑动窗口-1291C-1700"><a href="#单调队列-滑动窗口-1291C-1700" class="headerlink" title="单调队列/滑动窗口 1291C 1700"></a><a href="http://codeforces.com/contest/1291/problem/C" target="_blank" rel="noopener">单调队列/滑动窗口 1291C 1700</a></h2><p>题意-n个人排队取一列数字，每个人依次可以取第一个或者最后一个数字。你排在第m个，你可以控制k个人的选择。<br>问最差情况下的最优解是多少。</p>
+<p>首先我是排在第m个，所以当我取得时候还剩下的数字个数是固定的，由于只能取头尾，所以剩下的数字肯定是原先数列的字串。<br>长度是n-m+1。先处理出 b[i] = max(a[i],a[i+n-m])。 因为每次头尾肯定取大的一个要更优。<br>现在考虑控制k个人带来的影响。我们可以固定头尾至少被取走多少个。也就是缩小可能变范围。可以控制在b[i]和b[i+m-k+1]之间。<br>求最小值，经典滑动窗口求最小值。 </p>
+<h2 id="子序列识别-序列自动机-1295C-1600"><a href="#子序列识别-序列自动机-1295C-1600" class="headerlink" title="子序列识别/序列自动机 1295C 1600"></a><a href="http://codeforces.com/problemset/problem/1295/C" target="_blank" rel="noopener">子序列识别/序列自动机 1295C 1600</a></h2><p>题意-给定两个字符串s,t。问t最少是由几个s的子序列拼接而成的。</p>
+<p>直接在序列自动机自动机上跑，跑完再从头开始，cnt++。<br>如果在头上就没法跑了那么就是无法做到。</p>
+<h2 id="线段树-1295E-2200"><a href="#线段树-1295E-2200" class="headerlink" title="线段树 1295E 2200"></a><a href="http://codeforces.com/contest/1295/problem/E" target="_blank" rel="noopener">线段树 1295E 2200</a></h2><p>题意-给出一个[1,n]的排列，第一步可以把这个排列划分成[1,k]和[k+1,n]，(1&lt;=k&lt; n）。<br>设这两个划分是set1，和set2。每次可以从一个set中取出一个数放到另一个，花费这个数字的费用.<br>是的max(set1) &lt; min(set2)。问最小花费</p>
+<p>考虑当前的划分是[1,k]和[k+1,n]。这两部分分别用set1和set2表示。<br>设f[i]代表set1中大于i的数字的费用和。<br>g[i]代表set2中小于等于[i]的数字的费用和。<br>由于最后要满足max(set1) &lt; min(set2)，假设max(set1)=x，那么set1里的元素肯定是1到x，set2的元素肯定是x+1到n。<br>那么当前的答案就是最小的f[i]+g[i]。<br>考虑划分点从左往右移动。比如从k到k+1考虑对f[i]和g[i]的贡献用线段树维护就行了。</p>
+<h2 id="构造-数学-1316C-1700"><a href="#构造-数学-1316C-1700" class="headerlink" title="构造/数学 1316C 1700"></a><a href="http://codeforces.com/problemset/problem/1316/C" target="_blank" rel="noopener">构造/数学 1316C 1700</a></h2><p>题意-求两个多项式的乘积的几次项不被p乘除，任意输出一个满足条件的答案即可。</p>
+<p>本原多项式，构造方法很简单，找到第一个i满足a[i]%p!=0,和第一个j满足b[j]%p!=0，c[i+j]%p必然大于0。<br>这也是证明高斯引理（本原多项式的乘积还是本原多项式）的方法之一。</p>
+
       
     </div>
     
@@ -574,7 +582,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -585,7 +593,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -596,7 +604,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -639,7 +647,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CodeForces"><span class="nav-number">1.</span> <span class="nav-text">CodeForces</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#思维题-逆序对-1256F-2200"><span class="nav-number">1.1.</span> <span class="nav-text">思维题/逆序对 1256F 2200</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单调队列-滑动窗口-1291C-1700"><span class="nav-number">1.2.</span> <span class="nav-text">单调队列/滑动窗口 1291C 1700</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子序列识别-序列自动机-1295C-1600"><span class="nav-number">1.3.</span> <span class="nav-text">子序列识别/序列自动机 1295C 1600</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CodeForces"><span class="nav-number">1.</span> <span class="nav-text">CodeForces</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#思维题-逆序对-1256F-2200"><span class="nav-number">1.1.</span> <span class="nav-text">思维题/逆序对 1256F 2200</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单调队列-滑动窗口-1291C-1700"><span class="nav-number">1.2.</span> <span class="nav-text">单调队列/滑动窗口 1291C 1700</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子序列识别-序列自动机-1295C-1600"><span class="nav-number">1.3.</span> <span class="nav-text">子序列识别/序列自动机 1295C 1600</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线段树-1295E-2200"><span class="nav-number">1.4.</span> <span class="nav-text">线段树 1295E 2200</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造-数学-1316C-1700"><span class="nav-number">1.5.</span> <span class="nav-text">构造/数学 1316C 1700</span></a></li></ol></li></ol></div>
             
 
           </div>
