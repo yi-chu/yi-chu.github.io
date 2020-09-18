@@ -218,7 +218,7 @@
             <div class="markdown-body" id="post-body">
               <h1 id="一些数据结构在树上应用的场景和技巧"><a href="#一些数据结构在树上应用的场景和技巧" class="headerlink" title="一些数据结构在树上应用的场景和技巧"></a>一些数据结构在树上应用的场景和技巧</h1><a id="more"></a>
 <h2 id="树上单点修改和树链求和"><a href="#树上单点修改和树链求和" class="headerlink" title="树上单点修改和树链求和"></a>树上单点修改和树链求和</h2><p><a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=6200">hdu6200</a></p>
-<p>题意：给定一张无向连通图，要求在支持连边的情况下，回答某条简单路径上的必经边条数。</p>
+<p>题意：给定一张无向连通图，要求在支持连边的情况下，查询$u$到$v$的所有简单路径的都包含的边的个数。</p>
 <p>思路：首先我们可以从一开始的图中任取一颗生成树，把多余的边存下来。一棵树的某条简单路径上的必经边条数就是这条路径的长度。<br>考虑每次增加一条边，必然会在原图上产生环，此时要把这个环所经过的树边的边权赋为零。<br>首先我们可以把边权转化为点权，然后用树状数组差分维护dfs序来实现求树上一点到根的权值和以及树上单点修改。<br>但每次修改一个环必然会超时，考虑到条边只会被赋值一次。我们可以利用并查集合并新增环上的点，即缩点保证每个点只修改一次。</p>
 <p>这样总的时间复杂度就是$O(n \times log(n)+q \times log(n))$</p>
 <p>代码：<br><div class="hljs"><pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
@@ -327,6 +327,7 @@
 <h2 id="树链修改和树链查询"><a href="#树链修改和树链查询" class="headerlink" title="树链修改和树链查询"></a>树链修改和树链查询</h2><p><a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/contest/5672/C">牛客 A National Pandemic</a></p>
 <p>题意：给定一棵树，接下来有三种操作。<br>第一种：指定一个点$x$和一个权值$w$，给所有点u的点权加上$w-dist(x,y)$。<br>第二种：将$x$的点权修改$min(0,val(x))$。<br>第三种：查询$x$的点权。</p>
 <p>思路：第一种操作比较特殊，考虑能否将其转化成一般的树上修改。首先$w$是定值很好处理，只需要记录到目前为止的和即可。<br>$dist(x,y)$可以拆分成$dist(1,x)+dist(1,y)-2 \times dist(lca(x,y))$,前两个是定值都很好处理。考虑如何处理$dist(lca(x,y))$。我们可以对这棵树进行重链剖分，对于每个操作一，将$1-x$这条链上的点权加一。那么对于某个点$y，dist(lca(x,y))$就是重链剖分后$1-y$这条链上的权值和。操作二可以开一个数组记录差值即可。</p>
+<p>时间复杂度是$O(n \times log^2(n))$</p>
 <p>代码：<br><div class="hljs"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
 <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
 <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
@@ -461,6 +462,7 @@ ll ans[maxn],sum[maxn&lt;&lt;<span class="hljs-number">2</span>],tag[maxn&lt;&lt
 <h2 id="树上单点修改和半径求和"><a href="#树上单点修改和半径求和" class="headerlink" title="树上单点修改和半径求和"></a>树上单点修改和半径求和</h2><p><a target="_blank" rel="noopener" href="https://darkbzoj.tk/problem/3730">bzoj3730震波</a></p>
 <p>题意： 给定一棵树，有两种操作。<br>第一种操作是求所有到点$x$的距离不超过$k$的点的权值和。<br>第二种操作是把点$x$的权值修改为$y$。</p>
 <p>思路： 动态点分治/点分树板子题。</p>
+<p>时间复杂度是$O(n \times log^2(n))$</p>
 <p>代码：<br><div class="hljs"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
 <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
 <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
