@@ -91,7 +91,7 @@
       </tags>
   </entry>
   <entry>
-    <title>关于Qtree问题的思考</title>
+    <title>数据结构在树上的应用</title>
     <url>/2020/09/18/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9C%A8%E6%A0%91%E4%B8%8A%E7%9A%84%E5%BA%94%E7%94%A8/</url>
     <content><![CDATA[<h1 id="一些数据结构在树上应用的场景和技巧"><a href="#一些数据结构在树上应用的场景和技巧" class="headerlink" title="一些数据结构在树上应用的场景和技巧"></a>一些数据结构在树上应用的场景和技巧</h1><a id="more"></a>
 <h2 id="树上单点修改和树链求和"><a href="#树上单点修改和树链求和" class="headerlink" title="树上单点修改和树链求和"></a>树上单点修改和树链求和</h2><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=6200">hdu6200</a></p>
