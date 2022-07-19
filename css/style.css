@@ -319,9 +319,7 @@
 body h1,
 body .h1 {
   display: block;
-  margin-top: 3rem;
-  margin-bottom: 1rem;
-  color: #cc2a41;
+  color: #a42a41;
   letter-spacing: 0.01em;
   font-weight: 700;
   font-style: normal;
@@ -333,26 +331,31 @@ body h2,
 body .h2 {
   position: relative;
   display: block;
-  margin-top: 2rem;
-  margin-bottom: 0.5rem;
-  color: rgba(86,124,119,0.8);
+  color: #cb1b45;
   text-transform: none;
   letter-spacing: normal;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.3rem;
 }
 body h3 {
-  color: rgba(86,124,119,0.8);
-  text-decoration: underline;
+  color: #cc2a41;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+body h4 {
+  color: #cb4042;
   font-weight: bold;
   font-size: 0.9rem;
 }
-body h4,
-body h5,
+body h5 {
+  color: #cb4042;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
 body h6 {
   display: inline;
   text-decoration: none;
-  color: #666;
+  color: #cb4042;
   font-weight: bold;
   font-size: 0.9rem;
 }
@@ -364,7 +367,7 @@ body h6 {
   margin-bottom: 0.5rem;
 }
 body hr {
-  border: 0.5px dashed #666;
+  border: 0.7px solid #64363c;
   opacity: 0.5;
   margin: 0;
   margin-top: 20px;
@@ -426,7 +429,7 @@ body table {
 body th {
   padding: 8px;
   border-bottom: 1px dashed #666;
-  color: rgba(86,124,119,0.8);
+  color: #a42a41;
   font-weight: bold;
   font-size: 13px;
 }
@@ -823,8 +826,8 @@ body {
   clear: both;
   overflow: auto;
   margin-top: 1rem;
-  padding-right: 2rem;
-  max-width: 20em;
+  padding-right: 1rem;
+  max-width: 200em;
   max-height: calc(95vh - 7rem);
   text-align: right;
 }
@@ -832,28 +835,37 @@ body {
   color: rgba(86,124,119,0.4);
 }
 #header-post #toc .toc-level-1 > .toc-link {
+  color: #a42a41;
+  font-size: 0.9rem;
+  font-weight: bold;
   display: none;
 }
 #header-post #toc .toc-level-2 {
-  color: #22272a;
+  color: #a42a41;
   font-size: 0.8rem;
-}
-#header-post #toc .toc-level-2:before {
-  color: #cc2a41;
-  content: "#";
+  font-weight: bold;
+  display: none;
 }
 #header-post #toc .toc-level-3 {
-  color: #666;
+  color: #a42a41;
   font-size: 0.7rem;
+  font-weight: bold;
+  display: none;
 }
 #header-post #toc .toc-level-4 {
-  color: #525252;
+  color: #a42a41;
   font-size: 0.4rem;
+  font-weight: bold;
+  display: none;
 }
 #header-post #toc .toc-level-5 {
+  color: #a42a41;
+  font-weight: bold;
   display: none;
 }
 #header-post #toc .toc-level-6 {
+  color: #a42a41;
+  font-weight: bold;
   display: none;
 }
 #header-post #toc .toc-number {
@@ -999,6 +1011,7 @@ body {
   padding-bottom: 1rem;
   background: #e1e1e1;
   text-align: left;
+  display: none;
 }
 #footer-post #toc-footer ol {
   margin: 0;
@@ -1013,10 +1026,12 @@ body {
 }
 #footer-post #toc-footer .toc-level-1 > .toc-link {
   display: none;
+  display: none;
 }
 #footer-post #toc-footer .toc-level-2 {
   color: #22272a;
   font-size: 0.8rem;
+  display: none;
 }
 #footer-post #toc-footer .toc-level-2:before {
   color: #cc2a41;
@@ -1026,6 +1041,7 @@ body {
   color: #666;
   font-size: 0.7rem;
   line-height: 15px;
+  display: none;
 }
 #footer-post #toc-footer .toc-level-4 {
   display: none;
@@ -1090,7 +1106,7 @@ article header .meta {
   margin-bottom: 1rem;
 }
 article header .meta * {
-  color: #666;
+  color: #454d66;
   font-size: 0.85rem;
 }
 article header .author {
@@ -1106,7 +1122,6 @@ article .content h2:before {
   top: -4px;
   left: -1rem;
   color: #cc2a41;
-  content: "#";
   font-weight: bold;
   font-size: 1.2rem;
 }
@@ -1219,6 +1234,30 @@ article .content .caption {
   .article-category:before {
     content: "|";
   }
+}
+.tips {
+  padding-left: 10px;
+  background-color: rgba(148,122,109,0.3);
+  border-left: 4px solid #947a6d;
+  color: #776257;
+}
+.success {
+  padding-left: 10px;
+  background-color: rgba(233,139,42,0.3);
+  border-left: 4px solid #e98b2a;
+  color: #c76f15;
+}
+.warning {
+  padding-left: 10px;
+  background-color: rgba(232,48,21,0.3);
+  border-left: 4px solid #e83015;
+  color: #ba2611;
+}
+.danger {
+  padding-left: 10px;
+  background-color: rgba(203,27,69,0.3);
+  border-left: 4px solid #cb1b45;
+  color: #a21637;
 }
 #archive .post-year {
   list-style-type: none;
@@ -1334,13 +1373,13 @@ article .content .caption {
   background-image: none;
 }
 .pagination a:hover:not(.active) {
-  color: rgba(86,124,119,0.8);
+  color: #a42a41;
 }
 .search-input {
   padding: 4px 7px;
   width: 100%;
   outline: none;
-  border: solid 1px #666;
+  border: solid 1px #454d66;
   border-radius: 5px;
   background-color: #fafafa;
   color: #22272a;

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Markdown 是一种轻量级标记语言，创始人为约翰·格鲁伯（John Gruber）。 它允许人们使用易读易写的纯文本格式编写文档，然后转换成有效的 XHTML（或者HTML）文档。这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。由于 Markdown 的轻量化、易读易写特性，并且对于图片，图表、数学式都有支持，许多网站都广泛使用 Markdown 来撰写帮助文档或是用于论坛上发表消息">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Markdown">
+<meta property="og:url" content="http://yi-chu.github.io/2022/07/18/Markdown/index.html">
+<meta property="og:site_name" content="Hello">
+<meta property="og:description" content="Markdown 是一种轻量级标记语言，创始人为约翰·格鲁伯（John Gruber）。 它允许人们使用易读易写的纯文本格式编写文档，然后转换成有效的 XHTML（或者HTML）文档。这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。由于 Markdown 的轻量化、易读易写特性，并且对于图片，图表、数学式都有支持，许多网站都广泛使用 Markdown 来撰写帮助文档或是用于论坛上发表消息">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yi-chu.github.io/2022/07/18/Markdown/1.png">
+<meta property="article:published_time" content="2022-07-18T13:32:05.000Z">
+<meta property="article:modified_time" content="2022-07-19T06:24:48.266Z">
+<meta property="article:author" content="nobody">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yi-chu.github.io/2022/07/18/Markdown/1.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Markdown</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2022/07/18/Start/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://yi-chu.github.io/2022/07/18/Markdown/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://yi-chu.github.io/2022/07/18/Markdown/&text=Markdown"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://yi-chu.github.io/2022/07/18/Markdown/&title=Markdown"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yi-chu.github.io/2022/07/18/Markdown/&is_video=false&description=Markdown"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Markdown&body=Check out this article: http://yi-chu.github.io/2022/07/18/Markdown/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://yi-chu.github.io/2022/07/18/Markdown/&title=Markdown"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://yi-chu.github.io/2022/07/18/Markdown/&title=Markdown"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://yi-chu.github.io/2022/07/18/Markdown/&title=Markdown"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://yi-chu.github.io/2022/07/18/Markdown/&title=Markdown"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://yi-chu.github.io/2022/07/18/Markdown/&name=Markdown&description=&lt;p&gt;&lt;img src=&#34;1.png&#34; alt&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;&lt;p&gt;Markdown 是一种轻量级标记语言，创始人为约翰·格鲁伯（John Gruber）。 它允许人们使用易读易写的纯文本格式编写文档，然后转换成有效的 XHTML（或者HTML）文档。这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。由于 Markdown 的轻量化、易读易写特性，并且对于图片，图表、数学式都有支持，许多网站都广泛使用 Markdown 来撰写帮助文档或是用于论坛上发表消息。 如 GitHub、Reddit、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge、简书等，甚至还能被使用来撰写电子书。&lt;/p&gt;
+&lt;footer&gt;&lt;strong&gt;Baidu&lt;/strong&gt;&lt;cite&gt;&lt;a href=&#34;https://baike.baidu.com/item/markdown&#34;&gt;baike.baidu.com/item/markdown&lt;/a&gt;&lt;/cite&gt;&lt;/footer&gt;&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h1&gt;Markdown注释、换行、段落、标题、分割线&lt;/h1&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://yi-chu.github.io/2022/07/18/Markdown/&t=Markdown"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">Markdown注释、换行、段落、标题、分割线</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（一级标题）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E4%BA%9B%E4%BA%BA%E6%B5%85%E8%96%84%EF%BC%8C%E6%9C%89%E4%BA%9B%E4%BA%BA%E9%87%91%E7%8E%89%E5%85%B6%E5%A4%96%E8%80%8C%E8%B4%A5%E7%B5%AE%E5%85%B6%E4%B8%AD%E3%80%82%E6%9C%89%E5%A4%A9%E4%BD%A0%E4%BC%9A%E9%81%87%E5%88%B0%E4%B8%80%E4%B8%AA%E5%BD%A9%E8%99%B9%E8%88%AC%E7%BB%9A%E4%B8%BD%E7%9A%84%E4%BA%BA%EF%BC%8C%E4%BB%8E%E6%AD%A4%EF%BC%8C%E5%85%B6%E4%BB%96%E4%BA%BA%E5%8F%AA%E6%98%AF%E6%B5%AE%E4%BA%91%EF%BC%88%E4%BA%8C%E7%BA%A7%E6%A0%87%E9%A2%98%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（二级标题）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E4%BA%9B%E4%BA%BA%E6%B5%85%E8%96%84%EF%BC%8C%E6%9C%89%E4%BA%9B%E4%BA%BA%E9%87%91%E7%8E%89%E5%85%B6%E5%A4%96%E8%80%8C%E8%B4%A5%E7%B5%AE%E5%85%B6%E4%B8%AD%E3%80%82%E6%9C%89%E5%A4%A9%E4%BD%A0%E4%BC%9A%E9%81%87%E5%88%B0%E4%B8%80%E4%B8%AA%E5%BD%A9%E8%99%B9%E8%88%AC%E7%BB%9A%E4%B8%BD%E7%9A%84%E4%BA%BA%EF%BC%8C%E4%BB%8E%E6%AD%A4%EF%BC%8C%E5%85%B6%E4%BB%96%E4%BA%BA%E5%8F%AA%E6%98%AF%E6%B5%AE%E4%BA%91%EF%BC%88%E4%B8%89%E7%BA%A7%E6%A0%87%E9%A2%98%EF%BC%89"><span class="toc-number">2.1.1.</span> <span class="toc-text">有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（三级标题）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E4%BA%9B%E4%BA%BA%E6%B5%85%E8%96%84%EF%BC%8C%E6%9C%89%E4%BA%9B%E4%BA%BA%E9%87%91%E7%8E%89%E5%85%B6%E5%A4%96%E8%80%8C%E8%B4%A5%E7%B5%AE%E5%85%B6%E4%B8%AD%E3%80%82%E6%9C%89%E5%A4%A9%E4%BD%A0%E4%BC%9A%E9%81%87%E5%88%B0%E4%B8%80%E4%B8%AA%E5%BD%A9%E8%99%B9%E8%88%AC%E7%BB%9A%E4%B8%BD%E7%9A%84%E4%BA%BA%EF%BC%8C%E4%BB%8E%E6%AD%A4%EF%BC%8C%E5%85%B6%E4%BB%96%E4%BA%BA%E5%8F%AA%E6%98%AF%E6%B5%AE%E4%BA%91%EF%BC%88%E5%9B%9B%E7%BA%A7%E6%A0%87%E9%A2%98%EF%BC%89"><span class="toc-number">2.1.1.1.</span> <span class="toc-text">有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（四级标题）</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">Markdown斜体、粗体、斜粗体、删除线、下划线、上下标</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">Markdown脚注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">5.</span> <span class="toc-text">Markdown无序列表、有序列表、任务列表、列表嵌套</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">6.</span> <span class="toc-text">Markdown内容折叠</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">7.</span> <span class="toc-text">Markdown复选框</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">8.</span> <span class="toc-text">Markdown自定义容器</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Markdown
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">nobody</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-07-18T13:32:05.000Z" itemprop="datePublished">2022-07-18</time>
+        
+        (Updated: <time datetime="2022-07-19T06:24:48.266Z" itemprop="dateModified">2022-07-19</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p><img src="1.png" alt=""></p>
+<hr>
+<blockquote><p>Markdown 是一种轻量级标记语言，创始人为约翰·格鲁伯（John Gruber）。 它允许人们使用易读易写的纯文本格式编写文档，然后转换成有效的 XHTML（或者HTML）文档。这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。由于 Markdown 的轻量化、易读易写特性，并且对于图片，图表、数学式都有支持，许多网站都广泛使用 Markdown 来撰写帮助文档或是用于论坛上发表消息。 如 GitHub、Reddit、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge、简书等，甚至还能被使用来撰写电子书。</p>
+<footer><strong>Baidu</strong><cite><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/markdown">baike.baidu.com/item/markdown</a></cite></footer></blockquote>
+<hr>
+<h1>Markdown注释、换行、段落、标题、分割线</h1>
+<p><strong>Markdown可以用<code>[//]: # (注释内容)</code>的样式来实现注释的功能，或者可以用html中的注释样式<code>&lt;!-- 注释内容 --&gt;</code>来实现注释，因为解析MD文件的解析器可以运行html。</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown注释</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="symbol">//</span>]: <span class="link"># (这是一段注释)  or  &lt;!-- 这是一段注释 --&gt;</span></span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<!-- 这是一段注释 -->
+<hr>
+<p><strong>Markdown中在行末加两个及以上空格即可实现换行</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown换行</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">有人住高楼，有人在深沟，有人光万丈，有人一身锈，浮云莫去求，斯人若彩虹，遇上方知有。  </span><br><span class="line">有一天你会遇到个如彩虹般绚烂的人，到那时，以前或以后的痛苦都不足以改变你的爱。</span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<p>有人住高楼，有人在深沟，有人光万丈，有人一身锈，浮云莫去求，斯人若彩虹，遇上方知有。<br>
+有一天你会遇到个如彩虹般绚烂的人，到那时，以前或以后的痛苦都不足以改变你的爱。</p>
+<hr>
+<p><strong>Markdown中在两端文字之间插入一个空行即可实现段落</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown段落</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">有人住高楼，有人在深沟，有人光万丈，有人一身锈，浮云莫去求，斯人若彩虹，遇上方知有。</span><br><span class="line"></span><br><span class="line">有一天你会遇到个如彩虹般绚烂的人，到那时，以前或以后的痛苦都不足以改变你的爱。</span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<p>有人住高楼，有人在深沟，有人光万丈，有人一身锈，浮云莫去求，斯人若彩虹，遇上方知有。</p>
+<p>有一天你会遇到个如彩虹般绚烂的人，到那时，以前或以后的痛苦都不足以改变你的爱。</p>
+<hr>
+<p><strong>Markdown中用<code>#</code>来实现标题，文字前有几个<code>#</code>就代表这段文字是几级标题</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown标题</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># 有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（一级标题）</span></span><br><span class="line"><span class="section">## 有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（二级标题）</span></span><br><span class="line"><span class="section">### 有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（三级标题）</span></span><br><span class="line"><span class="section">#### 有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（四级标题）</span></span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<h1>有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（一级标题）</h1>
+<h2 id="有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（二级标题）">有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（二级标题）</h2>
+<h3 id="有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（三级标题）">有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（三级标题）</h3>
+<h4 id="有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（四级标题）">有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（四级标题）</h4>
+<hr>
+<p><strong>Markdown中用<code>---</code>来实现分割线</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown分割线</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">---</span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<hr>
+<hr>
+<h1>Markdown斜体、粗体、斜粗体、删除线、下划线、上下标</h1>
+<p><strong>Markdown支持斜体，粗体，粗斜体样式****其中用一对<code>*</code>括起来代表斜体样式，用一对<code>**</code>括起来代表粗体样式，用一对<code>***</code>括起来代表斜体样式</strong><br>
+<em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown斜体、粗体、斜粗体</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="emphasis">*这是一段斜体文字*</span> <span class="strong">**这是一段粗体文字**</span> <span class="strong">**<span class="emphasis">*这是一段斜粗体文字*</span>**</span></span><br></pre></td></tr></table></figure>
+<p><em>result:</em><br>
+<em>这是一段斜体文字</em> <strong>这是一段粗体文字</strong> <em><strong>这是一段斜粗体文字</strong></em></p>
+<hr>
+<p><strong>Markdown支持删除线、下划线、上下标等样式****其中用一对<code>~~</code>括起来实现删除线效果，用一对<code>&lt;u&gt;&lt;/u&gt;</code>括起来来实现下划线的效果，一对<code>&lt;sub&gt;&lt;/sub&gt;</code>括起来实现下标，一对<code>&lt;sup&gt;&lt;/sup&gt;</code>括起来实现上标</strong><br>
+<em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown删除线、下划线、上下标</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~~此段文字删除~~ <span class="language-xml"><span class="tag">&lt;<span class="name">u</span>&gt;</span></span>此段文字为重点<span class="language-xml"><span class="tag">&lt;/<span class="name">u</span>&gt;</span></span> H<span class="language-xml"><span class="tag">&lt;<span class="name">sub</span>&gt;</span></span>2<span class="language-xml"><span class="tag">&lt;/<span class="name">sub</span>&gt;</span></span>O X<span class="language-xml"><span class="tag">&lt;<span class="name">sup</span>&gt;</span></span>2<span class="language-xml"><span class="tag">&lt;/<span class="name">sup</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p><em>result:</em><br>
+<s>此段文字删除</s> <u>此段文字为重点</u> H<sub>2</sub>O X<sup>2</sup></p>
+<hr>
+<h1>Markdown脚注</h1>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown脚注</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">需要脚注的文本1[^脚注标志1]</span><br><span class="line">需要脚注的文本2[^脚注标志2]</span><br><span class="line">[<span class="symbol">^脚注标志1</span>]: <span class="link">脚注内容1</span></span><br><span class="line">[<span class="symbol">^脚注标志2</span>]: <span class="link">脚注内容2</span></span><br></pre></td></tr></table></figure>
+<p><em>result:</em><br>
+需要脚注的文本1<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup><br>
+需要脚注的文本2<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<hr>
+<h1>Markdown无序列表、有序列表、任务列表、列表嵌套</h1>
+<p><strong>Markdown支持有序列表、无序列表和任务列表列表与列表之间还可以相互嵌套</strong></p>
+<hr>
+<p><strong>无序列表可以使用星号(*)、加号(+)或是减号(-)作为列表标记，效果相同。</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown无序列表</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">*</span> 第一项</span><br><span class="line"><span class="bullet">*</span> 第二项</span><br><span class="line"><span class="bullet">*</span> 第三项</span><br><span class="line">or</span><br><span class="line"><span class="bullet">+</span> 第一项</span><br><span class="line"><span class="bullet">+</span> 第二项</span><br><span class="line"><span class="bullet">+</span> 第三项</span><br><span class="line">or</span><br><span class="line"><span class="bullet">-</span> 第一项</span><br><span class="line"><span class="bullet">-</span> 第二项</span><br><span class="line"><span class="bullet">-</span> 第三项</span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>第一项</p>
+</li>
+<li class="lvl-2">
+<p>第二项</p>
+</li>
+<li class="lvl-2">
+<p>第三项</p>
+</li>
+</ul>
+<hr>
+<p><strong>有序列表使用数字并加上 . 号来表示</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown有序列表</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1.</span> 第一项</span><br><span class="line"><span class="bullet">2.</span> 第二项</span><br><span class="line"><span class="bullet">3.</span> 第三项</span><br><span class="line"><span class="bullet">4.</span> 第四项</span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<ol>
+<li class="lvl-3">
+<p>第一项</p>
+</li>
+<li class="lvl-3">
+<p>第二项</p>
+</li>
+<li class="lvl-3">
+<p>第三项</p>
+</li>
+<li class="lvl-3">
+<p>第四项</p>
+</li>
+</ol>
+<hr>
+<p><strong>任务列表<code>- [ ]</code>来表示，其中<code>[ ]</code>(带空格的中括号)表示未完成的任务，[x]表示已经完成的任务。</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown任务列表</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> [x] 起床</span><br><span class="line"><span class="bullet">-</span> [x] 吃饭</span><br><span class="line"><span class="bullet">-</span> [ ] 工作</span><br><span class="line"><span class="bullet">-</span> [ ] 睡觉</span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><input type="checkbox" id="checkbox0" checked="true"><label for="checkbox0">起床</label></p>
+</li>
+<li class="lvl-2">
+<p><input type="checkbox" id="checkbox1" checked="true"><label for="checkbox1">吃饭</label></p>
+</li>
+<li class="lvl-2">
+<p><input type="checkbox" id="checkbox2"><label for="checkbox2">工作</label></p>
+</li>
+<li class="lvl-2">
+<p><input type="checkbox" id="checkbox3"><label for="checkbox3">睡觉</label></p>
+</li>
+</ul>
+<hr>
+<p><strong>Markdown列表可以相互嵌套</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown列表嵌套</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1.</span> 任务</span><br><span class="line"><span class="bullet">    -</span> [x] 起床</span><br><span class="line"><span class="bullet">    -</span> [x] 吃饭</span><br><span class="line"><span class="bullet">    -</span> [ ] 工作</span><br><span class="line"><span class="bullet">    -</span> [ ] 睡觉</span><br><span class="line"><span class="bullet">2.</span> 爱好</span><br><span class="line"><span class="bullet">    -</span> 听音乐</span><br><span class="line"><span class="bullet">    -</span> 玩游戏</span><br><span class="line"><span class="bullet">    -</span> 看电影</span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<ol>
+<li class="lvl-3">
+<p>任务</p>
+<ul class="lvl-2">
+<li class="lvl-6"><input type="checkbox" id="checkbox4" checked="true"><label for="checkbox4">起床</label></li>
+<li class="lvl-6"><input type="checkbox" id="checkbox5" checked="true"><label for="checkbox5">吃饭</label></li>
+<li class="lvl-6"><input type="checkbox" id="checkbox6"><label for="checkbox6">工作</label></li>
+<li class="lvl-6"><input type="checkbox" id="checkbox7"><label for="checkbox7">睡觉</label></li>
+</ul>
+</li>
+<li class="lvl-3">
+<p>爱好</p>
+<ul class="lvl-2">
+<li class="lvl-6">听音乐</li>
+<li class="lvl-6">玩游戏</li>
+<li class="lvl-6">看电影</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h1>Markdown内容折叠</h1>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown内容折叠</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+++<span class="strong">**点我显示内容**</span></span><br><span class="line">这里是  </span><br><span class="line">隐藏的内容  </span><br><span class="line">！！！</span><br><span class="line">+++</span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<details open>
+<summary><span class="pre-summary">&nbsp;</span><strong>点我显示内容</strong></summary><p>这里是<br>
+隐藏的内容<br>
+！！！</p>
+</details>
+<hr>
+<h1>Markdown复选框</h1>
+<p><strong>类似于任务列表，<code>[ ]</code>(带空格的中括号)表示未完成的任务，[x]表示已经完成的任务。</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown内容折叠</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[x] 起床</span><br><span class="line">[x] 吃饭</span><br><span class="line">[ ] 工作</span><br><span class="line">[ ] 睡觉</span><br></pre></td></tr></table></figure>
+<p><em>result:</em><br>
+<input type="checkbox" id="checkbox11" checked="true"><label for="checkbox11">起床</label><br>
+<input type="checkbox" id="checkbox10" checked="true"><label for="checkbox10">吃饭</label><br>
+<input type="checkbox" id="checkbox9"><label for="checkbox9">工作</label><br>
+<input type="checkbox" id="checkbox8"><label for="checkbox8">睡觉</label></p>
+<hr>
+<h1>Markdown自定义容器</h1>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown自定义容器</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">::: tips</span><br><span class="line"><span class="strong">**提示**</span></span><br><span class="line">这是一个提示</span><br><span class="line">:::</span><br><span class="line"></span><br><span class="line">::: warning</span><br><span class="line"><span class="strong">**注意**</span></span><br><span class="line">这是一个警告</span><br><span class="line">:::</span><br><span class="line"></span><br><span class="line">::: danger</span><br><span class="line"><span class="strong">**警告**</span></span><br><span class="line">这是一个危险信号</span><br><span class="line">:::</span><br><span class="line"></span><br><span class="line">::: success</span><br><span class="line"><span class="strong">**成功**</span></span><br><span class="line">这是一个成功信号</span><br><span class="line">:::</span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<div class="tips">
+<p><strong>提示</strong><br>
+这是一个提示</p>
+</div>
+<div class="warning">
+<p><strong>注意</strong><br>
+这是一个警告</p>
+</div>
+<div class="danger">
+<p><strong>警告</strong><br>
+这是一个危险信号</p>
+</div>
+<div class="success">
+<p><strong>成功</strong><br>
+这是一个成功信号</p>
+</div>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>脚注内容1 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>脚注内容2 <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">Markdown注释、换行、段落、标题、分割线</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（一级标题）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E4%BA%9B%E4%BA%BA%E6%B5%85%E8%96%84%EF%BC%8C%E6%9C%89%E4%BA%9B%E4%BA%BA%E9%87%91%E7%8E%89%E5%85%B6%E5%A4%96%E8%80%8C%E8%B4%A5%E7%B5%AE%E5%85%B6%E4%B8%AD%E3%80%82%E6%9C%89%E5%A4%A9%E4%BD%A0%E4%BC%9A%E9%81%87%E5%88%B0%E4%B8%80%E4%B8%AA%E5%BD%A9%E8%99%B9%E8%88%AC%E7%BB%9A%E4%B8%BD%E7%9A%84%E4%BA%BA%EF%BC%8C%E4%BB%8E%E6%AD%A4%EF%BC%8C%E5%85%B6%E4%BB%96%E4%BA%BA%E5%8F%AA%E6%98%AF%E6%B5%AE%E4%BA%91%EF%BC%88%E4%BA%8C%E7%BA%A7%E6%A0%87%E9%A2%98%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（二级标题）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E4%BA%9B%E4%BA%BA%E6%B5%85%E8%96%84%EF%BC%8C%E6%9C%89%E4%BA%9B%E4%BA%BA%E9%87%91%E7%8E%89%E5%85%B6%E5%A4%96%E8%80%8C%E8%B4%A5%E7%B5%AE%E5%85%B6%E4%B8%AD%E3%80%82%E6%9C%89%E5%A4%A9%E4%BD%A0%E4%BC%9A%E9%81%87%E5%88%B0%E4%B8%80%E4%B8%AA%E5%BD%A9%E8%99%B9%E8%88%AC%E7%BB%9A%E4%B8%BD%E7%9A%84%E4%BA%BA%EF%BC%8C%E4%BB%8E%E6%AD%A4%EF%BC%8C%E5%85%B6%E4%BB%96%E4%BA%BA%E5%8F%AA%E6%98%AF%E6%B5%AE%E4%BA%91%EF%BC%88%E4%B8%89%E7%BA%A7%E6%A0%87%E9%A2%98%EF%BC%89"><span class="toc-number">2.1.1.</span> <span class="toc-text">有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（三级标题）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E4%BA%9B%E4%BA%BA%E6%B5%85%E8%96%84%EF%BC%8C%E6%9C%89%E4%BA%9B%E4%BA%BA%E9%87%91%E7%8E%89%E5%85%B6%E5%A4%96%E8%80%8C%E8%B4%A5%E7%B5%AE%E5%85%B6%E4%B8%AD%E3%80%82%E6%9C%89%E5%A4%A9%E4%BD%A0%E4%BC%9A%E9%81%87%E5%88%B0%E4%B8%80%E4%B8%AA%E5%BD%A9%E8%99%B9%E8%88%AC%E7%BB%9A%E4%B8%BD%E7%9A%84%E4%BA%BA%EF%BC%8C%E4%BB%8E%E6%AD%A4%EF%BC%8C%E5%85%B6%E4%BB%96%E4%BA%BA%E5%8F%AA%E6%98%AF%E6%B5%AE%E4%BA%91%EF%BC%88%E5%9B%9B%E7%BA%A7%E6%A0%87%E9%A2%98%EF%BC%89"><span class="toc-number">2.1.1.1.</span> <span class="toc-text">有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（四级标题）</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">Markdown斜体、粗体、斜粗体、删除线、下划线、上下标</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">Markdown脚注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">5.</span> <span class="toc-text">Markdown无序列表、有序列表、任务列表、列表嵌套</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">6.</span> <span class="toc-text">Markdown内容折叠</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">7.</span> <span class="toc-text">Markdown复选框</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">8.</span> <span class="toc-text">Markdown自定义容器</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://yi-chu.github.io/2022/07/18/Markdown/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://yi-chu.github.io/2022/07/18/Markdown/&text=Markdown"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://yi-chu.github.io/2022/07/18/Markdown/&title=Markdown"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yi-chu.github.io/2022/07/18/Markdown/&is_video=false&description=Markdown"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Markdown&body=Check out this article: http://yi-chu.github.io/2022/07/18/Markdown/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://yi-chu.github.io/2022/07/18/Markdown/&title=Markdown"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://yi-chu.github.io/2022/07/18/Markdown/&title=Markdown"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://yi-chu.github.io/2022/07/18/Markdown/&title=Markdown"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://yi-chu.github.io/2022/07/18/Markdown/&title=Markdown"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://yi-chu.github.io/2022/07/18/Markdown/&name=Markdown&description=&lt;p&gt;&lt;img src=&#34;1.png&#34; alt&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;&lt;p&gt;Markdown 是一种轻量级标记语言，创始人为约翰·格鲁伯（John Gruber）。 它允许人们使用易读易写的纯文本格式编写文档，然后转换成有效的 XHTML（或者HTML）文档。这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。由于 Markdown 的轻量化、易读易写特性，并且对于图片，图表、数学式都有支持，许多网站都广泛使用 Markdown 来撰写帮助文档或是用于论坛上发表消息。 如 GitHub、Reddit、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge、简书等，甚至还能被使用来撰写电子书。&lt;/p&gt;
+&lt;footer&gt;&lt;strong&gt;Baidu&lt;/strong&gt;&lt;cite&gt;&lt;a href=&#34;https://baike.baidu.com/item/markdown&#34;&gt;baike.baidu.com/item/markdown&lt;/a&gt;&lt;/cite&gt;&lt;/footer&gt;&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h1&gt;Markdown注释、换行、段落、标题、分割线&lt;/h1&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://yi-chu.github.io/2022/07/18/Markdown/&t=Markdown"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022
+    nobody
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
