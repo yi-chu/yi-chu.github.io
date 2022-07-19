@@ -282,13 +282,13 @@
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>archives</title>
-    <url>/archives/index.html</url>
+    <title>Search</title>
+    <url>/search/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>Search</title>
-    <url>/search/index.html</url>
+    <title>archives</title>
+    <url>/archives/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
 </search>
