@@ -1,94 +1,476 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-  
-    
-    <entry>
-      <title>Perceptro Algorithm</title>
-      <link href="/2022/07/26/Perceptro%20Algorithm/"/>
-      <url>/2022/07/26/Perceptro%20Algorithm/</url>
-      
-        <content type="html"><![CDATA[<blockquote><p>The Perceptron algorithm is the simplest type of artificial neural network.<br>It is a model of a single neuron that can be used for two-class classification problems and provides the foundation for later developing much larger networks.</p></blockquote><p><img src="1.png" alt=""></p><h1>任务</h1><p><strong>输入:</strong> $ (\overrightarrow{x_{i}},y_{i}), i = 1 \sim N $</p><ul class="lvl-0"><li class="lvl-2"><p>$\overrightarrow{x_{i}}$ —— 第$i$个训练样本的特征向量</p></li><li class="lvl-2"><p>$y_{i}=\pm1$ —— 第$i$个训练样本的类别</p></li></ul><p><strong>任务:</strong> 找出一个向量$\overrightarrow{w}$和一个常数$b$，使得对$i = 1 … N$，</p><ol><li class="lvl-3"><p>若$y_{i}=+1$，则$\overrightarrow{w}^{T}\overrightarrow{x_{i}}+b&gt;0$</p></li><li class="lvl-3"><p>若$y_{i}=-1$，则$\overrightarrow{w}^{T}\overrightarrow{x_{i}}+b&lt;0$</p></li></ol><h1>方法</h1><ol><li class="lvl-3"><p>随机选择$w,b$</p></li><li class="lvl-3"><p>取一个训练样本$(\overrightarrow{x_{i}},y_{i})$</p><ul class="lvl-2"><li class="lvl-5">若$\overrightarrow{w}^{T}\overrightarrow{x_{i}}+b&gt;0$，且$y_{i}=-1$，则：$\overrightarrow{w} = \overrightarrow{w}-\overrightarrow{x_{i}}, b = b-1$</li><li class="lvl-5">若$\overrightarrow{w}^{T}\overrightarrow{x_{i}}+b&lt;0$，且$y_{i}=+1$，则：$\overrightarrow{w} = \overrightarrow{w}+\overrightarrow{x_{i}}, b = b+1$</li></ul></li><li class="lvl-3"><p>再取另一个训练样本$(\overrightarrow{x_{i}},y_{i})$，重复步骤二</p></li><li class="lvl-3"><p><strong>终止条件:</strong> 直到所有样本$(\overrightarrow{x_{i}},y_{i})$都不满足步骤二中的两种情况，退出循环</p></li></ol><p><strong>分析第二步中的第一种情况(第二种情况同理)</strong><br>$$<br>设 \overrightarrow{w}^{\prime} = \overrightarrow{w}<br>-\overrightarrow{x_{i}}, b^{\prime} = b-1<br>$$</p><p><strong>有</strong></p><p>$$<br>\overrightarrow{w}^{\prime T}\overrightarrow{x_{i}} + b^{\prime} \\  = {(\overrightarrow{w}-\overrightarrow{x_{i}})}^{T}+b-1 \\ = [\overrightarrow{w}^{T}\overrightarrow{x_{i}}+b] - {(\overrightarrow{x_{i}}^{T}\overrightarrow{x_{i}}+1)} \\ = [\overrightarrow{w}^{T}\overrightarrow{x_{i}}+b] - {({\Vert \overrightarrow{x_{i}} \Vert}^{2}+1)} \\ \leq [\overrightarrow{w}^{T}\overrightarrow{x_{i}}+b] - 1<br>$$</p><p><strong>因此$ \overrightarrow{w}^{\prime T}\overrightarrow{x_{i}} + b^{\prime} $比$ \overrightarrow{w}^{T}\overrightarrow{x_{i}}+b $至少小了一</strong></p><h2 id="线性可分">线性可分</h2><p><img src="2.png" alt=""></p><p><strong>在二维情况下，若存在一条直线能恰好把分布在特征空间(二维平面)中的点正确分为两类，则该样本集线性可分,如上图左一</strong></p><p><strong>线性可分数学定义：</strong></p><ul class="lvl-0"><li class="lvl-2"><p>训练样本$ \{(\overrightarrow{x_{1}},y_{1}), … ,(\overrightarrow{x_{N}},y_{N})\}, y_{i}=\pm1$</p></li><li class="lvl-2"><p>存在$ \overrightarrow{w},b $, 对任意$ (\overrightarrow{x_{i}},y_{i}) $有$ y_{i}(\overrightarrow{w^{T}}\overrightarrow{x_{i}}+b) \gt 0 $</p></li></ul><h1>算法实现</h1><p><strong>为了方便实现，我们对原有标记稍作修改</strong></p><ul class="lvl-0"><li class="lvl-2"><p>对于某个样本$ (\overrightarrow{x_{i}},y_{i}) $,我们重新将它定义为$ \overrightarrow{x_{i}} = y_{i}\begin{bmatrix} \overrightarrow{x_{i}} \\ 1 \end{bmatrix}<br>$</p></li><li class="lvl-2"><p>对于最终要找到的结果$ \overrightarrow{w},b $,重新将它定义为$ \overrightarrow{w} = \begin{bmatrix} \overrightarrow{w} \\ b \end{bmatrix}<br>$</p></li></ul><p><strong>于是原本的任务就可以简化为</strong></p><ul class="lvl-0"><li class="lvl-2"><p>求$ \overrightarrow{w} = \begin{bmatrix} \overrightarrow{w} \\ b \end{bmatrix}<br>$，使得对$ i = 1 … N $，有$ \overrightarrow{w^{T}}\overrightarrow{x_{i}} \gt 0  $</p></li></ul><h2 id="算法流程图">算法流程图</h2><p><img src="Algorithm.png" alt=""></p><h2 id="实践">实践</h2><p><em>code:</em></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> tensor</span><br><span class="line"></span><br><span class="line">X = [[<span class="number">11</span>,<span class="number">21</span>,<span class="number">1</span>], [<span class="number">2</span>,<span class="number">43</span>,<span class="number">1</span>], [<span class="number">6</span>,<span class="number">43</span>,<span class="number">1</span>], [<span class="number">2</span>,<span class="number">32</span>,<span class="number">1</span>], [<span class="number">13</span>,<span class="number">2</span>,<span class="number">1</span>], [-<span class="number">11</span>,-<span class="number">53</span>,-<span class="number">1</span>], [-<span class="number">25</span>,-<span class="number">3</span>,-<span class="number">1</span>], [-<span class="number">17</span>,-<span class="number">12</span>,-<span class="number">1</span>], [-<span class="number">20</span>,-<span class="number">23</span>,-<span class="number">1</span>], [-<span class="number">16</span>,-<span class="number">30</span>,-<span class="number">1</span>]]</span><br><span class="line">X = [tensor(x).unsqueeze(<span class="number">1</span>) <span class="keyword">for</span> x <span class="keyword">in</span> X]</span><br><span class="line">W = tensor([<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>]).unsqueeze(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">FLAG = <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> FLAG :</span><br><span class="line">    FLAG = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> X :</span><br><span class="line">        <span class="keyword">if</span> torch.mm(W.t(),x) &lt;= <span class="number">0</span> :</span><br><span class="line">            W = W+x</span><br><span class="line">            FLAG = <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(W)</span><br></pre></td></tr></table></figure><p><em>output:</em></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tensor([[-<span class="number">13</span>],</span><br><span class="line">        [ -<span class="number">3</span>],</span><br><span class="line">        [<span class="number">212</span>]])</span><br></pre></td></tr></table></figure><p>为了让算法过程更加直观，我们修改一下代码，可视化算法运行过程。</p><p><em>code:</em></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> tensor</span><br><span class="line"></span><br><span class="line">X = [[<span class="number">11</span>,<span class="number">21</span>,<span class="number">1</span>], [<span class="number">2</span>,<span class="number">43</span>,<span class="number">1</span>], [<span class="number">6</span>,<span class="number">43</span>,<span class="number">1</span>], [<span class="number">2</span>,<span class="number">32</span>,<span class="number">1</span>], [<span class="number">13</span>,<span class="number">2</span>,<span class="number">1</span>], [-<span class="number">11</span>,-<span class="number">53</span>,-<span class="number">1</span>], [-<span class="number">25</span>,-<span class="number">3</span>,-<span class="number">1</span>], [-<span class="number">17</span>,-<span class="number">12</span>,-<span class="number">1</span>], [-<span class="number">20</span>,-<span class="number">23</span>,-<span class="number">1</span>], [-<span class="number">16</span>,-<span class="number">30</span>,-<span class="number">1</span>]]</span><br><span class="line"></span><br><span class="line">px, py = [x[<span class="number">0</span>] <span class="keyword">for</span> x <span class="keyword">in</span> X <span class="keyword">if</span> x[<span class="number">2</span>]==<span class="number">1</span>], [x[<span class="number">1</span>] <span class="keyword">for</span> x <span class="keyword">in</span> X <span class="keyword">if</span> x[<span class="number">2</span>]==<span class="number">1</span>]</span><br><span class="line">qx, qy = [-x[<span class="number">0</span>] <span class="keyword">for</span> x <span class="keyword">in</span> X <span class="keyword">if</span> x[<span class="number">2</span>]!=<span class="number">1</span>], [-x[<span class="number">1</span>] <span class="keyword">for</span> x <span class="keyword">in</span> X <span class="keyword">if</span> x[<span class="number">2</span>]!=<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">Draw</span>(<span class="params">a,b,c,d</span>) :</span><br><span class="line">    <span class="keyword">if</span> a==<span class="number">0</span> <span class="keyword">and</span> b==<span class="number">0</span> :</span><br><span class="line">        plt.figure(figsize=(<span class="number">5</span>,<span class="number">5</span>))</span><br><span class="line">        myfig = plt.gcf()</span><br><span class="line">        plt.xlim(<span class="number">0</span>, <span class="number">26</span>)</span><br><span class="line">        plt.ylim(<span class="number">0</span>, <span class="number">51</span>)</span><br><span class="line">        plt.scatter(px, py, color = <span class="string">&#x27;#7030A0&#x27;</span>)</span><br><span class="line">        plt.scatter(qx, qy, color = <span class="string">&#x27;#C00000&#x27;</span>)</span><br><span class="line">        myfig.savefig(<span class="string">&#x27;./figure/figure&#x27;</span>+<span class="built_in">str</span>(d)+<span class="string">&#x27;.png&#x27;</span>,dpi=<span class="number">300</span>)</span><br><span class="line">        plt.close()</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">elif</span> a==<span class="number">0</span> :</span><br><span class="line">        x = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(-<span class="number">100</span>,<span class="number">100</span>)]</span><br><span class="line">        y = [-c/b <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(-<span class="number">100</span>,<span class="number">100</span>)]</span><br><span class="line">    <span class="keyword">elif</span> b==<span class="number">0</span> :</span><br><span class="line">        y = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(-<span class="number">100</span>,<span class="number">100</span>)]</span><br><span class="line">        x = [-c/a <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(-<span class="number">100</span>,<span class="number">100</span>)]</span><br><span class="line">    <span class="keyword">else</span> :</span><br><span class="line">        x = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">26</span>)]</span><br><span class="line">        y = [-(a*i+c)/b <span class="keyword">for</span> i <span class="keyword">in</span> x]</span><br><span class="line">    plt.figure(figsize=(<span class="number">5</span>,<span class="number">5</span>))</span><br><span class="line">    myfig = plt.gcf()</span><br><span class="line">    plt.xlim(<span class="number">0</span>, <span class="number">26</span>)</span><br><span class="line">    plt.ylim(<span class="number">0</span>, <span class="number">51</span>)</span><br><span class="line">    plt.scatter(px, py, color = <span class="string">&#x27;#7030A0&#x27;</span>)</span><br><span class="line">    plt.scatter(qx, qy, color = <span class="string">&#x27;#C00000&#x27;</span>)</span><br><span class="line">    plt.plot(x,y)</span><br><span class="line">    <span class="keyword">if</span> d%<span class="number">10</span> == <span class="number">4</span> :</span><br><span class="line">        myfig.savefig(<span class="string">&#x27;./figure/figure&#x27;</span>+<span class="built_in">str</span>(d)+<span class="string">&#x27;.png&#x27;</span>,dpi=<span class="number">300</span>)</span><br><span class="line">    plt.close()</span><br><span class="line"></span><br><span class="line">X = [tensor(x).unsqueeze(<span class="number">1</span>) <span class="keyword">for</span> x <span class="keyword">in</span> X]</span><br><span class="line">W = tensor([<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>]).unsqueeze(<span class="number">1</span>)</span><br><span class="line">cnt = <span class="number">0</span></span><br><span class="line">FLAG = <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> FLAG :</span><br><span class="line">    FLAG = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> X :</span><br><span class="line">        <span class="keyword">if</span> torch.mm(W.t(),x) &lt;= <span class="number">0</span> :</span><br><span class="line">            W = W+x</span><br><span class="line">            FLAG = <span class="number">1</span></span><br><span class="line">            cnt += <span class="number">1</span></span><br><span class="line">            Draw(<span class="built_in">int</span>(W[<span class="number">0</span>]),<span class="built_in">int</span>(W[<span class="number">1</span>]),<span class="built_in">int</span>(W[<span class="number">2</span>]),cnt)   </span><br><span class="line"><span class="built_in">print</span>(W, cnt)</span><br></pre></td></tr></table></figure><p><em>output:</em></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tensor([[-<span class="number">13</span>],</span><br><span class="line">        [ -<span class="number">3</span>],</span><br><span class="line">        [<span class="number">212</span>]]) <span class="number">864</span></span><br></pre></td></tr></table></figure><p><strong>经历865次迭代，我们的算法最终找到了这个问题的一个解 😄</strong></p><p><em>以下是可视化结果</em></p><p><img src="1.gif" alt=""></p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>python文件目录遍历</title>
-      <link href="/2022/07/25/python%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86/"/>
-      <url>/2022/07/25/python%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86/</url>
-      
-        <content type="html"><![CDATA[<h1>Python os.listdir()</h1><blockquote><p>os.listdir() 方法用于返回指定的文件夹包含的文件或文件夹的名字的列表。<br>它不包括 . 和 … 即使它在文件夹中。<br>只支持在 Unix, Windows 下使用。</p></blockquote><ul class="lvl-0"><li class="lvl-2"><p>语法</p></li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.listdir(path)</span><br></pre></td></tr></table></figure><ul class="lvl-0"><li class="lvl-2"><p>参数</p><ul class="lvl-2"><li class="lvl-4">path —— 需要列出的目标路径。</li></ul></li><li class="lvl-2"><p>返回值</p><ul class="lvl-2"><li class="lvl-4">list | 指定路径文件夹下的文件和文件夹的列表</li></ul></li></ul><p><em>code:</em></p><pre><code>使用windows下的'tree /f'命令显示D:\folder文件夹下的所有子文件夹及文件</code></pre><p><img src="cmd_tree.png" alt=""></p><p><strong>以下以D:\folder为例，演示os.listdir()的实际效果</strong></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">Path = <span class="string">r&#x27;D:\folder&#x27;</span> <span class="comment">#加上r让字符串不转义</span></span><br><span class="line"><span class="built_in">print</span>(os.listdir(Path))</span><br></pre></td></tr></table></figure><p><em>output:</em></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#x27;books&#x27;, &#x27;Download&#x27;, &#x27;pictures&#x27;]</span><br></pre></td></tr></table></figure><h1>Python os.walk()</h1><blockquote><p>os.walk() 方法用于通过在目录树中游走输出在目录中的文件名，向上或者向下。<br>os.walk() 方法是一个简单易用的文件、目录遍历器，可以帮助我们高效的处理文件、目录方面的事情。<br>在Unix，Windows中有效。</p></blockquote><ul class="lvl-0"><li class="lvl-2"><p>语法</p></li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.walk(top[, topdown=<span class="literal">True</span>[, onerror=<span class="literal">None</span>[, followlinks=<span class="literal">False</span>]]])</span><br></pre></td></tr></table></figure><ul class="lvl-0"><li class="lvl-2"><p>参数</p><ul class="lvl-2"><li class="lvl-4">top —— 是你所要遍历的目录的地址。</li><li class="lvl-4">topdown —— 可选，为 True，则优先遍历 top 目录，否则优先遍历 top 的子目录(默认为开启)。如果 topdown 参数为 True，walk 会遍历top文件夹，与top 文件夹中每一个子目录。</li><li class="lvl-4">onerror —— 可选，需要一个 callable 对象，当 walk 需要异常时，会调用。</li><li class="lvl-4">followlinks —— 可选，如果为 True，则会遍历目录下的快捷方式(linux 下是软连接 symbolic link )实际所指的目录(默认关闭)，如果为 False，则优先遍历 top 的子目录。</li></ul></li><li class="lvl-2"><p>返回值</p><ul class="lvl-2"><li class="lvl-4">generator | 每次返回一个三元组(root,dirs,files)<ul class="lvl-4"><li class="lvl-6">root —— 当前正在遍历的这个文件夹的本身的地址</li><li class="lvl-6">dirs —— 一个 list ，内容是该文件夹中所有的目录的名字(不包括子目录)</li><li class="lvl-6">files —— 同样是 list , 内容是该文件夹中所有的文件(不包括子目录)</li></ul></li></ul></li></ul><p><em>code:</em></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">Path = <span class="string">r&#x27;D:\folder&#x27;</span></span><br><span class="line"><span class="keyword">for</span> root,dirs,files <span class="keyword">in</span> os.walk(Path) :</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;-----root-----&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(root)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;-----dirs-----&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> name <span class="keyword">in</span> dirs :</span><br><span class="line">        <span class="built_in">print</span>(name)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;-----files-----&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> name <span class="keyword">in</span> files :</span><br><span class="line">        <span class="built_in">print</span>(os.path.join(root,name))</span><br></pre></td></tr></table></figure><p><em>output:</em></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">-----root-----</span><br><span class="line">D:\folder</span><br><span class="line">-----dirs-----</span><br><span class="line">books</span><br><span class="line">Download</span><br><span class="line">pictures</span><br><span class="line">-----files-----</span><br><span class="line">-----root-----</span><br><span class="line">D:\folder\books</span><br><span class="line">-----dirs-----</span><br><span class="line">-----files-----</span><br><span class="line">D:\folder\books\c++.txt</span><br><span class="line">D:\folder\books\java.txt</span><br><span class="line">D:\folder\books\python.txt</span><br><span class="line">-----root-----</span><br><span class="line">D:\folder\Download</span><br><span class="line">-----dirs-----</span><br><span class="line">-----files-----</span><br><span class="line">D:\folder\Download\mysql-installer-community-8.0.29.0.msi</span><br><span class="line">D:\folder\Download\navicat160_mysql_cs_x64.exe</span><br><span class="line">D:\folder\Download\node-v16.16.0-x64.msi</span><br><span class="line">D:\folder\Download\Xftp-7.0.0109p.exe</span><br><span class="line">D:\folder\Download\Xshell-7.0.0111p.exe</span><br><span class="line">-----root-----</span><br><span class="line">D:\folder\pictures</span><br><span class="line">-----dirs-----</span><br><span class="line">-----files-----</span><br><span class="line">D:\folder\pictures\coast.bmp</span><br><span class="line">D:\folder\pictures\forest.bmp</span><br><span class="line">D:\folder\pictures\mountaion.bmp</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Markdown</title>
-      <link href="/2022/07/18/Markdown/"/>
-      <url>/2022/07/18/Markdown/</url>
-      
-        <content type="html"><![CDATA[<p><img src="1.png" alt=""></p><hr><blockquote><p>Markdown 是一种轻量级标记语言，创始人为约翰·格鲁伯（John Gruber）。 它允许人们使用易读易写的纯文本格式编写文档，然后转换成有效的 XHTML（或者HTML）文档。这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。由于 Markdown 的轻量化、易读易写特性，并且对于图片，图表、数学式都有支持，许多网站都广泛使用 Markdown 来撰写帮助文档或是用于论坛上发表消息。 如 GitHub、Reddit、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge、简书等，甚至还能被使用来撰写电子书。</p><footer><strong>Baidu</strong><cite><a href="https://baike.baidu.com/item/markdown">baike.baidu.com/item/markdown</a></cite></footer></blockquote><hr><h1>Markdown注释、换行、段落、标题、分割线</h1><p><strong>Markdown可以用<code>[//]: # (注释内容)</code>的样式来实现注释的功能，或者可以用html中的注释样式<code>&lt;!-- 注释内容 --&gt;</code>来实现注释，因为解析MD文件的解析器可以运行html。</strong></p><p><em>example:</em></p><figure class="highlight markdown"><figcaption><span>Markdown注释</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="symbol">//</span>]: <span class="link"># (这是一段注释)  or  &lt;!-- 这是一段注释 --&gt;</span></span><br></pre></td></tr></table></figure><p><em>result:</em></p><!-- 这是一段注释 --><hr><p><strong>Markdown中在行末加两个及以上空格即可实现换行</strong></p><p><em>example:</em></p><figure class="highlight markdown"><figcaption><span>Markdown换行</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">有人住高楼，有人在深沟，有人光万丈，有人一身锈，浮云莫去求，斯人若彩虹，遇上方知有。  </span><br><span class="line">有一天你会遇到个如彩虹般绚烂的人，到那时，以前或以后的痛苦都不足以改变你的爱。</span><br></pre></td></tr></table></figure><p><em>result:</em></p><p>有人住高楼，有人在深沟，有人光万丈，有人一身锈，浮云莫去求，斯人若彩虹，遇上方知有。<br>有一天你会遇到个如彩虹般绚烂的人，到那时，以前或以后的痛苦都不足以改变你的爱。</p><hr><p><strong>Markdown中在两端文字之间插入一个空行即可实现段落</strong></p><p><em>example:</em></p><figure class="highlight markdown"><figcaption><span>Markdown段落</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">有人住高楼，有人在深沟，有人光万丈，有人一身锈，浮云莫去求，斯人若彩虹，遇上方知有。</span><br><span class="line"></span><br><span class="line">有一天你会遇到个如彩虹般绚烂的人，到那时，以前或以后的痛苦都不足以改变你的爱。</span><br></pre></td></tr></table></figure><p><em>result:</em></p><p>有人住高楼，有人在深沟，有人光万丈，有人一身锈，浮云莫去求，斯人若彩虹，遇上方知有。</p><p>有一天你会遇到个如彩虹般绚烂的人，到那时，以前或以后的痛苦都不足以改变你的爱。</p><hr><p><strong>Markdown中用<code>#</code>来实现标题，文字前有几个<code>#</code>就代表这段文字是几级标题</strong></p><p><em>example:</em></p><figure class="highlight markdown"><figcaption><span>Markdown标题</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># 有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（一级标题）</span></span><br><span class="line"><span class="section">## 有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（二级标题）</span></span><br><span class="line"><span class="section">### 有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（三级标题）</span></span><br><span class="line"><span class="section">#### 有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（四级标题）</span></span><br></pre></td></tr></table></figure><p><em>result:</em></p><h1>有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（一级标题）</h1><h2 id="有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（二级标题）">有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（二级标题）</h2><h3 id="有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（三级标题）">有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（三级标题）</h3><h4 id="有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（四级标题）">有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（四级标题）</h4><hr><p><strong>Markdown中用<code>---</code>来实现分割线</strong></p><p><em>example:</em></p><figure class="highlight markdown"><figcaption><span>Markdown分割线</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">---</span><br></pre></td></tr></table></figure><p><em>result:</em></p><hr><hr><h1>Markdown斜体、粗体、斜粗体、删除线、下划线、上下标</h1><p><strong>Markdown支持斜体，粗体，粗斜体样式****其中用一对<code>*</code>括起来代表斜体样式，用一对<code>**</code>括起来代表粗体样式，用一对<code>***</code>括起来代表斜体样式</strong><br><em>example:</em></p><figure class="highlight markdown"><figcaption><span>Markdown斜体、粗体、斜粗体</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="emphasis">*这是一段斜体文字*</span> <span class="strong">**这是一段粗体文字**</span> <span class="strong">**<span class="emphasis">*这是一段斜粗体文字*</span>**</span></span><br></pre></td></tr></table></figure><p><em>result:</em><br><em>这是一段斜体文字</em> <strong>这是一段粗体文字</strong> <em><strong>这是一段斜粗体文字</strong></em></p><hr><p><strong>Markdown支持删除线、下划线、上下标等样式****其中用一对<code>~~</code>括起来实现删除线效果，用一对<code>&lt;u&gt;&lt;/u&gt;</code>括起来来实现下划线的效果，一对<code>&lt;sub&gt;&lt;/sub&gt;</code>括起来实现下标，一对<code>&lt;sup&gt;&lt;/sup&gt;</code>括起来实现上标</strong><br><em>example:</em></p><figure class="highlight markdown"><figcaption><span>Markdown删除线、下划线、上下标</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~~此段文字删除~~ <span class="language-xml"><span class="tag">&lt;<span class="name">u</span>&gt;</span></span>此段文字为重点<span class="language-xml"><span class="tag">&lt;/<span class="name">u</span>&gt;</span></span> H<span class="language-xml"><span class="tag">&lt;<span class="name">sub</span>&gt;</span></span>2<span class="language-xml"><span class="tag">&lt;/<span class="name">sub</span>&gt;</span></span>O X<span class="language-xml"><span class="tag">&lt;<span class="name">sup</span>&gt;</span></span>2<span class="language-xml"><span class="tag">&lt;/<span class="name">sup</span>&gt;</span></span></span><br></pre></td></tr></table></figure><p><em>result:</em><br><s>此段文字删除</s> <u>此段文字为重点</u> H<sub>2</sub>O X<sup>2</sup></p><hr><h1>Markdown脚注</h1><p><em>example:</em></p><figure class="highlight markdown"><figcaption><span>Markdown脚注</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">需要脚注的文本1[^脚注标志1]</span><br><span class="line">需要脚注的文本2[^脚注标志2]</span><br><span class="line">[<span class="symbol">^脚注标志1</span>]: <span class="link">脚注内容1</span></span><br><span class="line">[<span class="symbol">^脚注标志2</span>]: <span class="link">脚注内容2</span></span><br></pre></td></tr></table></figure><p><em>result:</em><br>需要脚注的文本1<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup><br>需要脚注的文本2<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p><hr><h1>Markdown无序列表、有序列表、任务列表、列表嵌套</h1><p><strong>Markdown支持有序列表、无序列表和任务列表列表与列表之间还可以相互嵌套</strong></p><hr><p><strong>无序列表可以使用星号(*)、加号(+)或是减号(-)作为列表标记，效果相同。</strong></p><p><em>example:</em></p><figure class="highlight markdown"><figcaption><span>Markdown无序列表</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">*</span> 第一项</span><br><span class="line"><span class="bullet">*</span> 第二项</span><br><span class="line"><span class="bullet">*</span> 第三项</span><br><span class="line">or</span><br><span class="line"><span class="bullet">+</span> 第一项</span><br><span class="line"><span class="bullet">+</span> 第二项</span><br><span class="line"><span class="bullet">+</span> 第三项</span><br><span class="line">or</span><br><span class="line"><span class="bullet">-</span> 第一项</span><br><span class="line"><span class="bullet">-</span> 第二项</span><br><span class="line"><span class="bullet">-</span> 第三项</span><br></pre></td></tr></table></figure><p><em>result:</em></p><ul class="lvl-0"><li class="lvl-2"><p>第一项</p></li><li class="lvl-2"><p>第二项</p></li><li class="lvl-2"><p>第三项</p></li></ul><hr><p><strong>有序列表使用数字并加上 . 号来表示</strong></p><p><em>example:</em></p><figure class="highlight markdown"><figcaption><span>Markdown有序列表</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1.</span> 第一项</span><br><span class="line"><span class="bullet">2.</span> 第二项</span><br><span class="line"><span class="bullet">3.</span> 第三项</span><br><span class="line"><span class="bullet">4.</span> 第四项</span><br></pre></td></tr></table></figure><p><em>result:</em></p><ol><li class="lvl-3"><p>第一项</p></li><li class="lvl-3"><p>第二项</p></li><li class="lvl-3"><p>第三项</p></li><li class="lvl-3"><p>第四项</p></li></ol><hr><p><strong>任务列表<code>- [ ]</code>来表示，其中<code>[ ]</code>(带空格的中括号)表示未完成的任务，[x]表示已经完成的任务。</strong></p><p><em>example:</em></p><figure class="highlight markdown"><figcaption><span>Markdown任务列表</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> [x] 起床</span><br><span class="line"><span class="bullet">-</span> [x] 吃饭</span><br><span class="line"><span class="bullet">-</span> [ ] 工作</span><br><span class="line"><span class="bullet">-</span> [ ] 睡觉</span><br></pre></td></tr></table></figure><p><em>result:</em></p><ul class="lvl-0"><li class="lvl-2"><p><input type="checkbox" id="checkbox0" checked="true"><label for="checkbox0">起床</label></p></li><li class="lvl-2"><p><input type="checkbox" id="checkbox1" checked="true"><label for="checkbox1">吃饭</label></p></li><li class="lvl-2"><p><input type="checkbox" id="checkbox2"><label for="checkbox2">工作</label></p></li><li class="lvl-2"><p><input type="checkbox" id="checkbox3"><label for="checkbox3">睡觉</label></p></li></ul><hr><p><strong>Markdown列表可以相互嵌套</strong></p><p><em>example:</em></p><figure class="highlight markdown"><figcaption><span>Markdown列表嵌套</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1.</span> 任务</span><br><span class="line"><span class="bullet">    -</span> [x] 起床</span><br><span class="line"><span class="bullet">    -</span> [x] 吃饭</span><br><span class="line"><span class="bullet">    -</span> [ ] 工作</span><br><span class="line"><span class="bullet">    -</span> [ ] 睡觉</span><br><span class="line"><span class="bullet">2.</span> 爱好</span><br><span class="line"><span class="bullet">    -</span> 听音乐</span><br><span class="line"><span class="bullet">    -</span> 玩游戏</span><br><span class="line"><span class="bullet">    -</span> 看电影</span><br></pre></td></tr></table></figure><p><em>result:</em></p><ol><li class="lvl-3"><p>任务</p><ul class="lvl-2"><li class="lvl-6"><input type="checkbox" id="checkbox4" checked="true"><label for="checkbox4">起床</label></li><li class="lvl-6"><input type="checkbox" id="checkbox5" checked="true"><label for="checkbox5">吃饭</label></li><li class="lvl-6"><input type="checkbox" id="checkbox6"><label for="checkbox6">工作</label></li><li class="lvl-6"><input type="checkbox" id="checkbox7"><label for="checkbox7">睡觉</label></li></ul></li><li class="lvl-3"><p>爱好</p><ul class="lvl-2"><li class="lvl-6">听音乐</li><li class="lvl-6">玩游戏</li><li class="lvl-6">看电影</li></ul></li></ol><hr><h1>Markdown内容折叠</h1><p><em>example:</em></p><figure class="highlight markdown"><figcaption><span>Markdown内容折叠</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+++<span class="strong">**点我显示内容**</span></span><br><span class="line">这里是  </span><br><span class="line">隐藏的内容  </span><br><span class="line">！！！</span><br><span class="line">+++</span><br></pre></td></tr></table></figure><p><em>result:</em></p><details open><summary><span class="pre-summary">&nbsp;</span><strong>点我显示内容</strong></summary><p>这里是<br>隐藏的内容<br>！！！</p></details><hr><h1>Markdown复选框</h1><p><strong>类似于任务列表，<code>[ ]</code>(带空格的中括号)表示未完成的任务，[x]表示已经完成的任务。</strong></p><p><em>example:</em></p><figure class="highlight markdown"><figcaption><span>Markdown内容折叠</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[x] 起床</span><br><span class="line">[x] 吃饭</span><br><span class="line">[ ] 工作</span><br><span class="line">[ ] 睡觉</span><br></pre></td></tr></table></figure><p><em>result:</em><br><input type="checkbox" id="checkbox11" checked="true"><label for="checkbox11">起床</label><br><input type="checkbox" id="checkbox10" checked="true"><label for="checkbox10">吃饭</label><br><input type="checkbox" id="checkbox9"><label for="checkbox9">工作</label><br><input type="checkbox" id="checkbox8"><label for="checkbox8">睡觉</label></p><hr><h1>Markdown自定义容器</h1><p><em>example:</em></p><figure class="highlight markdown"><figcaption><span>Markdown自定义容器</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">::: tips</span><br><span class="line"><span class="strong">**提示**</span></span><br><span class="line">这是一个提示</span><br><span class="line">:::</span><br><span class="line"></span><br><span class="line">::: warning</span><br><span class="line"><span class="strong">**注意**</span></span><br><span class="line">这是一个警告</span><br><span class="line">:::</span><br><span class="line"></span><br><span class="line">::: danger</span><br><span class="line"><span class="strong">**警告**</span></span><br><span class="line">这是一个危险信号</span><br><span class="line">:::</span><br><span class="line"></span><br><span class="line">::: success</span><br><span class="line"><span class="strong">**成功**</span></span><br><span class="line">这是一个成功信号</span><br><span class="line">:::</span><br></pre></td></tr></table></figure><p><em>result:</em></p><div class="tips"><p><strong>提示</strong><br>这是一个提示</p></div><div class="warning"><p><strong>注意</strong><br>这是一个警告</p></div><div class="danger"><p><strong>警告</strong><br>这是一个危险信号</p></div><div class="success"><p><strong>成功</strong><br>这是一个成功信号</p></div><hr><h1>Markdown链接</h1><p><strong>Markdown使用<code>[链接名称](链接地址)</code>的格式来表示链接</strong></p><p><em>example:</em></p><figure class="highlight markdown"><figcaption><span>Markdown链接</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">Baidu一下你就知道</span>](<span class="link">https://www.baidu.com/</span>)</span><br></pre></td></tr></table></figure><p><em>result:</em><br><a href="https://www.baidu.com/">Baidu一下你就知道</a></p><p><strong>我们还可以通过定义一个链接变量，并在之后给这个变量赋值成链接地址来实现链接</strong></p><p><em>example:</em></p><figure class="highlight markdown"><figcaption><span>Markdown高级链接</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">Baidu一下你就知道</span>][<span class="symbol">1</span>]</span><br><span class="line"></span><br><span class="line">[<span class="symbol">1</span>]: <span class="link">https://www.baidu.com/</span></span><br></pre></td></tr></table></figure><p><em>result:</em><br><a href="https://www.baidu.com/">Baidu一下你就知道</a></p><hr><h1>Markdown代码块</h1><p><strong>Markdown中使用一对`即可实现行内嵌入代码</strong></p><p><em>example:</em></p><figure class="highlight markdown"><figcaption><span>Markdown行内代码</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">`printf(&quot;hello world&quot;)`</span>的执行效果就是输出字符串&quot;hello world&quot;</span><br></pre></td></tr></table></figure><p><em>result:</em><br><code>printf(&quot;hello world&quot;)</code>的执行效果就是输出字符串&quot;hello world&quot;</p><hr><p><strong>Markdown中使用一对三个反引号`,可实现嵌入一个代码块</strong></p><p><em>example:</em><br><s>忽略反斜杠</s></p><figure class="highlight markdown"><figcaption><span>Markdown代码块</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">\<span class="code">```c</span></span><br><span class="line"><span class="code">for(int i = 1; i &lt; 10; i++)</span></span><br><span class="line"><span class="code">    print(&quot;%d&quot;,i);</span></span><br><span class="line"><span class="code">\```</span></span><br></pre></td></tr></table></figure><p><em>result:</em></p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">    print(<span class="string">&quot;%d&quot;</span>,i);</span><br></pre></td></tr></table></figure><hr><h1>Markdown图片</h1><p><strong>Markdown中使用<code>![图片名称](图片链接)</code>,可实现嵌入一张图片，其中链接可以是本地文件路径，也可以是一个网页链接</strong></p><p><em>example:</em></p><figure class="highlight markdown"><figcaption><span>Markdown图片</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">Markdown!</span>](<span class="link">1.png</span>)</span><br></pre></td></tr></table></figure><p><em>result:</em><br><img src="1.png" alt="Markdown!"></p><hr><h1>Markdown引用</h1><p><strong>Markdown中<code>&gt;引用内容</code>来实现引用，多个引用之间还可嵌套</strong></p><p><em>example:</em></p><figure class="highlight markdown"><figcaption><span>Markdown引用</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;lalalalallalalallalalalallalalallalalalallalalal</span><br><span class="line">&gt;&gt;lalalalallalalalallalalalallalalallalalalallalalal</span><br></pre></td></tr></table></figure><p><em>result:</em></p><blockquote><p>lalalalallalalallalalalallalalallalalalallalalal</p><blockquote><p>lalalalallalalalallalalalallalalallalalalallalalal</p></blockquote></blockquote><hr><h1>Markdown表格</h1><p><strong>Markdown制作表格使用 | 来分隔不同的单元格，使用 - 来分隔表头和其他行。我们可以设置表格的对齐方式，-: 设置内容和标题栏居右对齐，:- 设置内容和标题栏居左对齐，:-: 设置内容和标题栏居中对齐。</strong></p><p><em>example:</em></p><figure class="highlight markdown"><figcaption><span>Markdown引用</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">|单元格向左对齐|单元格向右对齐|单元格居中对齐|</span><br><span class="line">| :---| ---: | :---: |</span><br><span class="line">| 单元格 | 单元格 | 单元格 |</span><br><span class="line">| 单元格 | 单元格 | 单元格 |</span><br></pre></td></tr></table></figure><p><em>result:</em></p><table><thead><tr><th style="text-align:left">单元格向左对齐</th><th style="text-align:right">单元格向右对齐</th><th style="text-align:center">单元格居中对齐</th></tr></thead><tbody><tr><td style="text-align:left">单元格</td><td style="text-align:right">单元格</td><td style="text-align:center">单元格</td></tr><tr><td style="text-align:left">单元格</td><td style="text-align:right">单元格</td><td style="text-align:center">单元格</td></tr></tbody></table><hr class="footnotes-sep"><section class="footnotes"><ol class="footnotes-list"><li id="fn1" class="footnote-item"><p>脚注内容1 <a href="#fnref1" class="footnote-backref">↩︎</a></p></li><li id="fn2" class="footnote-item"><p>脚注内容2 <a href="#fnref2" class="footnote-backref">↩︎</a></p></li></ol></section>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Start</title>
-      <link href="/2022/07/18/Start/"/>
-      <url>/2022/07/18/Start/</url>
-      
-        <content type="html"><![CDATA[<p><img src="1.gif" alt=""></p><blockquote><p>Some of us get dipped in flat, some in satin, some in gloss. But every once in a while you find someone who’s iridescent, and when you do, nothing will ever compare.</p><footer><strong>Rob Reiner</strong><cite>Flipped</cite></footer></blockquote>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-  
-  
-    
-    
-    <entry>
-      <title>archives</title>
-      <link href="/archives/index.html"/>
-      <url>/archives/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Search</title>
-      <link href="/search/index.html"/>
-      <url>/search/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>about</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-  
+<search>
+  <entry>
+    <title>Markdown</title>
+    <url>/2022/07/18/Markdown/</url>
+    <content><![CDATA[<p><img src="1.png" alt=""></p>
+<hr>
+<blockquote><p>Markdown 是一种轻量级标记语言，创始人为约翰·格鲁伯（John Gruber）。 它允许人们使用易读易写的纯文本格式编写文档，然后转换成有效的 XHTML（或者HTML）文档。这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。由于 Markdown 的轻量化、易读易写特性，并且对于图片，图表、数学式都有支持，许多网站都广泛使用 Markdown 来撰写帮助文档或是用于论坛上发表消息。 如 GitHub、Reddit、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge、简书等，甚至还能被使用来撰写电子书。</p>
+<footer><strong>Baidu</strong><cite><a href="https://baike.baidu.com/item/markdown">baike.baidu.com/item/markdown</a></cite></footer></blockquote>
+<hr>
+<h1>Markdown注释、换行、段落、标题、分割线</h1>
+<p><strong>Markdown可以用<code>[//]: # (注释内容)</code>的样式来实现注释的功能，或者可以用html中的注释样式<code>&lt;!-- 注释内容 --&gt;</code>来实现注释，因为解析MD文件的解析器可以运行html。</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown注释</span></figcaption><table><tr><td class="code"><pre><span class="line">[<span class="symbol">//</span>]: <span class="link"># (这是一段注释)  or  &lt;!-- 这是一段注释 --&gt;</span></span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<!-- 这是一段注释 -->
+<hr>
+<p><strong>Markdown中在行末加两个及以上空格即可实现换行</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown换行</span></figcaption><table><tr><td class="code"><pre><span class="line">有人住高楼，有人在深沟，有人光万丈，有人一身锈，浮云莫去求，斯人若彩虹，遇上方知有。  </span><br><span class="line">有一天你会遇到个如彩虹般绚烂的人，到那时，以前或以后的痛苦都不足以改变你的爱。</span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<p>有人住高楼，有人在深沟，有人光万丈，有人一身锈，浮云莫去求，斯人若彩虹，遇上方知有。<br>
+有一天你会遇到个如彩虹般绚烂的人，到那时，以前或以后的痛苦都不足以改变你的爱。</p>
+<hr>
+<p><strong>Markdown中在两端文字之间插入一个空行即可实现段落</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown段落</span></figcaption><table><tr><td class="code"><pre><span class="line">有人住高楼，有人在深沟，有人光万丈，有人一身锈，浮云莫去求，斯人若彩虹，遇上方知有。</span><br><span class="line"></span><br><span class="line">有一天你会遇到个如彩虹般绚烂的人，到那时，以前或以后的痛苦都不足以改变你的爱。</span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<p>有人住高楼，有人在深沟，有人光万丈，有人一身锈，浮云莫去求，斯人若彩虹，遇上方知有。</p>
+<p>有一天你会遇到个如彩虹般绚烂的人，到那时，以前或以后的痛苦都不足以改变你的爱。</p>
+<hr>
+<p><strong>Markdown中用<code>#</code>来实现标题，文字前有几个<code>#</code>就代表这段文字是几级标题</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown标题</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="section"># 有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（一级标题）</span></span><br><span class="line"><span class="section">## 有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（二级标题）</span></span><br><span class="line"><span class="section">### 有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（三级标题）</span></span><br><span class="line"><span class="section">#### 有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（四级标题）</span></span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<h1>有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（一级标题）</h1>
+<h2 id="有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（二级标题）">有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（二级标题）</h2>
+<h3 id="有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（三级标题）">有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（三级标题）</h3>
+<h4 id="有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（四级标题）">有些人浅薄，有些人金玉其外而败絮其中。有天你会遇到一个彩虹般绚丽的人，从此，其他人只是浮云（四级标题）</h4>
+<hr>
+<p><strong>Markdown中用<code>---</code>来实现分割线</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown分割线</span></figcaption><table><tr><td class="code"><pre><span class="line">---</span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<hr>
+<hr>
+<h1>Markdown斜体、粗体、斜粗体、删除线、下划线、上下标</h1>
+<p><strong>Markdown支持斜体，粗体，粗斜体样式****其中用一对<code>*</code>括起来代表斜体样式，用一对<code>**</code>括起来代表粗体样式，用一对<code>***</code>括起来代表斜体样式</strong><br>
+<em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown斜体、粗体、斜粗体</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="emphasis">*这是一段斜体文字*</span> <span class="strong">**这是一段粗体文字**</span> <span class="strong">**<span class="emphasis">*这是一段斜粗体文字*</span>**</span></span><br></pre></td></tr></table></figure>
+<p><em>result:</em><br>
+<em>这是一段斜体文字</em> <strong>这是一段粗体文字</strong> <em><strong>这是一段斜粗体文字</strong></em></p>
+<hr>
+<p><strong>Markdown支持删除线、下划线、上下标等样式****其中用一对<code>~~</code>括起来实现删除线效果，用一对<code>&lt;u&gt;&lt;/u&gt;</code>括起来来实现下划线的效果，一对<code>&lt;sub&gt;&lt;/sub&gt;</code>括起来实现下标，一对<code>&lt;sup&gt;&lt;/sup&gt;</code>括起来实现上标</strong><br>
+<em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown删除线、下划线、上下标</span></figcaption><table><tr><td class="code"><pre><span class="line">~~此段文字删除~~ <span class="language-xml"><span class="tag">&lt;<span class="name">u</span>&gt;</span></span>此段文字为重点<span class="language-xml"><span class="tag">&lt;/<span class="name">u</span>&gt;</span></span> H<span class="language-xml"><span class="tag">&lt;<span class="name">sub</span>&gt;</span></span>2<span class="language-xml"><span class="tag">&lt;/<span class="name">sub</span>&gt;</span></span>O X<span class="language-xml"><span class="tag">&lt;<span class="name">sup</span>&gt;</span></span>2<span class="language-xml"><span class="tag">&lt;/<span class="name">sup</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p><em>result:</em><br>
+<s>此段文字删除</s> <u>此段文字为重点</u> H<sub>2</sub>O X<sup>2</sup></p>
+<hr>
+<h1>Markdown脚注</h1>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown脚注</span></figcaption><table><tr><td class="code"><pre><span class="line">需要脚注的文本1[^脚注标志1]</span><br><span class="line">需要脚注的文本2[^脚注标志2]</span><br><span class="line">[<span class="symbol">^脚注标志1</span>]: <span class="link">脚注内容1</span></span><br><span class="line">[<span class="symbol">^脚注标志2</span>]: <span class="link">脚注内容2</span></span><br></pre></td></tr></table></figure>
+<p><em>result:</em><br>
+需要脚注的文本1<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup><br>
+需要脚注的文本2<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<hr>
+<h1>Markdown无序列表、有序列表、任务列表、列表嵌套</h1>
+<p><strong>Markdown支持有序列表、无序列表和任务列表列表与列表之间还可以相互嵌套</strong></p>
+<hr>
+<p><strong>无序列表可以使用星号(*)、加号(+)或是减号(-)作为列表标记，效果相同。</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown无序列表</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="bullet">*</span> 第一项</span><br><span class="line"><span class="bullet">*</span> 第二项</span><br><span class="line"><span class="bullet">*</span> 第三项</span><br><span class="line">or</span><br><span class="line"><span class="bullet">+</span> 第一项</span><br><span class="line"><span class="bullet">+</span> 第二项</span><br><span class="line"><span class="bullet">+</span> 第三项</span><br><span class="line">or</span><br><span class="line"><span class="bullet">-</span> 第一项</span><br><span class="line"><span class="bullet">-</span> 第二项</span><br><span class="line"><span class="bullet">-</span> 第三项</span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>第一项</p>
+</li>
+<li class="lvl-2">
+<p>第二项</p>
+</li>
+<li class="lvl-2">
+<p>第三项</p>
+</li>
+</ul>
+<hr>
+<p><strong>有序列表使用数字并加上 . 号来表示</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown有序列表</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="bullet">1.</span> 第一项</span><br><span class="line"><span class="bullet">2.</span> 第二项</span><br><span class="line"><span class="bullet">3.</span> 第三项</span><br><span class="line"><span class="bullet">4.</span> 第四项</span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<ol>
+<li class="lvl-3">
+<p>第一项</p>
+</li>
+<li class="lvl-3">
+<p>第二项</p>
+</li>
+<li class="lvl-3">
+<p>第三项</p>
+</li>
+<li class="lvl-3">
+<p>第四项</p>
+</li>
+</ol>
+<hr>
+<p><strong>任务列表<code>- [ ]</code>来表示，其中<code>[ ]</code>(带空格的中括号)表示未完成的任务，[x]表示已经完成的任务。</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown任务列表</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> [x] 起床</span><br><span class="line"><span class="bullet">-</span> [x] 吃饭</span><br><span class="line"><span class="bullet">-</span> [ ] 工作</span><br><span class="line"><span class="bullet">-</span> [ ] 睡觉</span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><input type="checkbox" id="checkbox0" checked="true"><label for="checkbox0">起床</label></p>
+</li>
+<li class="lvl-2">
+<p><input type="checkbox" id="checkbox1" checked="true"><label for="checkbox1">吃饭</label></p>
+</li>
+<li class="lvl-2">
+<p><input type="checkbox" id="checkbox2"><label for="checkbox2">工作</label></p>
+</li>
+<li class="lvl-2">
+<p><input type="checkbox" id="checkbox3"><label for="checkbox3">睡觉</label></p>
+</li>
+</ul>
+<hr>
+<p><strong>Markdown列表可以相互嵌套</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown列表嵌套</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="bullet">1.</span> 任务</span><br><span class="line"><span class="bullet">    -</span> [x] 起床</span><br><span class="line"><span class="bullet">    -</span> [x] 吃饭</span><br><span class="line"><span class="bullet">    -</span> [ ] 工作</span><br><span class="line"><span class="bullet">    -</span> [ ] 睡觉</span><br><span class="line"><span class="bullet">2.</span> 爱好</span><br><span class="line"><span class="bullet">    -</span> 听音乐</span><br><span class="line"><span class="bullet">    -</span> 玩游戏</span><br><span class="line"><span class="bullet">    -</span> 看电影</span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<ol>
+<li class="lvl-3">
+<p>任务</p>
+<ul class="lvl-2">
+<li class="lvl-6"><input type="checkbox" id="checkbox4" checked="true"><label for="checkbox4">起床</label></li>
+<li class="lvl-6"><input type="checkbox" id="checkbox5" checked="true"><label for="checkbox5">吃饭</label></li>
+<li class="lvl-6"><input type="checkbox" id="checkbox6"><label for="checkbox6">工作</label></li>
+<li class="lvl-6"><input type="checkbox" id="checkbox7"><label for="checkbox7">睡觉</label></li>
+</ul>
+</li>
+<li class="lvl-3">
+<p>爱好</p>
+<ul class="lvl-2">
+<li class="lvl-6">听音乐</li>
+<li class="lvl-6">玩游戏</li>
+<li class="lvl-6">看电影</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h1>Markdown内容折叠</h1>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown内容折叠</span></figcaption><table><tr><td class="code"><pre><span class="line">+++<span class="strong">**点我显示内容**</span></span><br><span class="line">这里是  </span><br><span class="line">隐藏的内容  </span><br><span class="line">！！！</span><br><span class="line">+++</span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<details open>
+<summary><span class="pre-summary">&nbsp;</span><strong>点我显示内容</strong></summary><p>这里是<br>
+隐藏的内容<br>
+！！！</p>
+</details>
+<hr>
+<h1>Markdown复选框</h1>
+<p><strong>类似于任务列表，<code>[ ]</code>(带空格的中括号)表示未完成的任务，[x]表示已经完成的任务。</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown内容折叠</span></figcaption><table><tr><td class="code"><pre><span class="line">[x] 起床</span><br><span class="line">[x] 吃饭</span><br><span class="line">[ ] 工作</span><br><span class="line">[ ] 睡觉</span><br></pre></td></tr></table></figure>
+<p><em>result:</em><br>
+<input type="checkbox" id="checkbox11" checked="true"><label for="checkbox11">起床</label><br>
+<input type="checkbox" id="checkbox10" checked="true"><label for="checkbox10">吃饭</label><br>
+<input type="checkbox" id="checkbox9"><label for="checkbox9">工作</label><br>
+<input type="checkbox" id="checkbox8"><label for="checkbox8">睡觉</label></p>
+<hr>
+<h1>Markdown自定义容器</h1>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown自定义容器</span></figcaption><table><tr><td class="code"><pre><span class="line">::: tips</span><br><span class="line"><span class="strong">**提示**</span></span><br><span class="line">这是一个提示</span><br><span class="line">:::</span><br><span class="line"></span><br><span class="line">::: warning</span><br><span class="line"><span class="strong">**注意**</span></span><br><span class="line">这是一个警告</span><br><span class="line">:::</span><br><span class="line"></span><br><span class="line">::: danger</span><br><span class="line"><span class="strong">**警告**</span></span><br><span class="line">这是一个危险信号</span><br><span class="line">:::</span><br><span class="line"></span><br><span class="line">::: success</span><br><span class="line"><span class="strong">**成功**</span></span><br><span class="line">这是一个成功信号</span><br><span class="line">:::</span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<div class="tips">
+<p><strong>提示</strong><br>
+这是一个提示</p>
+</div>
+<div class="warning">
+<p><strong>注意</strong><br>
+这是一个警告</p>
+</div>
+<div class="danger">
+<p><strong>警告</strong><br>
+这是一个危险信号</p>
+</div>
+<div class="success">
+<p><strong>成功</strong><br>
+这是一个成功信号</p>
+</div>
+<hr>
+<h1>Markdown链接</h1>
+<p><strong>Markdown使用<code>[链接名称](链接地址)</code>的格式来表示链接</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown链接</span></figcaption><table><tr><td class="code"><pre><span class="line">[<span class="string">Baidu一下你就知道</span>](<span class="link">https://www.baidu.com/</span>)</span><br></pre></td></tr></table></figure>
+<p><em>result:</em><br>
+<a href="https://www.baidu.com/">Baidu一下你就知道</a></p>
+<p><strong>我们还可以通过定义一个链接变量，并在之后给这个变量赋值成链接地址来实现链接</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown高级链接</span></figcaption><table><tr><td class="code"><pre><span class="line">[<span class="string">Baidu一下你就知道</span>][<span class="symbol">1</span>]</span><br><span class="line"></span><br><span class="line">[<span class="symbol">1</span>]: <span class="link">https://www.baidu.com/</span></span><br></pre></td></tr></table></figure>
+<p><em>result:</em><br>
+<a href="https://www.baidu.com/">Baidu一下你就知道</a></p>
+<hr>
+<h1>Markdown代码块</h1>
+<p><strong>Markdown中使用一对`即可实现行内嵌入代码</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown行内代码</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="code">`printf(&quot;hello world&quot;)`</span>的执行效果就是输出字符串&quot;hello world&quot;</span><br></pre></td></tr></table></figure>
+<p><em>result:</em><br>
+<code>printf(&quot;hello world&quot;)</code>的执行效果就是输出字符串&quot;hello world&quot;</p>
+<hr>
+<p><strong>Markdown中使用一对三个反引号`,可实现嵌入一个代码块</strong></p>
+<p><em>example:</em><br>
+<s>忽略反斜杠</s></p>
+<figure class="highlight markdown"><figcaption><span>Markdown代码块</span></figcaption><table><tr><td class="code"><pre><span class="line">\<span class="code">```c</span></span><br><span class="line"><span class="code">for(int i = 1; i &lt; 10; i++)</span></span><br><span class="line"><span class="code">    print(&quot;%d&quot;,i);</span></span><br><span class="line"><span class="code">\```</span></span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">    print(<span class="string">&quot;%d&quot;</span>,i);</span><br></pre></td></tr></table></figure>
+<hr>
+<h1>Markdown图片</h1>
+<p><strong>Markdown中使用<code>![图片名称](图片链接)</code>,可实现嵌入一张图片，其中链接可以是本地文件路径，也可以是一个网页链接</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown图片</span></figcaption><table><tr><td class="code"><pre><span class="line">![<span class="string">Markdown!</span>](<span class="link">1.png</span>)</span><br></pre></td></tr></table></figure>
+<p><em>result:</em><br>
+<img src="1.png" alt="Markdown!"></p>
+<hr>
+<h1>Markdown引用</h1>
+<p><strong>Markdown中<code>&gt;引用内容</code>来实现引用，多个引用之间还可嵌套</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown引用</span></figcaption><table><tr><td class="code"><pre><span class="line">&gt;lalalalallalalallalalalallalalallalalalallalalal</span><br><span class="line">&gt;&gt;lalalalallalalalallalalalallalalallalalalallalalal</span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<blockquote>
+<p>lalalalallalalallalalalallalalallalalalallalalal</p>
+<blockquote>
+<p>lalalalallalalalallalalalallalalallalalalallalalal</p>
+</blockquote>
+</blockquote>
+<hr>
+<h1>Markdown表格</h1>
+<p><strong>Markdown制作表格使用 | 来分隔不同的单元格，使用 - 来分隔表头和其他行。我们可以设置表格的对齐方式，-: 设置内容和标题栏居右对齐，:- 设置内容和标题栏居左对齐，:-: 设置内容和标题栏居中对齐。</strong></p>
+<p><em>example:</em></p>
+<figure class="highlight markdown"><figcaption><span>Markdown引用</span></figcaption><table><tr><td class="code"><pre><span class="line">|单元格向左对齐|单元格向右对齐|单元格居中对齐|</span><br><span class="line">| :---| ---: | :---: |</span><br><span class="line">| 单元格 | 单元格 | 单元格 |</span><br><span class="line">| 单元格 | 单元格 | 单元格 |</span><br></pre></td></tr></table></figure>
+<p><em>result:</em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">单元格向左对齐</th>
+<th style="text-align:right">单元格向右对齐</th>
+<th style="text-align:center">单元格居中对齐</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">单元格</td>
+<td style="text-align:right">单元格</td>
+<td style="text-align:center">单元格</td>
+</tr>
+<tr>
+<td style="text-align:left">单元格</td>
+<td style="text-align:right">单元格</td>
+<td style="text-align:center">单元格</td>
+</tr>
+</tbody>
+</table>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>脚注内容1 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>脚注内容2 <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+]]></content>
+  </entry>
+  <entry>
+    <title>Perceptro Algorithm</title>
+    <url>/2022/07/26/Perceptro%20Algorithm/</url>
+    <content><![CDATA[<blockquote>
+<p>The Perceptron algorithm is the simplest type of artificial neural network.<br>
+It is a model of a single neuron that can be used for two-class classification problems and provides the foundation for later developing much larger networks.</p>
+</blockquote>
+<p><img src="1.png" alt=""></p>
+<h1>任务</h1>
+<p><strong>输入:</strong> $ (\overrightarrow{x_{i}},y_{i}), i = 1 \sim N $</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>$\overrightarrow{x_{i}}$ —— 第$i$个训练样本的特征向量</p>
+</li>
+<li class="lvl-2">
+<p>$y_{i}=\pm1$ —— 第$i$个训练样本的类别</p>
+</li>
+</ul>
+<p><strong>任务:</strong> 找出一个向量$\overrightarrow{w}$和一个常数$b$，使得对$i = 1 … N$，</p>
+<ol>
+<li class="lvl-3">
+<p>若$y_{i}=+1$，则$\overrightarrow{w}^{T}\overrightarrow{x_{i}}+b&gt;0$</p>
+</li>
+<li class="lvl-3">
+<p>若$y_{i}=-1$，则$\overrightarrow{w}^{T}\overrightarrow{x_{i}}+b&lt;0$</p>
+</li>
+</ol>
+<h1>方法</h1>
+<ol>
+<li class="lvl-3">
+<p>随机选择$w,b$</p>
+</li>
+<li class="lvl-3">
+<p>取一个训练样本$(\overrightarrow{x_{i}},y_{i})$</p>
+<ul class="lvl-2">
+<li class="lvl-5">若$\overrightarrow{w}^{T}\overrightarrow{x_{i}}+b&gt;0$，且$y_{i}=-1$，则：$\overrightarrow{w} = \overrightarrow{w}-\overrightarrow{x_{i}}, b = b-1$</li>
+<li class="lvl-5">若$\overrightarrow{w}^{T}\overrightarrow{x_{i}}+b&lt;0$，且$y_{i}=+1$，则：$\overrightarrow{w} = \overrightarrow{w}+\overrightarrow{x_{i}}, b = b+1$</li>
+</ul>
+</li>
+<li class="lvl-3">
+<p>再取另一个训练样本$(\overrightarrow{x_{i}},y_{i})$，重复步骤二</p>
+</li>
+<li class="lvl-3">
+<p><strong>终止条件:</strong> 直到所有样本$(\overrightarrow{x_{i}},y_{i})$都不满足步骤二中的两种情况，退出循环</p>
+</li>
+</ol>
+<p><strong>分析第二步中的第一种情况(第二种情况同理)</strong><br>
+$$<br>
+设 \overrightarrow{w}^{\prime} = \overrightarrow{w}<br>
+-\overrightarrow{x_{i}}, b^{\prime} = b-1<br>
+$$</p>
+<p><strong>有</strong></p>
+<p>$$<br>
+\overrightarrow{w}^{\prime T}\overrightarrow{x_{i}} + b^{\prime} \\  = {(\overrightarrow{w}-\overrightarrow{x_{i}})}^{T}+b-1 \\ = [\overrightarrow{w}^{T}\overrightarrow{x_{i}}+b] - {(\overrightarrow{x_{i}}^{T}\overrightarrow{x_{i}}+1)} \\ = [\overrightarrow{w}^{T}\overrightarrow{x_{i}}+b] - {({\Vert \overrightarrow{x_{i}} \Vert}^{2}+1)} \\ \leq [\overrightarrow{w}^{T}\overrightarrow{x_{i}}+b] - 1<br>
+$$</p>
+<p><strong>因此$ \overrightarrow{w}^{\prime T}\overrightarrow{x_{i}} + b^{\prime} $比$ \overrightarrow{w}^{T}\overrightarrow{x_{i}}+b $至少小了一</strong></p>
+<h2 id="线性可分">线性可分</h2>
+<p><img src="2.png" alt=""></p>
+<p><strong>在二维情况下，若存在一条直线能恰好把分布在特征空间(二维平面)中的点正确分为两类，则该样本集线性可分,如上图左一</strong></p>
+<p><strong>线性可分数学定义：</strong></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>训练样本$ \{(\overrightarrow{x_{1}},y_{1}), … ,(\overrightarrow{x_{N}},y_{N})\}, y_{i}=\pm1$</p>
+</li>
+<li class="lvl-2">
+<p>存在$ \overrightarrow{w},b $, 对任意$ (\overrightarrow{x_{i}},y_{i}) $有$ y_{i}(\overrightarrow{w^{T}}\overrightarrow{x_{i}}+b) \gt 0 $</p>
+</li>
+</ul>
+<h1>算法实现</h1>
+<p><strong>为了方便实现，我们对原有标记稍作修改</strong></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>对于某个样本$ (\overrightarrow{x_{i}},y_{i}) $,我们重新将它定义为$ \overrightarrow{x_{i}} = y_{i}\begin{bmatrix} \overrightarrow{x_{i}} \\ 1 \end{bmatrix}<br>
+$</p>
+</li>
+<li class="lvl-2">
+<p>对于最终要找到的结果$ \overrightarrow{w},b $,重新将它定义为$ \overrightarrow{w} = \begin{bmatrix} \overrightarrow{w} \\ b \end{bmatrix}<br>
+$</p>
+</li>
+</ul>
+<p><strong>于是原本的任务就可以简化为</strong></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>求$ \overrightarrow{w} = \begin{bmatrix} \overrightarrow{w} \\ b \end{bmatrix}<br>
+$，使得对$ i = 1 … N $，有$ \overrightarrow{w^{T}}\overrightarrow{x_{i}} \gt 0  $</p>
+</li>
+</ul>
+<h2 id="算法流程图">算法流程图</h2>
+<p><img src="Algorithm.png" alt=""></p>
+<h2 id="实践">实践</h2>
+<p><em>code:</em></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> tensor</span><br><span class="line"></span><br><span class="line">X = [[<span class="number">11</span>,<span class="number">21</span>,<span class="number">1</span>], [<span class="number">2</span>,<span class="number">43</span>,<span class="number">1</span>], [<span class="number">6</span>,<span class="number">43</span>,<span class="number">1</span>], [<span class="number">2</span>,<span class="number">32</span>,<span class="number">1</span>], [<span class="number">13</span>,<span class="number">2</span>,<span class="number">1</span>], [-<span class="number">11</span>,-<span class="number">53</span>,-<span class="number">1</span>], [-<span class="number">25</span>,-<span class="number">3</span>,-<span class="number">1</span>], [-<span class="number">17</span>,-<span class="number">12</span>,-<span class="number">1</span>], [-<span class="number">20</span>,-<span class="number">23</span>,-<span class="number">1</span>], [-<span class="number">16</span>,-<span class="number">30</span>,-<span class="number">1</span>]]</span><br><span class="line">X = [tensor(x).unsqueeze(<span class="number">1</span>) <span class="keyword">for</span> x <span class="keyword">in</span> X]</span><br><span class="line">W = tensor([<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>]).unsqueeze(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">FLAG = <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> FLAG :</span><br><span class="line">    FLAG = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> X :</span><br><span class="line">        <span class="keyword">if</span> torch.mm(W.t(),x) &lt;= <span class="number">0</span> :</span><br><span class="line">            W = W+x</span><br><span class="line">            FLAG = <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(W)</span><br></pre></td></tr></table></figure>
+<p><em>output:</em></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">tensor([[-<span class="number">13</span>],</span><br><span class="line">        [ -<span class="number">3</span>],</span><br><span class="line">        [<span class="number">212</span>]])</span><br></pre></td></tr></table></figure>
+<p>为了让算法过程更加直观，我们修改一下代码，可视化算法运行过程。</p>
+<p><em>code:</em></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> tensor</span><br><span class="line"></span><br><span class="line">X = [[<span class="number">11</span>,<span class="number">21</span>,<span class="number">1</span>], [<span class="number">2</span>,<span class="number">43</span>,<span class="number">1</span>], [<span class="number">6</span>,<span class="number">43</span>,<span class="number">1</span>], [<span class="number">2</span>,<span class="number">32</span>,<span class="number">1</span>], [<span class="number">13</span>,<span class="number">2</span>,<span class="number">1</span>], [-<span class="number">11</span>,-<span class="number">53</span>,-<span class="number">1</span>], [-<span class="number">25</span>,-<span class="number">3</span>,-<span class="number">1</span>], [-<span class="number">17</span>,-<span class="number">12</span>,-<span class="number">1</span>], [-<span class="number">20</span>,-<span class="number">23</span>,-<span class="number">1</span>], [-<span class="number">16</span>,-<span class="number">30</span>,-<span class="number">1</span>]]</span><br><span class="line"></span><br><span class="line">px, py = [x[<span class="number">0</span>] <span class="keyword">for</span> x <span class="keyword">in</span> X <span class="keyword">if</span> x[<span class="number">2</span>]==<span class="number">1</span>], [x[<span class="number">1</span>] <span class="keyword">for</span> x <span class="keyword">in</span> X <span class="keyword">if</span> x[<span class="number">2</span>]==<span class="number">1</span>]</span><br><span class="line">qx, qy = [-x[<span class="number">0</span>] <span class="keyword">for</span> x <span class="keyword">in</span> X <span class="keyword">if</span> x[<span class="number">2</span>]!=<span class="number">1</span>], [-x[<span class="number">1</span>] <span class="keyword">for</span> x <span class="keyword">in</span> X <span class="keyword">if</span> x[<span class="number">2</span>]!=<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">Draw</span>(<span class="params">a,b,c,d</span>) :</span><br><span class="line">    <span class="keyword">if</span> a==<span class="number">0</span> <span class="keyword">and</span> b==<span class="number">0</span> :</span><br><span class="line">        plt.figure(figsize=(<span class="number">5</span>,<span class="number">5</span>))</span><br><span class="line">        myfig = plt.gcf()</span><br><span class="line">        plt.xlim(<span class="number">0</span>, <span class="number">26</span>)</span><br><span class="line">        plt.ylim(<span class="number">0</span>, <span class="number">51</span>)</span><br><span class="line">        plt.scatter(px, py, color = <span class="string">&#x27;#7030A0&#x27;</span>)</span><br><span class="line">        plt.scatter(qx, qy, color = <span class="string">&#x27;#C00000&#x27;</span>)</span><br><span class="line">        myfig.savefig(<span class="string">&#x27;./figure/figure&#x27;</span>+<span class="built_in">str</span>(d)+<span class="string">&#x27;.png&#x27;</span>,dpi=<span class="number">300</span>)</span><br><span class="line">        plt.close()</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">elif</span> a==<span class="number">0</span> :</span><br><span class="line">        x = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(-<span class="number">100</span>,<span class="number">100</span>)]</span><br><span class="line">        y = [-c/b <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(-<span class="number">100</span>,<span class="number">100</span>)]</span><br><span class="line">    <span class="keyword">elif</span> b==<span class="number">0</span> :</span><br><span class="line">        y = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(-<span class="number">100</span>,<span class="number">100</span>)]</span><br><span class="line">        x = [-c/a <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(-<span class="number">100</span>,<span class="number">100</span>)]</span><br><span class="line">    <span class="keyword">else</span> :</span><br><span class="line">        x = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">26</span>)]</span><br><span class="line">        y = [-(a*i+c)/b <span class="keyword">for</span> i <span class="keyword">in</span> x]</span><br><span class="line">    plt.figure(figsize=(<span class="number">5</span>,<span class="number">5</span>))</span><br><span class="line">    myfig = plt.gcf()</span><br><span class="line">    plt.xlim(<span class="number">0</span>, <span class="number">26</span>)</span><br><span class="line">    plt.ylim(<span class="number">0</span>, <span class="number">51</span>)</span><br><span class="line">    plt.scatter(px, py, color = <span class="string">&#x27;#7030A0&#x27;</span>)</span><br><span class="line">    plt.scatter(qx, qy, color = <span class="string">&#x27;#C00000&#x27;</span>)</span><br><span class="line">    plt.plot(x,y)</span><br><span class="line">    <span class="keyword">if</span> d%<span class="number">10</span> == <span class="number">4</span> :</span><br><span class="line">        myfig.savefig(<span class="string">&#x27;./figure/figure&#x27;</span>+<span class="built_in">str</span>(d)+<span class="string">&#x27;.png&#x27;</span>,dpi=<span class="number">300</span>)</span><br><span class="line">    plt.close()</span><br><span class="line"></span><br><span class="line">X = [tensor(x).unsqueeze(<span class="number">1</span>) <span class="keyword">for</span> x <span class="keyword">in</span> X]</span><br><span class="line">W = tensor([<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>]).unsqueeze(<span class="number">1</span>)</span><br><span class="line">cnt = <span class="number">0</span></span><br><span class="line">FLAG = <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> FLAG :</span><br><span class="line">    FLAG = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> X :</span><br><span class="line">        <span class="keyword">if</span> torch.mm(W.t(),x) &lt;= <span class="number">0</span> :</span><br><span class="line">            W = W+x</span><br><span class="line">            FLAG = <span class="number">1</span></span><br><span class="line">            cnt += <span class="number">1</span></span><br><span class="line">            Draw(<span class="built_in">int</span>(W[<span class="number">0</span>]),<span class="built_in">int</span>(W[<span class="number">1</span>]),<span class="built_in">int</span>(W[<span class="number">2</span>]),cnt)   </span><br><span class="line"><span class="built_in">print</span>(W, cnt)</span><br></pre></td></tr></table></figure>
+<p><em>output:</em></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">tensor([[-<span class="number">13</span>],</span><br><span class="line">        [ -<span class="number">3</span>],</span><br><span class="line">        [<span class="number">212</span>]]) <span class="number">864</span></span><br></pre></td></tr></table></figure>
+<p><strong>经历865次迭代，我们的算法最终找到了这个问题的一个解 😄</strong></p>
+<p><em>以下是可视化结果</em></p>
+<p><img src="1.gif" alt=""></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Start</title>
+    <url>/2022/07/18/Start/</url>
+    <content><![CDATA[<p><img src="1.gif" alt=""></p>
+<blockquote><p>Some of us get dipped in flat, some in satin, some in gloss. But every once in a while you find someone who’s iridescent, and when you do, nothing will ever compare.</p>
+<footer><strong>Rob Reiner</strong><cite>Flipped</cite></footer></blockquote>
+]]></content>
+  </entry>
+  <entry>
+    <title>python文件目录遍历</title>
+    <url>/2022/07/25/python%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86/</url>
+    <content><![CDATA[<h1>Python os.listdir()</h1>
+<blockquote>
+<p>os.listdir() 方法用于返回指定的文件夹包含的文件或文件夹的名字的列表。<br>
+它不包括 . 和 … 即使它在文件夹中。<br>
+只支持在 Unix, Windows 下使用。</p>
+</blockquote>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>语法</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">os.listdir(path)</span><br></pre></td></tr></table></figure>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>参数</p>
+<ul class="lvl-2">
+<li class="lvl-4">path —— 需要列出的目标路径。</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>返回值</p>
+<ul class="lvl-2">
+<li class="lvl-4">list | 指定路径文件夹下的文件和文件夹的列表</li>
+</ul>
+</li>
+</ul>
+<p><em>code:</em></p>
+<pre><code>使用windows下的'tree /f'命令显示D:\folder文件夹下的所有子文件夹及文件
+</code></pre>
+<p><img src="cmd_tree.png" alt=""></p>
+<p><strong>以下以D:\folder为例，演示os.listdir()的实际效果</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">Path = <span class="string">r&#x27;D:\folder&#x27;</span> <span class="comment">#加上r让字符串不转义</span></span><br><span class="line"><span class="built_in">print</span>(os.listdir(Path))</span><br></pre></td></tr></table></figure>
+<p><em>output:</em></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[&#x27;books&#x27;, &#x27;Download&#x27;, &#x27;pictures&#x27;]</span><br></pre></td></tr></table></figure>
+<h1>Python os.walk()</h1>
+<blockquote>
+<p>os.walk() 方法用于通过在目录树中游走输出在目录中的文件名，向上或者向下。<br>
+os.walk() 方法是一个简单易用的文件、目录遍历器，可以帮助我们高效的处理文件、目录方面的事情。<br>
+在Unix，Windows中有效。</p>
+</blockquote>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>语法</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">os.walk(top[, topdown=<span class="literal">True</span>[, onerror=<span class="literal">None</span>[, followlinks=<span class="literal">False</span>]]])</span><br></pre></td></tr></table></figure>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>参数</p>
+<ul class="lvl-2">
+<li class="lvl-4">top —— 是你所要遍历的目录的地址。</li>
+<li class="lvl-4">topdown —— 可选，为 True，则优先遍历 top 目录，否则优先遍历 top 的子目录(默认为开启)。如果 topdown 参数为 True，walk 会遍历top文件夹，与top 文件夹中每一个子目录。</li>
+<li class="lvl-4">onerror —— 可选，需要一个 callable 对象，当 walk 需要异常时，会调用。</li>
+<li class="lvl-4">followlinks —— 可选，如果为 True，则会遍历目录下的快捷方式(linux 下是软连接 symbolic link )实际所指的目录(默认关闭)，如果为 False，则优先遍历 top 的子目录。</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>返回值</p>
+<ul class="lvl-2">
+<li class="lvl-4">generator | 每次返回一个三元组(root,dirs,files)
+<ul class="lvl-4">
+<li class="lvl-6">root —— 当前正在遍历的这个文件夹的本身的地址</li>
+<li class="lvl-6">dirs —— 一个 list ，内容是该文件夹中所有的目录的名字(不包括子目录)</li>
+<li class="lvl-6">files —— 同样是 list , 内容是该文件夹中所有的文件(不包括子目录)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><em>code:</em></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">Path = <span class="string">r&#x27;D:\folder&#x27;</span></span><br><span class="line"><span class="keyword">for</span> root,dirs,files <span class="keyword">in</span> os.walk(Path) :</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;-----root-----&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(root)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;-----dirs-----&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> name <span class="keyword">in</span> dirs :</span><br><span class="line">        <span class="built_in">print</span>(name)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;-----files-----&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> name <span class="keyword">in</span> files :</span><br><span class="line">        <span class="built_in">print</span>(os.path.join(root,name))</span><br></pre></td></tr></table></figure>
+<p><em>output:</em></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-----root-----</span><br><span class="line">D:\folder</span><br><span class="line">-----dirs-----</span><br><span class="line">books</span><br><span class="line">Download</span><br><span class="line">pictures</span><br><span class="line">-----files-----</span><br><span class="line">-----root-----</span><br><span class="line">D:\folder\books</span><br><span class="line">-----dirs-----</span><br><span class="line">-----files-----</span><br><span class="line">D:\folder\books\c++.txt</span><br><span class="line">D:\folder\books\java.txt</span><br><span class="line">D:\folder\books\python.txt</span><br><span class="line">-----root-----</span><br><span class="line">D:\folder\Download</span><br><span class="line">-----dirs-----</span><br><span class="line">-----files-----</span><br><span class="line">D:\folder\Download\mysql-installer-community-8.0.29.0.msi</span><br><span class="line">D:\folder\Download\navicat160_mysql_cs_x64.exe</span><br><span class="line">D:\folder\Download\node-v16.16.0-x64.msi</span><br><span class="line">D:\folder\Download\Xftp-7.0.0109p.exe</span><br><span class="line">D:\folder\Download\Xshell-7.0.0111p.exe</span><br><span class="line">-----root-----</span><br><span class="line">D:\folder\pictures</span><br><span class="line">-----dirs-----</span><br><span class="line">-----files-----</span><br><span class="line">D:\folder\pictures\coast.bmp</span><br><span class="line">D:\folder\pictures\forest.bmp</span><br><span class="line">D:\folder\pictures\mountaion.bmp</span><br></pre></td></tr></table></figure>
+]]></content>
+  </entry>
+  <entry>
+    <title>Search</title>
+    <url>/search/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>about</title>
+    <url>/about/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>archives</title>
+    <url>/archives/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
 </search>
