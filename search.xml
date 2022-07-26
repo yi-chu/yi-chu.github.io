@@ -459,8 +459,8 @@ os.walk() 方法是一个简单易用的文件、目录遍历器，可以帮助�
 ]]></content>
   </entry>
   <entry>
-    <title>Search</title>
-    <url>/search/index.html</url>
+    <title>archives</title>
+    <url>/archives/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
@@ -469,8 +469,8 @@ os.walk() 方法是一个简单易用的文件、目录遍历器，可以帮助�
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>archives</title>
-    <url>/archives/index.html</url>
+    <title>Search</title>
+    <url>/search/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
 </search>
